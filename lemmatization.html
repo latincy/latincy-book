@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.54">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -381,7 +381,7 @@ Lemma: hic
 Lowercase lemma: hic</code></pre>
 </div>
 </div>
-<p>The <code>lemma_</code> attibute, though, is only the human-readable of the lemma. Internally, spaCy uses a hash value to represent the lemma, which is stored in the <code>lemma</code> attribute. (Note the lack of trailing underscore.)</p>
+<p>The <code>lemma_</code> attribute, though, is only the human-readable version of the lemma. Internally, spaCy uses a hash value to represent the lemma, which is stored in the <code>lemma</code> attribute. (Note the lack of trailing underscore.)</p>
 <div id="cell-12" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Token: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Human-readable lemma: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>lemma_<span class="sc">}</span><span class="ss">'</span>)</span>
