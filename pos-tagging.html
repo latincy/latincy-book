@@ -84,7 +84,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./projects.html" rel="next">
+<link href="./morph-tagging.html" rel="next">
 <link href="./lemmatization.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -232,6 +232,12 @@ div.csl-indent {
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">POS Tagging</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./morph-tagging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Morphological Tagging</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -302,7 +308,7 @@ div.csl-indent {
 
 <section id="pos-tagging-with-latincy" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="pos-tagging-with-latincy"><span class="header-section-number">6.1</span> POS Tagging with LatinCy</h2>
-<p>Part-of-speech tagging is the task of mapping a token in a text to its part of speech, whether ‘noun’ or ‘verb’ or ‘prepositon’ and so on. There are two components in the default LatinCy pipelines that provide such annotations, that is the <code>tagger</code> and the <code>morphologizer</code>. Ostensibly, the <code>tagger</code> provides language-specific, fine-grain POS tags and the <code>morphologizer</code> provides coarse-grain tags (as defined by the UD <a href="https://universaldependencies.org/u/pos/">Universal POS tags</a>); at present, the LatinCy models have a high degree of overlap between these two tagsets and there are effectively <em>no</em> fine-grain tags.</p>
+<p>Part-of-speech tagging is the task of mapping a token in a text to its part of speech, whether ‘noun’ or ‘verb’ or ‘preposition’ and so on. There are two components in the default LatinCy pipelines that provide such annotations, that is the <code>tagger</code> and the <code>morphologizer</code>. Ostensibly, the <code>tagger</code> provides language-specific, fine-grain POS tags and the <code>morphologizer</code> provides coarse-grain tags (as defined by the UD <a href="https://universaldependencies.org/u/pos/">Universal POS tags</a>); at present, the LatinCy models have a high degree of overlap between these two tagsets and there are effectively <em>no</em> fine-grain tags.</p>
 <div id="cell-3" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports &amp; setup</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -941,8 +947,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./projects.html" class="pagination-link" aria-label="Open LatinCy Projects">
-        <span class="nav-page-text">Open LatinCy Projects</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./morph-tagging.html" class="pagination-link" aria-label="Morphological Tagging">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Morphological Tagging</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

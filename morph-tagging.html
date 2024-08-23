@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Sentence segmentation – Getting Started with LatinCy</title>
+<title>7&nbsp; Morphological Tagging – Getting Started with LatinCy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -54,27 +54,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -84,8 +64,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./word-tokenization.html" rel="next">
-<link href="./3_load.html" rel="prev">
+<link href="./projects.html" rel="next">
+<link href="./pos-tagging.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -135,7 +115,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./sentence-segmentation.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sentence segmentation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./morph-tagging.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Morphological Tagging</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -210,7 +190,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./sentence-segmentation.html" class="sidebar-item-text sidebar-link active">
+  <a href="./sentence-segmentation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sentence segmentation</span></span></a>
   </div>
 </li>
@@ -234,7 +214,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./morph-tagging.html" class="sidebar-item-text sidebar-link">
+  <a href="./morph-tagging.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Morphological Tagging</span></span></a>
   </div>
 </li>
@@ -277,7 +257,7 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sentence-segmentation-with-latincy" id="toc-sentence-segmentation-with-latincy" class="nav-link active" data-scroll-target="#sentence-segmentation-with-latincy"><span class="header-section-number">3.1</span> Sentence segmentation with LatinCy</a>
+  <li><a href="#pos-tagging-with-latincy" id="toc-pos-tagging-with-latincy" class="nav-link active" data-scroll-target="#pos-tagging-with-latincy"><span class="header-section-number">7.1</span> POS Tagging with LatinCy</a>
   <ul class="collapse">
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
@@ -287,9 +267,9 @@ div.csl-indent {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./sentence-segmentation.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sentence segmentation</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./morph-tagging.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Morphological Tagging</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sentence segmentation</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Morphological Tagging</span></h1>
 </div>
 
 
@@ -306,10 +286,9 @@ div.csl-indent {
 </header>
 
 
-<section id="sentence-segmentation-with-latincy" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="sentence-segmentation-with-latincy"><span class="header-section-number">3.1</span> Sentence segmentation with LatinCy</h2>
-<p>Sentence segmentation is the task of splitting a text into sentences. For the LatinCy models, this is a task been trained using spaCy’s <code>senter</code> factory to terminate sentences at both strong and weak stops, following the example of <span class="citation" data-cites="clayman_sentence_1981">Clayman (<a href="references.html#ref-clayman_sentence_1981" role="doc-biblioref">1981</a>)</span> (see also, <span class="citation" data-cites="wake_sentence-length_1957">Wake (<a href="references.html#ref-wake_sentence-length_1957" role="doc-biblioref">1957</a>)</span>, <span class="citation" data-cites="janson_problems_1964">Janson (<a href="references.html#ref-janson_problems_1964" role="doc-biblioref">1964</a>)</span>), who writes: “If all stops are made equivalent, i.e.&nbsp;if no distinction is made between the strong stop, weak stop and interrogation mark, editorial differences will be kept to a minimum.”</p>
-<p>Given a spaCy <code>Doc</code>, the <code>sents</code> attribute will produce a <code>generator</code> object with the sentence from that document as determined by the dependency parser. Each sentence is a <code>Span</code> object with the start and end token indices from the original <code>Doc</code>.</p>
+<section id="pos-tagging-with-latincy" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="pos-tagging-with-latincy"><span class="header-section-number">7.1</span> POS Tagging with LatinCy</h2>
+<p>Morphological tagging is the task of mapping a token in a text to various morphological tags as appropriate for the token’s part of speech. A noun will have morphological tags for its gender, number, and case, while a verb—a finite verb, at least—will have tags for its person, number, tense, mood, and voice. The default LatinCy pipelines have a <code>morphologizer</code> component that assigns these tags.</p>
 <div id="cell-3" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports &amp; setup</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -323,118 +302,96 @@ div.csl-indent {
 <pre><code>Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum. Avus eius Acrisius appellabatur.</code></pre>
 </div>
 </div>
-<div id="cell-4" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sents <span class="op">=</span> doc.sents</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(sents))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Morphological tags are annotations of the <code>Token</code> objects and are stored in the <code>morph</code> attribute.</p>
+<div id="cell-5" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sample_token <span class="op">=</span> doc[<span class="dv">1</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample token: </span><span class="sc">{</span>sample_token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample morph: </span><span class="sc">{</span>sample_token<span class="sc">.</span>morph<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;class 'generator'&gt;</code></pre>
+<pre><code>Sample token: narrantur
+Sample morph: Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass</code></pre>
 </div>
 </div>
-<p>Like all <code>Span</code> objects, the text from each sentence can be retrieved with the <code>text</code> attribute. For convenience below, we convert the generator to list so that we can iterate over it multiple times. Here are the three (3) sentences identified in the example text as well as an indication of the sentences’ <code>type</code>, i.e.&nbsp;<code>&lt;class 'spacy.tokens.span.Span'&gt;</code>.</p>
-<div id="cell-6" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sents <span class="op">=</span> <span class="bu">list</span>(sents)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, sent <span class="kw">in</span> <span class="bu">enumerate</span>(sents, <span class="dv">1</span>):</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>sent<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that the morphological annotations are stored in a spaCy’s <a href="https://spacy.io/api/morphology#morphanalysis"><code>MorphAnalysis</code></a> object…</p>
+<div id="cell-7" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(sample_token.morph)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>spacy.tokens.morphanalysis.MorphAnalysis</code></pre>
+</div>
+</div>
+<p>LatinCy users may find the following <code>MorphAnalysis</code> methods of use.</p>
+<p>To get all of the morphological tags for a token as a Python <code>dict</code>, you can use the <code>to_dict</code> method…</p>
+<div id="cell-9" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sample_morph_dict <span class="op">=</span> sample_token.morph.to_dict()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pprint(sample_morph_dict)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>1: Haec narrantur a poetis de Perseo.
-2: Perseus filius erat Iovis, maximi deorum.
-3: Avus eius Acrisius appellabatur.</code></pre>
+<pre><code>{'Mood': 'Ind',
+ 'Number': 'Plur',
+ 'Person': '3',
+ 'Tense': 'Pres',
+ 'VerbForm': 'Fin',
+ 'Voice': 'Pass'}</code></pre>
 </div>
 </div>
-<div id="cell-7" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sent <span class="op">=</span> sents[<span class="dv">0</span>]</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(sent))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can also get the string representation of the morphological analysis with the <code>to_json</code> method:</p>
+<div id="cell-11" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sample_morph_dict <span class="op">=</span> sample_token.morph.to_json()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>pprint(sample_morph_dict)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;class 'spacy.tokens.span.Span'&gt;</code></pre>
+<pre><code>'Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass'</code></pre>
 </div>
 </div>
-<p>Sentences have the same atrributes/methods available to them as any span (listed in the next cell). Following are some attibutes/methods that may be particularly relevant to working with sentences.</p>
-<div id="cell-9" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sent_methods <span class="op">=</span> [item <span class="cf">for</span> item <span class="kw">in</span> <span class="bu">dir</span>(sent) <span class="cf">if</span> <span class="st">'_'</span> <span class="kw">not</span> <span class="kw">in</span> item]</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>pprint(sent_methods)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Conversely, a <code>MorphAnalysis</code> object can be created from a Python <code>dict</code> using the <code>set_morph</code> method on a spaCy <code>Token</code> object.</p>
+<div id="cell-13" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"Festina lente."</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>doc_no_annotations <span class="op">=</span> nlp.make_doc(text)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>doc_no_annotations[<span class="dv">0</span>]<span class="sc">.</span>text<span class="sc">}</span><span class="ss"> -&gt; </span><span class="sc">{</span>doc_no_annotations[<span class="dv">0</span>]<span class="sc">.</span>morph <span class="cf">if</span> doc_no_annotations[<span class="dv">0</span>]<span class="sc">.</span>morph <span class="cf">else</span> <span class="st">"{No morph data}"</span><span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>['conjuncts',
- 'doc',
- 'end',
- 'ents',
- 'id',
- 'label',
- 'lefts',
- 'rights',
- 'root',
- 'sent',
- 'sentiment',
- 'sents',
- 'similarity',
- 'start',
- 'subtree',
- 'tensor',
- 'text',
- 'vector',
- 'vocab']</code></pre>
+<pre><code>Festina -&gt; {No morph data}</code></pre>
 </div>
 </div>
-<p>You can identify the <code>root</code> of the sentence as determined by the dependency parser. Assuming the parsing in correct, this will be the main verb of the sentence.</p>
-<div id="cell-11" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sent.root)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-14" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>festina_dict <span class="op">=</span> {<span class="st">"Person"</span>: <span class="st">"2"</span>, <span class="st">"Number"</span>: <span class="st">"Singular"</span>, <span class="st">"Tense"</span>: <span class="st">"Present"</span>, <span class="st">"Mood"</span>: <span class="st">"Imperative"</span>, <span class="st">"Voice"</span>: <span class="st">"Active"</span>}</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>doc_no_annotations[<span class="dv">0</span>].set_morph(festina_dict)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>doc_no_annotations[<span class="dv">0</span>]<span class="sc">.</span>text<span class="sc">}</span><span class="ss"> -&gt; </span><span class="sc">{</span>doc_no_annotations[<span class="dv">0</span>]<span class="sc">.</span>morph <span class="cf">if</span> doc_no_annotations[<span class="dv">0</span>]<span class="sc">.</span>morph <span class="cf">else</span> <span class="st">"{No morph data}"</span><span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(doc_no_annotations[<span class="dv">0</span>].morph))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>narrantur</code></pre>
+<pre><code>Festina -&gt; Mood=Imperative|Number=Singular|Person=2|Tense=Present|Voice=Active
+&lt;class 'spacy.tokens.morphanalysis.MorphAnalysis'&gt;</code></pre>
 </div>
 </div>
-<p>Each word in the sentence has an associated vector. Sentence (any <code>Span</code> in fact) has an associated vector as well that is the <a href="https://github.com/explosion/spaCy/blob/7df328fbfe42c1415f5e324686f7c4dcc0c093cb/spacy/tokens/span.pyx#L541">mean of the vectors</a> of the words in the sentence. As this example uses the <code>lg</code> model, the vector has a length of 300.</p>
-<div id="cell-13" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sent.vector.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As noted above, the mophological tags are POS-specific. LatinCy uses a limited set of morphological keys based on the UD treebanks. Moreover, with respect to the tag values, one specific adjustment that has been made from the UD treebanks is that for verbs LatinCy uses the six “traditional” tense values, i.e.&nbsp;present, imperfect, future, perfect, pluperfect, and future perfect.</p>
+<div id="cell-16" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tabulate</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(<span class="st">"Tum arcam ipsam in mare coniecit."</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> [item <span class="cf">for</span> item <span class="kw">in</span> doc]</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> tokens:</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    data.append([token.text, token.morph.to_json()])    </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate.tabulate(data, headers<span class="op">=</span>[<span class="st">'Text'</span>, <span class="st">"Morph"</span>])) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>(300,)</code></pre>
+<pre><code>Text      Morph
+--------  ---------------------------------------------------------------
+Tum
+arcam     Case=Acc|Gender=Fem|Number=Sing
+ipsam     Case=Acc|Gender=Fem|Number=Sing
+in
+mare      Case=Acc|Gender=Neut|Number=Sing
+coniecit  Mood=Ind|Number=Sing|Person=3|Tense=Perf|VerbForm=Fin|Voice=Act
+.</code></pre>
 </div>
 </div>
-<p>This vector then can be used to compute the similarity between two sentences. Here we see our example sentence compared to two related sentence: 1. a sentence where the character referred to is changed from Perseus to Ulysses; and 2. the active-verb version of the sentence.</p>
-<div id="cell-15" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sent.similarity(nlp(<span class="st">'Haec narrantur a poetis de Ulixe.'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>0.9814933448498585</code></pre>
-</div>
-</div>
-<div id="cell-16" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sent.similarity(nlp(<span class="st">'Haec narrant poetae de Perseo.'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>0.7961655550941479</code></pre>
-</div>
-</div>
-<p>We can retrieve the start and end indices from the original document for each sentence.</p>
-<div id="cell-18" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sent_2 <span class="op">=</span> sents[<span class="dv">1</span>]</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> sent_2.start</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>end <span class="op">=</span> sent_2.end</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(start)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(end)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sent_2.text)</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc[start:end].text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>7
-15
-Perseus filius erat Iovis, maximi deorum.
-Perseus filius erat Iovis, maximi deorum.</code></pre>
-</div>
-</div>
+<p>Note how in the sentence above the verb <em>coniecit</em> is tagged with the ‘Tense=Perf’ (for perfect), whereas in the UD treebanks this would have been annotated with ‘Tense=Past’ in coordination with ‘Aspect=Perf’.</p>
 <section id="references" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
-<p><strong>SLP</strong> Chapter 2, Section 2.4.5 “Sentence Segmentation”, pp.&nbsp;24 [link] (https://web.stanford.edu/~jurafsky/slp3/)<br>
-<strong>spaCy</strong> <a href="https://spacy.io/api/sentencerecognizer">SentenceRecognizer</a></p>
+<p><strong>NLTK</strong> Chapter 5 “Categorizing and tagging words” <a href="https://www.nltk.org/book/ch05.html">link</a> <strong>spaCy</strong> <a href="https://spacy.io/api/morphologizer">Morphologizer</a></p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-clayman_sentence_1981" class="csl-entry" role="listitem">
-Clayman, Dee. 1981. <span>“Sentence <span>Length</span> in <span>Greek</span> <span>Hexameter</span> <span>Poetry</span>.”</span> <em>Quantitative Linguistics</em> 11: 107–36. <a href="https://papers.ssrn.com/abstract=1627358">https://papers.ssrn.com/abstract=1627358</a>.
-</div>
-<div id="ref-janson_problems_1964" class="csl-entry" role="listitem">
-Janson, Tore. 1964. <span>“The <span>Problems</span> of <span>Measuring</span> <span>Sentence</span>-<span>Length</span> in <span>Classical</span> <span>Texts</span>.”</span> <em>Studia Linguistica</em> 18 (1): 26–36. <a href="https://doi.org/10.1111/j.1467-9582.1964.tb00443.x">https://doi.org/10.1111/j.1467-9582.1964.tb00443.x</a>.
-</div>
-<div id="ref-wake_sentence-length_1957" class="csl-entry" role="listitem">
-Wake, William C. 1957. <span>“Sentence-Length Distributions of <span>Greek</span> Authors.”</span> <em>Journal of the Royal Statistical Society. Series A (General)</em> 120 (3): 331–46. <a href="https://www.jstor.org/stable/2343104">https://www.jstor.org/stable/2343104</a>.
-</div>
-</div>
 </section>
 </section>
 
@@ -861,13 +818,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./3_load.html" class="pagination-link" aria-label="Loading LatinCy models">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Loading LatinCy models</span></span>
+      <a href="./pos-tagging.html" class="pagination-link" aria-label="POS Tagging">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">POS Tagging</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./word-tokenization.html" class="pagination-link" aria-label="Word Tokenization">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Word Tokenization</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./projects.html" class="pagination-link" aria-label="Open LatinCy Projects">
+        <span class="nav-page-text">Open LatinCy Projects</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
