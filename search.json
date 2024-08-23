@@ -158,7 +158,7 @@
     "href": "morph-tagging.html#pos-tagging-with-latincy",
     "title": "7  Morphological Tagging",
     "section": "",
-    "text": "References\nNLTK Chapter 5 “Categorizing and tagging words” link spaCy Morphologizer",
+    "text": "References\nNLTK Chapter 5 “Categorizing and tagging words” link\nspaCy Morphologizer",
     "crumbs": [
       "NLP Tasks",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Morphological Tagging</span>"
