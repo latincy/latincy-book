@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Installing LatinCy models – Getting Started with LatinCy</title>
+<title>3&nbsp; LatinCy components and their annotations – Getting Started with LatinCy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,15 +57,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./3_load.html" rel="next">
-<link href="./abbreviations.html" rel="prev">
+<link href="./sentence-segmentation.html" rel="next">
+<link href="./3_load.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -102,6 +102,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -115,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2_install.html">Model/Pipeline Basics</a></li><li class="breadcrumb-item"><a href="./2_install.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installing LatinCy models</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2_install.html">Model/Pipeline Basics</a></li><li class="breadcrumb-item"><a href="./4_key-annotations.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">LatinCy components and their annotations</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -167,7 +170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2_install.html" class="sidebar-item-text sidebar-link active">
+  <a href="./2_install.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installing LatinCy models</span></span></a>
   </div>
 </li>
@@ -179,7 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./4_key-annotations.html" class="sidebar-item-text sidebar-link">
+  <a href="./4_key-annotations.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">LatinCy components and their annotations</span></span></a>
   </div>
 </li>
@@ -263,18 +266,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#installing-spacy" id="toc-installing-spacy" class="nav-link active" data-scroll-target="#installing-spacy"><span class="header-section-number">1.1</span> Installing spaCy</a></li>
-  <li><a href="#installing-the-latincy-models" id="toc-installing-the-latincy-models" class="nav-link" data-scroll-target="#installing-the-latincy-models"><span class="header-section-number">1.2</span> Installing the LatinCy models</a></li>
-  <li><a href="#installing-additional-packages" id="toc-installing-additional-packages" class="nav-link" data-scroll-target="#installing-additional-packages"><span class="header-section-number">1.3</span> Installing additional packages</a></li>
+  <li><a href="#latincy-components-and-their-annotations" id="toc-latincy-components-and-their-annotations" class="nav-link active" data-scroll-target="#latincy-components-and-their-annotations"><span class="header-section-number">3.1</span> LatinCy components and their annotations</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2_install.html">Model/Pipeline Basics</a></li><li class="breadcrumb-item"><a href="./2_install.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installing LatinCy models</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2_install.html">Model/Pipeline Basics</a></li><li class="breadcrumb-item"><a href="./4_key-annotations.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">LatinCy components and their annotations</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installing LatinCy models</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">LatinCy components and their annotations</span></h1>
 </div>
 
 
@@ -291,33 +292,132 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="installing-spacy" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="installing-spacy"><span class="header-section-number">1.1</span> Installing spaCy</h2>
-<p>The LatinCy models are designed to work with the spaCy natural language platform, so you will need to have this package installed before anything else. The following cell has the pip install command for spaCy. At the time of writing, the latest version available for spaCy compatible with LatinCy is v3.7.5.</p>
-<p>NB: To run the cells below, uncomment the commands by removing the # at the beginning of the line. The exclamation point at the beginning of the line is shorthand for the <a href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-system"><code>%system</code> magic command</a> in Jupyter which can be used to run shell commands from within a notebook.</p>
-<div id="cell-3" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install -U spacy</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="latincy-components-and-their-annotations" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="latincy-components-and-their-annotations"><span class="header-section-number">3.1</span> LatinCy components and their annotations</h2>
+<div id="cell-2" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports &amp; setup</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>nlp <span class="op">=</span> spacy.load(<span class="st">'la_core_web_lg'</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"avus eius Acrisius appellabatur."</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>avus eius Acrisius appellabatur.</code></pre>
 </div>
-</section>
-<section id="installing-the-latincy-models" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="installing-the-latincy-models"><span class="header-section-number">1.2</span> Installing the LatinCy models</h2>
-<p>LatinCy models are currently available in three sizes: ‘sm’, ‘md’, and ‘lg’. We will use the different models throughout the tutorials, so let’s install all three now so that they are available for future chapters.</p>
-<div id="cell-6" class="cell" data-vscode="{&quot;languageId&quot;:&quot;shellscript&quot;}" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ! pip install "la-core-web-sm @ https://huggingface.co/latincy/la_core_web_sm/resolve/main/la_core_web_sm-any-py3-none-any.whl"</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ! pip install "la-core-web-md @ https://huggingface.co/latincy/la_core_web_md/resolve/main/la_core_web_md-any-py3-none-any.whl"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ! pip install "la-core-web-lg @ https://huggingface.co/latincy/la_core_web_lg/resolve/main/la_core_web_lg-any-py3-none-any.whl"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ! pip install "la-core-web-trf @ https://huggingface.co/latincy/la_core_web_trf/resolve/main/la_core_web_trf-any-py3-none-any.whl"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="installing-additional-packages" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="installing-additional-packages"><span class="header-section-number">1.3</span> Installing additional packages</h2>
-<p>We will also use other packages throughout these tutorials. They are included here for your convenience, as well as in the <code>requirements.txt</code> file in the code repository for this Quarto book.</p>
-<div id="cell-9" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install pandas</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install matplotlib</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install seaborn</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install scikit-learn</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install tqdm</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here are the components provided by the default LatinCy models…</p>
+<div id="cell-4" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pprint(nlp.pipe_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['senter',
+ 'normer',
+ 'tok2vec',
+ 'tagger',
+ 'morphologizer',
+ 'trainable_lemmatizer',
+ 'parser',
+ 'lookup_lemmatizer',
+ 'ner']</code></pre>
+</div>
+</div>
+<p>The dataframe below summarizes the key annotations provided by these components…</p>
+<div id="cell-6" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> doc:</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    data.append([token.text, token.norm_, token.lemma_, token.pos_, token.tag_, token.morph.to_json(), token.dep_, token.ent_type_, token.has_vector])</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data, columns<span class="op">=</span>[<span class="st">'text'</span>, <span class="st">'norm'</span>, <span class="st">'lemma'</span>, <span class="st">'pos'</span>, <span class="st">'tag'</span>, <span class="st">'morph'</span>, <span class="st">'dep'</span>, <span class="st">'ent_type'</span>, <span class="st">'has_vector'</span>])</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">text</th>
+<th data-quarto-table-cell-role="th">norm</th>
+<th data-quarto-table-cell-role="th">lemma</th>
+<th data-quarto-table-cell-role="th">pos</th>
+<th data-quarto-table-cell-role="th">tag</th>
+<th data-quarto-table-cell-role="th">morph</th>
+<th data-quarto-table-cell-role="th">dep</th>
+<th data-quarto-table-cell-role="th">ent_type</th>
+<th data-quarto-table-cell-role="th">has_vector</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>avus</td>
+<td>auus</td>
+<td>auus</td>
+<td>NOUN</td>
+<td>noun</td>
+<td>Case=Nom|Gender=Masc|Number=Sing</td>
+<td>nsubj:pass</td>
+<td></td>
+<td>True</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>eius</td>
+<td>eius</td>
+<td>is</td>
+<td>PRON</td>
+<td>pronoun</td>
+<td>Case=Gen|Gender=Masc|Number=Sing|Person=3</td>
+<td>nmod</td>
+<td></td>
+<td>True</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Acrisius</td>
+<td>acrisius</td>
+<td>Acrisius</td>
+<td>PROPN</td>
+<td>proper_noun</td>
+<td>Case=Nom|Gender=Masc|Number=Sing</td>
+<td>xcomp</td>
+<td>PERSON</td>
+<td>True</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>appellabatur</td>
+<td>appellabatur</td>
+<td>appello</td>
+<td>VERB</td>
+<td>verb</td>
+<td>Mood=Ind|Number=Sing|Person=3|Tense=Imp|VerbFo...</td>
+<td>ROOT</td>
+<td></td>
+<td>True</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>.</td>
+<td>.</td>
+<td>.</td>
+<td>PUNCT</td>
+<td>punc</td>
+<td></td>
+<td>punct</td>
+<td></td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
 </div>
 
 
@@ -746,13 +846,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./abbreviations.html" class="pagination-link" aria-label="Abbreviations">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Abbreviations</span>
+      <a href="./3_load.html" class="pagination-link" aria-label="Loading LatinCy models">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Loading LatinCy models</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./3_load.html" class="pagination-link" aria-label="Loading LatinCy models">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Loading LatinCy models</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./sentence-segmentation.html" class="pagination-link" aria-label="Sentence segmentation">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sentence segmentation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

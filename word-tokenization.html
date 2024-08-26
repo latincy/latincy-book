@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Word Tokenization – Getting Started with LatinCy</title>
+<title>5&nbsp; Word Tokenization – Getting Started with LatinCy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./word-tokenization.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Word Tokenization</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./word-tokenization.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Word Tokenization</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -177,6 +177,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Loading LatinCy models</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4_key-annotations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">LatinCy components and their annotations</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -191,31 +197,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sentence-segmentation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sentence segmentation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sentence segmentation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./word-tokenization.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Word Tokenization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Word Tokenization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lemmatization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lemmatization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lemmatization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pos-tagging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">POS Tagging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">POS Tagging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./morph-tagging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Morphological Tagging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Morphological Tagging</span></span></a>
   </div>
 </li>
       </ul>
@@ -257,10 +263,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#word-tokenization-with-latincy" id="toc-word-tokenization-with-latincy" class="nav-link active" data-scroll-target="#word-tokenization-with-latincy"><span class="header-section-number">4.1</span> Word tokenization with LatinCy</a>
+  <li><a href="#word-tokenization-with-latincy" id="toc-word-tokenization-with-latincy" class="nav-link active" data-scroll-target="#word-tokenization-with-latincy"><span class="header-section-number">5.1</span> Word tokenization with LatinCy</a>
   <ul class="collapse">
-  <li><a href="#token-attributes-and-methods-related-to-tokenization" id="toc-token-attributes-and-methods-related-to-tokenization" class="nav-link" data-scroll-target="#token-attributes-and-methods-related-to-tokenization"><span class="header-section-number">4.1.1</span> Token attributes and methods related to tokenization</a></li>
-  <li><a href="#customization-of-the-spacy-tokenizer-in-latincy" id="toc-customization-of-the-spacy-tokenizer-in-latincy" class="nav-link" data-scroll-target="#customization-of-the-spacy-tokenizer-in-latincy"><span class="header-section-number">4.1.2</span> Customization of the spaCy tokenizer in LatinCy</a></li>
+  <li><a href="#token-attributes-and-methods-related-to-tokenization" id="toc-token-attributes-and-methods-related-to-tokenization" class="nav-link" data-scroll-target="#token-attributes-and-methods-related-to-tokenization"><span class="header-section-number">5.1.1</span> Token attributes and methods related to tokenization</a></li>
+  <li><a href="#customization-of-the-spacy-tokenizer-in-latincy" id="toc-customization-of-the-spacy-tokenizer-in-latincy" class="nav-link" data-scroll-target="#customization-of-the-spacy-tokenizer-in-latincy"><span class="header-section-number">5.1.2</span> Customization of the spaCy tokenizer in LatinCy</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
@@ -269,9 +275,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./word-tokenization.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Word Tokenization</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./word-tokenization.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Word Tokenization</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Word Tokenization</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Word Tokenization</span></h1>
 </div>
 
 
@@ -288,8 +294,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="word-tokenization-with-latincy" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="word-tokenization-with-latincy"><span class="header-section-number">4.1</span> Word tokenization with LatinCy</h2>
+<section id="word-tokenization-with-latincy" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="word-tokenization-with-latincy"><span class="header-section-number">5.1</span> Word tokenization with LatinCy</h2>
 <div id="cell-2" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports &amp; setup</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -356,8 +362,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 &lt;class 'str'&gt; -&gt; Haec</code></pre>
 </div>
 </div>
-<section id="token-attributes-and-methods-related-to-tokenization" class="level3" data-number="4.1.1">
-<h3 data-number="4.1.1" class="anchored" data-anchor-id="token-attributes-and-methods-related-to-tokenization"><span class="header-section-number">4.1.1</span> Token attributes and methods related to tokenization</h3>
+<section id="token-attributes-and-methods-related-to-tokenization" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="token-attributes-and-methods-related-to-tokenization"><span class="header-section-number">5.1.1</span> Token attributes and methods related to tokenization</h3>
 <p>Here are some atrributes/methods available for spaCy <code>Token</code> objects that are relevant to word tokenization.</p>
 <p>SpaCy keeps track of both the token indices and the character offsets within a doc using either the <code>i</code> or <code>idx</code> attributes, respectively…</p>
 <div id="cell-13" class="cell" data-execution_count="6">
@@ -508,8 +514,8 @@ Perseo, i.e. i + 2 = 5</code></pre>
 </div>
 </div>
 </section>
-<section id="customization-of-the-spacy-tokenizer-in-latincy" class="level3" data-number="4.1.2">
-<h3 data-number="4.1.2" class="anchored" data-anchor-id="customization-of-the-spacy-tokenizer-in-latincy"><span class="header-section-number">4.1.2</span> Customization of the spaCy tokenizer in LatinCy</h3>
+<section id="customization-of-the-spacy-tokenizer-in-latincy" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="customization-of-the-spacy-tokenizer-in-latincy"><span class="header-section-number">5.1.2</span> Customization of the spaCy tokenizer in LatinCy</h3>
 <p>LatinCy aims to tokenize the <em>que</em> enclitic in Latin texts. As noted above this is currently done through a rule-based approach. Here is the custom tokenizer code (beginning at this line in the <a href="https://github.com/diyclassics/la_core_web_lg/blob/89a5fda0b691afb613f77247771cdb407f1be1ec/scripts/functions.py#L191">code</a>) followed by a description of the process. Note that this process is based on the following recommendations in the spaCy documentation: https://spacy.io/usage/training#custom-tokenizer.</p>
 <div id="cell-28" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> spacy.util <span class="im">import</span> registry, compile_suffix_regex</span>
@@ -1024,12 +1030,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./sentence-segmentation.html" class="pagination-link" aria-label="Sentence segmentation">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sentence segmentation</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sentence segmentation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./lemmatization.html" class="pagination-link" aria-label="Lemmatization">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lemmatization</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lemmatization</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

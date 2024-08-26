@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Sentence segmentation – Getting Started with LatinCy</title>
+<title>4&nbsp; Sentence segmentation – Getting Started with LatinCy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -85,7 +85,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./word-tokenization.html" rel="next">
-<link href="./3_load.html" rel="prev">
+<link href="./4_key-annotations.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -135,7 +135,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./sentence-segmentation.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sentence segmentation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./sentence-segmentation.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sentence segmentation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -197,6 +197,12 @@ div.csl-indent {
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Loading LatinCy models</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./4_key-annotations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">LatinCy components and their annotations</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -211,31 +217,31 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sentence-segmentation.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sentence segmentation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sentence segmentation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./word-tokenization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Word Tokenization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Word Tokenization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lemmatization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Lemmatization</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lemmatization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pos-tagging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">POS Tagging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">POS Tagging</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./morph-tagging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Morphological Tagging</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Morphological Tagging</span></span></a>
   </div>
 </li>
       </ul>
@@ -277,7 +283,7 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sentence-segmentation-with-latincy" id="toc-sentence-segmentation-with-latincy" class="nav-link active" data-scroll-target="#sentence-segmentation-with-latincy"><span class="header-section-number">3.1</span> Sentence segmentation with LatinCy</a>
+  <li><a href="#sentence-segmentation-with-latincy" id="toc-sentence-segmentation-with-latincy" class="nav-link active" data-scroll-target="#sentence-segmentation-with-latincy"><span class="header-section-number">4.1</span> Sentence segmentation with LatinCy</a>
   <ul class="collapse">
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
@@ -287,9 +293,9 @@ div.csl-indent {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./sentence-segmentation.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sentence segmentation</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./sentence-segmentation.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sentence segmentation</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sentence segmentation</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Sentence segmentation</span></h1>
 </div>
 
 
@@ -306,8 +312,8 @@ div.csl-indent {
 </header>
 
 
-<section id="sentence-segmentation-with-latincy" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="sentence-segmentation-with-latincy"><span class="header-section-number">3.1</span> Sentence segmentation with LatinCy</h2>
+<section id="sentence-segmentation-with-latincy" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="sentence-segmentation-with-latincy"><span class="header-section-number">4.1</span> Sentence segmentation with LatinCy</h2>
 <p>Sentence segmentation is the task of splitting a text into sentences. For the LatinCy models, this is a task been trained using spaCy’s <code>senter</code> factory to terminate sentences at both strong and weak stops, following the example of <span class="citation" data-cites="clayman_sentence_1981">Clayman (<a href="references.html#ref-clayman_sentence_1981" role="doc-biblioref">1981</a>)</span> (see also, <span class="citation" data-cites="wake_sentence-length_1957">Wake (<a href="references.html#ref-wake_sentence-length_1957" role="doc-biblioref">1957</a>)</span>, <span class="citation" data-cites="janson_problems_1964">Janson (<a href="references.html#ref-janson_problems_1964" role="doc-biblioref">1964</a>)</span>), who writes: “If all stops are made equivalent, i.e.&nbsp;if no distinction is made between the strong stop, weak stop and interrogation mark, editorial differences will be kept to a minimum.”</p>
 <p>Given a spaCy <code>Doc</code>, the <code>sents</code> attribute will produce a <code>generator</code> object with the sentence from that document as determined by the dependency parser. Each sentence is a <code>Span</code> object with the start and end token indices from the original <code>Doc</code>.</p>
 <div id="cell-3" class="cell" data-execution_count="1">
@@ -861,13 +867,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./3_load.html" class="pagination-link" aria-label="Loading LatinCy models">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Loading LatinCy models</span></span>
+      <a href="./4_key-annotations.html" class="pagination-link" aria-label="LatinCy components and their annotations">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">LatinCy components and their annotations</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./word-tokenization.html" class="pagination-link" aria-label="Word Tokenization">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Word Tokenization</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Word Tokenization</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
