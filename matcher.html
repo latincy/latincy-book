@@ -348,7 +348,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>matcher <span class="op">=</span> Matcher(nlp.vocab)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(matcher)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;spacy.matcher.matcher.Matcher object at 0x167e4de10&gt;</code></pre>
+<pre><code>&lt;spacy.matcher.matcher.Matcher object at 0x174721e10&gt;</code></pre>
 </div>
 </div>
 <p>We use the <code>Matcher</code> by adding patterns, quite sensibly using the <code>add</code> method. With the <code>add</code> method, we assign a <code>match_id</code> “name” for the pattern and the patterns themselves. The patters are lists of lists of dictionaries; those dictionaries are arranged sequentially by the tokens sequences we want to match, where the dictionary keys are the attributes and the dictionary values are the our specific terms to be matched for that attribute. So, in the example below, we are looking for any span of tokens in the provided <code>Doc</code> where the <code>text</code> attribute matches—and matches exactly—the string “res”. The <code>Matcher</code> returns the <code>match_id</code> as well as the start and end indices for each matched span.</p>
@@ -474,6 +474,76 @@ res_public_fuzzy      424    426  res publica</code></pre>
 ------------------  -------  -----  --------------
 res_publica_lemmas      399    401  rei publicae
 res_publica_lemmas      424    426  res publica</code></pre>
+</div>
+</div>
+<p>The patterns are not limited to text search, that is they can be based entirely on annotation patterns. Here is a list of all NOUN-ADJ sequences in Livy’s “Praefatio”…</p>
+<div id="cell-22" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pattern <span class="op">=</span> [{<span class="st">"POS"</span>: <span class="st">"NOUN"</span>}, {<span class="st">"POS"</span>: <span class="st">"ADJ"</span>}]</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>tabulate_matches(<span class="st">'noun_adjs'</span>, pattern)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Match ID      Start    End  Matched text
+----------  -------  -----  -------------------
+noun_adjs         9     11  populi Romani
+noun_adjs        46     48  arte rudem
+noun_adjs       127    129  origines proxima
+noun_adjs       207    209  urbem poeticis
+noun_adjs       237    239  urbium augustiora
+noun_adjs       260    262  populo Romano
+noun_adjs       276    278  gentes humanae
+noun_adjs       380    382  rerum salubre
+noun_adjs       399    401  rei publicae
+noun_adjs       407    409  inceptu foedum
+noun_adjs       424    426  res publica
+noun_adjs       432    434  exemplis ditior
+noun_adjs       539    541  successus prosperos</code></pre>
+</div>
+</div>
+<p>As well as a list of all alliterative patterns, though with some creative regexing…</p>
+<div id="cell-24" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>matcher <span class="op">=</span> Matcher(nlp.vocab)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> letter <span class="kw">in</span> <span class="st">"abcdefghijklmnopqrstuvwxyz"</span>:</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    pattern <span class="op">=</span> [{<span class="st">"LOWER"</span>: {<span class="st">"REGEX"</span>: <span class="vs">rf'\b</span><span class="sc">{</span>letter<span class="sc">}</span><span class="vs">.+?\b'</span>}, <span class="st">"OP"</span>: <span class="st">"{2,}"</span>}]</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    matcher.add(<span class="st">'alliterative_pairs'</span>, [pattern])</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>matches <span class="op">=</span> matcher(doc)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>matches_data <span class="op">=</span> []</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> match_id, start, end <span class="kw">in</span> matches:</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    string_id <span class="op">=</span> nlp.vocab.strings[match_id]</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    span <span class="op">=</span> doc[start:end]</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    matches_data.append((string_id, start, end, span.text))</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate(matches_data, headers<span class="op">=</span>[<span class="st">'Match ID'</span>, <span class="st">'Start'</span>, <span class="st">'End'</span>, <span class="st">'Matched text'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Match ID              Start    End  Matched text
+------------------  -------  -----  --------------------------
+alliterative_pairs        3      5  sim si
+alliterative_pairs       13     15  satis scio
+alliterative_pairs       17     19  si sciam
+alliterative_pairs       23     25  quippe qui
+alliterative_pairs       35     37  semper scriptores
+alliterative_pairs       41     43  aliquid allaturos
+alliterative_pairs       62     64  populi pro
+alliterative_pairs      102    104  supra septingentesimum
+alliterative_pairs      142    144  pridem praevalentis
+alliterative_pairs      142    145  pridem praevalentis populi
+alliterative_pairs      143    145  praevalentis populi
+alliterative_pairs      155    157  praemium petam
+alliterative_pairs      205    207  conditam condendamve
+alliterative_pairs      279    281  aequo animo
+alliterative_pairs      291    293  animaduersa aut
+alliterative_pairs      293    295  existimata erunt
+alliterative_pairs      347    349  magis magis
+alliterative_pairs      365    367  nostra nec
+alliterative_pairs      368    370  pati possumus
+alliterative_pairs      368    371  pati possumus perventum
+alliterative_pairs      369    371  possumus perventum
+alliterative_pairs      389    391  in inlustri
+alliterative_pairs      396    398  tibi tuae
+alliterative_pairs      482    484  pereundi perdendi
+alliterative_pairs      518    520  deorum dearum</code></pre>
 </div>
 </div>
 <section id="references" class="level3 unnumbered">
