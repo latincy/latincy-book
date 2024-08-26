@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Patrick J. Burns">
+<meta name="dcterms.date" content="2024-08-26">
 
-<title>2&nbsp; Loading LatinCy models – Getting Started with LatinCy</title>
+<title>9&nbsp; Sequence Matching – Getting Started with LatinCy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +66,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./4_key-annotations.html" rel="next">
-<link href="./2_install.html" rel="prev">
+<link href="./projects.html" rel="next">
+<link href="./morph-tagging.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -115,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2_install.html">Model/Pipeline Basics</a></li><li class="breadcrumb-item"><a href="./3_load.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Loading LatinCy models</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./matcher.html">spaCy Tasks</a></li><li class="breadcrumb-item"><a href="./matcher.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sequence Matching</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -173,7 +175,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./3_load.html" class="sidebar-item-text sidebar-link active">
+  <a href="./3_load.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Loading LatinCy models</span></span></a>
   </div>
 </li>
@@ -237,7 +239,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./matcher.html" class="sidebar-item-text sidebar-link">
+  <a href="./matcher.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sequence Matching</span></span></a>
   </div>
 </li>
@@ -276,24 +278,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#loading-latincy-models-with-spacy" id="toc-loading-latincy-models-with-spacy" class="nav-link active" data-scroll-target="#loading-latincy-models-with-spacy"><span class="header-section-number">2.1</span> Loading LatinCy models with spaCy</a></li>
-  <li><a href="#creating-a-spacy-doc-from-a-string" id="toc-creating-a-spacy-doc-from-a-string" class="nav-link" data-scroll-target="#creating-a-spacy-doc-from-a-string"><span class="header-section-number">2.2</span> Creating a spaCy doc from a string</a></li>
+  <li><a href="#sequence-matching-with-latincy" id="toc-sequence-matching-with-latincy" class="nav-link active" data-scroll-target="#sequence-matching-with-latincy"><span class="header-section-number">9.1</span> Sequence matching with LatinCy</a>
+  <ul class="collapse">
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2_install.html">Model/Pipeline Basics</a></li><li class="breadcrumb-item"><a href="./3_load.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Loading LatinCy models</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./matcher.html">spaCy Tasks</a></li><li class="breadcrumb-item"><a href="./matcher.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sequence Matching</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Loading LatinCy models</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sequence Matching</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Patrick J. Burns </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 26, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -303,54 +319,169 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="loading-latincy-models-with-spacy" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="loading-latincy-models-with-spacy"><span class="header-section-number">2.1</span> Loading LatinCy models with spaCy</h2>
-<div id="cell-2" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports</span></span>
+<section id="sequence-matching-with-latincy" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="sequence-matching-with-latincy"><span class="header-section-number">9.1</span> Sequence matching with LatinCy</h2>
+<p>We can use LatinCy annotations as the basis for matching spans of tokens using spaCy’s <code>Matcher</code>. This includes basic <code>Token</code> attributes like <code>ORTH</code>, <code>TEXT</code>, <code>NORM</code>, and <code>LOWER</code> as well as those annotated by the LatinCy pipeline like <code>LEMMA</code>, <code>POS</code>, <code>TAG</code>, <code>MORPH</code>, <code>DEP</code>, and <code>ENT_TYPE</code>. There are also more general attributes like <code>IS_ALPHA</code>, <code>IS_ASCII</code>, <code>IS_DIGIT</code>, <code>IS_LOWER</code>, <code>IS_UPPER</code>, <code>IS_TITLE</code>, <code>IS_PUNCT</code>, <code>IS_SPACE</code>, and <code>LIKE_NUM</code>, among still others. The full list can be found <a href="https://spacy.io/api/matcher#patterns">here</a>. Moreover, there are many operators, quantifiers, and other operations that can be using to create ever-increasingly complex patterns. The combinatorial patterns for using the <code>Matcher</code> are frankly enormous and so this should be considered only a most basic introduction for what is possible.</p>
+<p>Here we run through a quick example based on finding variations of <em>res</em> and then by pattern-matching extensions of <em>res publica</em> using the <em>Praefatio</em> to Livy’s <em>Ab urbe condita</em>.</p>
+<div id="cell-3" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports &amp; setup</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>nlp <span class="op">=</span> spacy.load(<span class="st">'la_core_web_lg'</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'livy_praefatio.txt'</span>) <span class="im">as</span> f:</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> f.read() </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc[:<span class="dv">100</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Facturusne operae pretium sim si a primordio urbis res populi Romani perscripserim nec satis scio nec, si sciam, dicere ausim, quippe qui cum veterem tum volgatam esse rem videam, dum novi semper scriptores aut in rebus certius aliquid allaturos se aut scribendi arte rudem vetustatem superaturos credunt. Utcumque erit, iuvabit tamen rerum gestarum memoriae principis terrarum populi pro virili parte et ipsum consuluisse; et si in tanta scriptorum turba mea fama in obscuro sit, nobilitate ac magnitudine eorum me qui nomini officient meo consoler. Res est praeterea et immensi operis,</code></pre>
 </div>
-<div id="cell-3" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nlp <span class="op">=</span> spacy.load(<span class="st">'la_core_web_lg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>The <code>Matcher</code> is initialized with the <code>Vocab</code> object from our loaded pipeline.</p>
+<div id="cell-5" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> spacy.matcher <span class="im">import</span> Matcher</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>matcher <span class="op">=</span> Matcher(nlp.vocab)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(matcher)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;spacy.matcher.matcher.Matcher object at 0x167e4de10&gt;</code></pre>
+</div>
+</div>
+<p>We use the <code>Matcher</code> by adding patterns, quite sensibly using the <code>add</code> method. With the <code>add</code> method, we assign a <code>match_id</code> “name” for the pattern and the patterns themselves. The patters are lists of lists of dictionaries; those dictionaries are arranged sequentially by the tokens sequences we want to match, where the dictionary keys are the attributes and the dictionary values are the our specific terms to be matched for that attribute. So, in the example below, we are looking for any span of tokens in the provided <code>Doc</code> where the <code>text</code> attribute matches—and matches exactly—the string “res”. The <code>Matcher</code> returns the <code>match_id</code> as well as the start and end indices for each matched span.</p>
+<div id="cell-7" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pattern <span class="op">=</span> [{<span class="st">'TEXT'</span>: <span class="st">'res'</span>}]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>matcher.add(<span class="st">'res_tokens'</span>, [pattern])</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>matches <span class="op">=</span> matcher(doc)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>matches_data <span class="op">=</span> []</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> match_id, start, end <span class="kw">in</span> matches:</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    string_id <span class="op">=</span> nlp.vocab.strings[match_id]</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    span <span class="op">=</span> doc[start:end]</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    matches_data.append((string_id, start, end, span.text))</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate(matches_data, headers<span class="op">=</span>[<span class="st">'Match ID'</span>, <span class="st">'Start'</span>, <span class="st">'End'</span>, <span class="st">'Matched text'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Match ID      Start    End  Matched text
+----------  -------  -----  --------------
+res_tokens        8      9  res
+res_tokens      424    425  res</code></pre>
+</div>
+</div>
+<div id="cell-8" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper functions</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pattern2matches(pattern_name, pattern):</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    matcher <span class="op">=</span> Matcher(nlp.vocab)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    matcher.add(pattern_name, [pattern])</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    matches <span class="op">=</span> matcher(doc)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    matches_data <span class="op">=</span> []</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> match_id, start, end <span class="kw">in</span> matches:</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        string_id <span class="op">=</span> nlp.vocab.strings[match_id]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        span <span class="op">=</span> doc[start:end]</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        matches_data.append((string_id, start, end, span.text))</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> matches_data</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tabulate_matches(pattern_name, pattern):</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    matches_data <span class="op">=</span> pattern2matches(pattern_name, pattern)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(tabulate(matches_data, headers<span class="op">=</span>[<span class="st">'Match ID'</span>, <span class="st">'Start'</span>, <span class="st">'End'</span>, <span class="st">'Matched text'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that the matches above on <code>TEXT</code> are case-sensitive. We can widen our search for <em>res</em> by using the <code>LOWER</code> attribute…</p>
+<div id="cell-10" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pattern <span class="op">=</span> [{<span class="st">'LOWER'</span>: <span class="st">'res'</span>}]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>tabulate_matches(<span class="st">'res_uncased'</span>, pattern)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Match ID       Start    End  Matched text
+-----------  -------  -----  --------------
+res_uncased        8      9  res
+res_uncased       93     94  Res
+res_uncased      424    425  res</code></pre>
+</div>
+</div>
+<p>Extending this logic even further, we can widen the search again by matching not only the token “Res”/“res” but all tokens for which the LatinCy lemmatizers have assigned the lemma “res”. This is done by using the <code>LEMMA</code> attribute.</p>
+<div id="cell-12" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pattern <span class="op">=</span> [{<span class="st">'LEMMA'</span>: <span class="st">'res'</span>}]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>tabulate_matches(<span class="st">'res_lemma'</span>, pattern)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Match ID      Start    End  Matched text
+----------  -------  -----  --------------
+res_lemma         8      9  res
+res_lemma        30     31  rem
+res_lemma        39     40  rebus
+res_lemma        57     58  rerum
+res_lemma        93     94  Res
+res_lemma       214    215  rerum
+res_lemma       380    381  rerum
+res_lemma       399    400  rei
+res_lemma       424    425  res
+res_lemma       463    464  rerum
+res_lemma       507    508  rei</code></pre>
+</div>
+</div>
+<p>So far, all of our patterns have included only a single token. We can extend our search to include multiple sequential tokens by adding more dictionaries to the list of dictionaries. In the example below, we are looking for any span where the first token has the lemma “res” and is followed by any token with the <code>POS</code> of “NOUN”.</p>
+<div id="cell-14" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pattern <span class="op">=</span> [{<span class="st">'LEMMA'</span>: <span class="st">'res'</span>}, {<span class="st">'POS'</span>: <span class="st">'NOUN'</span>}]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>tabulate_matches(<span class="st">'res_lemma_noun'</span>, pattern)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Match ID          Start    End  Matched text
+--------------  -------  -----  --------------
+res_lemma_noun        8     10  res populi</code></pre>
+</div>
+</div>
+<p>By contrast, we can return a span where the first token has the lemma “res” and is <em>not</em> followed by any token with the <code>POS</code> of “NOUN”.</p>
+<div id="cell-16" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pattern <span class="op">=</span> [{<span class="st">'LEMMA'</span>: <span class="st">'res'</span>}, {<span class="st">'TAG'</span>: <span class="st">'NOUN'</span>, <span class="st">"OP"</span>: <span class="st">"!"</span>}]</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>tabulate_matches(<span class="st">'res_lemma_noun_not'</span>, pattern)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Match ID              Start    End  Matched text
+------------------  -------  -----  --------------
+res_lemma_noun_not        8     10  res populi
+res_lemma_noun_not       30     32  rem videam
+res_lemma_noun_not       39     41  rebus certius
+res_lemma_noun_not       57     59  rerum gestarum
+res_lemma_noun_not       93     95  Res est
+res_lemma_noun_not      214    216  rerum gestarum
+res_lemma_noun_not      380    382  rerum salubre
+res_lemma_noun_not      399    401  rei publicae
+res_lemma_noun_not      424    426  res publica
+res_lemma_noun_not      463    465  rerum minus
+res_lemma_noun_not      507    509  rei absint</code></pre>
+</div>
+</div>
+<p>The <code>Matcher</code> allows for “fuzzy” matching based on Levenshtein distance (details in documentation, linked below)…</p>
+<div id="cell-18" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pattern <span class="op">=</span> [{<span class="st">'LEMMA'</span>: <span class="st">'res'</span>}, {<span class="st">"TEXT"</span>: {<span class="st">"FUZZY"</span>: <span class="st">"public"</span>}}]</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>tabulate_matches(<span class="st">'res_public_fuzzy'</span>, pattern)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Match ID            Start    End  Matched text
+----------------  -------  -----  --------------
+res_public_fuzzy      399    401  rei publicae
+res_public_fuzzy      424    426  res publica</code></pre>
+</div>
+</div>
+<p>Of course, you could search for <em>res publica</em> more directly with a two-lemma pattern…</p>
+<div id="cell-20" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pattern <span class="op">=</span> [{<span class="st">'LEMMA'</span>: <span class="st">'res'</span>}, {<span class="st">'LEMMA'</span>: <span class="st">'publicus'</span>}]</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>tabulate_matches(<span class="st">'res_publica_lemmas'</span>, pattern)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Match ID              Start    End  Matched text
+------------------  -------  -----  --------------
+res_publica_lemmas      399    401  rei publicae
+res_publica_lemmas      424    426  res publica</code></pre>
+</div>
+</div>
+<section id="references" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
+<p><strong>spaCy</strong> <a href="https://spacy.io/api/matcher">Matcher</a></p>
+
+
 </section>
-<section id="creating-a-spacy-doc-from-a-string" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="creating-a-spacy-doc-from-a-string"><span class="header-section-number">2.2</span> Creating a spaCy doc from a string</h2>
-<div id="cell-5" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"Haec narrantur a poetis de Perseo."</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Haec narrantur a poetis de Perseo.</code></pre>
-</div>
-</div>
-<div id="cell-6" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(doc))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;class 'spacy.tokens.doc.Doc'&gt;</code></pre>
-</div>
-</div>
-<div id="cell-7" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc.<span class="fu">__repr__</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Haec narrantur a poetis de Perseo.</code></pre>
-</div>
-</div>
-<div id="cell-8" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc.text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Haec narrantur a poetis de Perseo.</code></pre>
-</div>
-</div>
-<div id="cell-9" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(doc.text))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;class 'str'&gt;</code></pre>
-</div>
-</div>
-
-
 </section>
 
 </main> <!-- /main -->
@@ -776,13 +907,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./2_install.html" class="pagination-link" aria-label="Installing LatinCy models">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installing LatinCy models</span></span>
+      <a href="./morph-tagging.html" class="pagination-link" aria-label="Morphological Tagging">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Morphological Tagging</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./4_key-annotations.html" class="pagination-link" aria-label="LatinCy components and their annotations">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">LatinCy components and their annotations</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./projects.html" class="pagination-link" aria-label="Open LatinCy Projects">
+        <span class="nav-page-text">Open LatinCy Projects</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
