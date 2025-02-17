@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Patrick J. Burns">
 <meta name="dcterms.date" content="2024-08-26">
 
-<title>9&nbsp; Sequence Matching – Getting Started with LatinCy</title>
+<title>11&nbsp; Sequence Matching – Getting Started with LatinCy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,16 +67,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./projects.html" rel="next">
-<link href="./morph-tagging.html" rel="prev">
+<link href="./trf-vectors.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./matcher.html">spaCy Tasks</a></li><li class="breadcrumb-item"><a href="./matcher.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sequence Matching</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./matcher.html">spaCy Tasks</a></li><li class="breadcrumb-item"><a href="./matcher.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Sequence Matching</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -226,6 +226,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Morphological Tagging</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Vectors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./trf-vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">TRF Vectors</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -240,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./matcher.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sequence Matching</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Sequence Matching</span></span></a>
   </div>
 </li>
       </ul>
@@ -257,7 +269,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Open LatinCy Projects</span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Open LatinCy Projects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sample-texts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Sample Texts</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -278,7 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sequence-matching-with-latincy" id="toc-sequence-matching-with-latincy" class="nav-link active" data-scroll-target="#sequence-matching-with-latincy"><span class="header-section-number">9.1</span> Sequence matching with LatinCy</a>
+  <li><a href="#sequence-matching-with-latincy" id="toc-sequence-matching-with-latincy" class="nav-link active" data-scroll-target="#sequence-matching-with-latincy"><span class="header-section-number">11.1</span> Sequence matching with LatinCy</a>
   <ul class="collapse">
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
@@ -288,9 +306,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./matcher.html">spaCy Tasks</a></li><li class="breadcrumb-item"><a href="./matcher.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sequence Matching</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./matcher.html">spaCy Tasks</a></li><li class="breadcrumb-item"><a href="./matcher.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Sequence Matching</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sequence Matching</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Sequence Matching</span></h1>
 </div>
 
 
@@ -319,8 +337,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="sequence-matching-with-latincy" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="sequence-matching-with-latincy"><span class="header-section-number">9.1</span> Sequence matching with LatinCy</h2>
+<section id="sequence-matching-with-latincy" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="sequence-matching-with-latincy"><span class="header-section-number">11.1</span> Sequence matching with LatinCy</h2>
 <p>We can use LatinCy annotations as the basis for matching spans of tokens using spaCy’s <code>Matcher</code>. This includes basic <code>Token</code> attributes like <code>ORTH</code>, <code>TEXT</code>, <code>NORM</code>, and <code>LOWER</code> as well as those annotated by the LatinCy pipeline like <code>LEMMA</code>, <code>POS</code>, <code>TAG</code>, <code>MORPH</code>, <code>DEP</code>, and <code>ENT_TYPE</code>. There are also more general attributes like <code>IS_ALPHA</code>, <code>IS_ASCII</code>, <code>IS_DIGIT</code>, <code>IS_LOWER</code>, <code>IS_UPPER</code>, <code>IS_TITLE</code>, <code>IS_PUNCT</code>, <code>IS_SPACE</code>, and <code>LIKE_NUM</code>, among still others. The full list can be found <a href="https://spacy.io/api/matcher#patterns">here</a>. Moreover, there are many operators, quantifiers, and other operations that can be using to create ever-increasingly complex patterns. The combinatorial patterns for using the <code>Matcher</code> are frankly enormous and so this should be considered only a most basic introduction for what is possible.</p>
 <p>Here we run through a quick example based on finding variations of <em>res</em> and then by pattern-matching extensions of <em>res publica</em> using the <em>Praefatio</em> to Livy’s <em>Ab urbe condita</em>.</p>
 <div id="cell-3" class="cell" data-execution_count="1">
@@ -348,7 +366,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>matcher <span class="op">=</span> Matcher(nlp.vocab)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(matcher)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;spacy.matcher.matcher.Matcher object at 0x174721e10&gt;</code></pre>
+<pre><code>&lt;spacy.matcher.matcher.Matcher object at 0x338342d40&gt;</code></pre>
 </div>
 </div>
 <p>We use the <code>Matcher</code> by adding patterns, quite sensibly using the <code>add</code> method. With the <code>add</code> method, we assign a <code>match_id</code> “name” for the pattern and the patterns themselves. The patters are lists of lists of dictionaries; those dictionaries are arranged sequentially by the tokens sequences we want to match, where the dictionary keys are the attributes and the dictionary values are the our specific terms to be matched for that attribute. So, in the example below, we are looking for any span of tokens in the provided <code>Doc</code> where the <code>text</code> attribute matches—and matches exactly—the string “res”. The <code>Matcher</code> returns the <code>match_id</code> as well as the start and end indices for each matched span.</p>
@@ -370,7 +388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>Match ID      Start    End  Matched text
 ----------  -------  -----  --------------
 res_tokens        8      9  res
-res_tokens      424    425  res</code></pre>
+res_tokens      421    422  res</code></pre>
 </div>
 </div>
 <div id="cell-8" class="cell" data-execution_count="4">
@@ -401,7 +419,7 @@ res_tokens      424    425  res</code></pre>
 -----------  -------  -----  --------------
 res_uncased        8      9  res
 res_uncased       93     94  Res
-res_uncased      424    425  res</code></pre>
+res_uncased      421    422  res</code></pre>
 </div>
 </div>
 <p>Extending this logic even further, we can widen the search again by matching not only the token “Res”/“res” but all tokens for which the LatinCy lemmatizers have assigned the lemma “res”. This is done by using the <code>LEMMA</code> attribute.</p>
@@ -416,12 +434,12 @@ res_lemma        30     31  rem
 res_lemma        39     40  rebus
 res_lemma        57     58  rerum
 res_lemma        93     94  Res
-res_lemma       214    215  rerum
-res_lemma       380    381  rerum
-res_lemma       399    400  rei
-res_lemma       424    425  res
-res_lemma       463    464  rerum
-res_lemma       507    508  rei</code></pre>
+res_lemma       212    213  rerum
+res_lemma       377    378  rerum
+res_lemma       396    397  rei
+res_lemma       421    422  res
+res_lemma       459    460  rerum
+res_lemma       502    503  rei</code></pre>
 </div>
 </div>
 <p>So far, all of our patterns have included only a single token. We can extend our search to include multiple sequential tokens by adding more dictionaries to the list of dictionaries. In the example below, we are looking for any span where the first token has the lemma “res” and is followed by any token with the <code>POS</code> of “NOUN”.</p>
@@ -446,12 +464,12 @@ res_lemma_noun_not       30     32  rem videam
 res_lemma_noun_not       39     41  rebus certius
 res_lemma_noun_not       57     59  rerum gestarum
 res_lemma_noun_not       93     95  Res est
-res_lemma_noun_not      214    216  rerum gestarum
-res_lemma_noun_not      380    382  rerum salubre
-res_lemma_noun_not      399    401  rei publicae
-res_lemma_noun_not      424    426  res publica
-res_lemma_noun_not      463    465  rerum minus
-res_lemma_noun_not      507    509  rei absint</code></pre>
+res_lemma_noun_not      212    214  rerum gestarum
+res_lemma_noun_not      377    379  rerum salubre
+res_lemma_noun_not      396    398  rei publicae
+res_lemma_noun_not      421    423  res publica
+res_lemma_noun_not      459    461  rerum minus
+res_lemma_noun_not      502    504  rei absint</code></pre>
 </div>
 </div>
 <p>The <code>Matcher</code> allows for “fuzzy” matching based on Levenshtein distance (details in documentation, linked below)…</p>
@@ -461,8 +479,8 @@ res_lemma_noun_not      507    509  rei absint</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Match ID            Start    End  Matched text
 ----------------  -------  -----  --------------
-res_public_fuzzy      399    401  rei publicae
-res_public_fuzzy      424    426  res publica</code></pre>
+res_public_fuzzy      396    398  rei publicae
+res_public_fuzzy      421    423  res publica</code></pre>
 </div>
 </div>
 <p>Of course, you could search for <em>res publica</em> more directly with a two-lemma pattern…</p>
@@ -472,8 +490,8 @@ res_public_fuzzy      424    426  res publica</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Match ID              Start    End  Matched text
 ------------------  -------  -----  --------------
-res_publica_lemmas      399    401  rei publicae
-res_publica_lemmas      424    426  res publica</code></pre>
+res_publica_lemmas      396    398  rei publicae
+res_publica_lemmas      421    423  res publica</code></pre>
 </div>
 </div>
 <p>The patterns are not limited to text search, that is they can be based entirely on annotation patterns. Here is a list of all NOUN-ADJ sequences in Livy’s “Praefatio”…</p>
@@ -484,18 +502,19 @@ res_publica_lemmas      424    426  res publica</code></pre>
 <pre><code>Match ID      Start    End  Matched text
 ----------  -------  -----  -------------------
 noun_adjs         9     11  populi Romani
+noun_adjs        39     41  rebus certius
 noun_adjs        46     48  arte rudem
 noun_adjs       127    129  origines proxima
-noun_adjs       207    209  urbem poeticis
-noun_adjs       237    239  urbium augustiora
-noun_adjs       260    262  populo Romano
-noun_adjs       276    278  gentes humanae
-noun_adjs       380    382  rerum salubre
-noun_adjs       399    401  rei publicae
-noun_adjs       407    409  inceptu foedum
-noun_adjs       424    426  res publica
-noun_adjs       432    434  exemplis ditior
-noun_adjs       539    541  successus prosperos</code></pre>
+noun_adjs       205    207  urbem poeticis
+noun_adjs       235    237  urbium augustiora
+noun_adjs       258    260  populo Romano
+noun_adjs       274    276  gentes humanae
+noun_adjs       377    379  rerum salubre
+noun_adjs       396    398  rei publicae
+noun_adjs       404    406  inceptu foedum
+noun_adjs       421    423  res publica
+noun_adjs       429    431  exemplis ditior
+noun_adjs       534    536  successus prosperos</code></pre>
 </div>
 </div>
 <p>As well as a list of all alliterative patterns, though with some creative regexing…</p>
@@ -531,19 +550,19 @@ alliterative_pairs      142    144  pridem praevalentis
 alliterative_pairs      142    145  pridem praevalentis populi
 alliterative_pairs      143    145  praevalentis populi
 alliterative_pairs      155    157  praemium petam
-alliterative_pairs      205    207  conditam condendamve
-alliterative_pairs      279    281  aequo animo
-alliterative_pairs      291    293  animaduersa aut
-alliterative_pairs      293    295  existimata erunt
-alliterative_pairs      347    349  magis magis
-alliterative_pairs      365    367  nostra nec
-alliterative_pairs      368    370  pati possumus
-alliterative_pairs      368    371  pati possumus perventum
-alliterative_pairs      369    371  possumus perventum
-alliterative_pairs      389    391  in inlustri
-alliterative_pairs      396    398  tibi tuae
-alliterative_pairs      482    484  pereundi perdendi
-alliterative_pairs      518    520  deorum dearum</code></pre>
+alliterative_pairs      203    205  conditam condendamve
+alliterative_pairs      277    279  aequo animo
+alliterative_pairs      289    291  animaduersa aut
+alliterative_pairs      291    293  existimata erunt
+alliterative_pairs      345    347  magis magis
+alliterative_pairs      363    365  nostra nec
+alliterative_pairs      366    368  pati possumus
+alliterative_pairs      366    369  pati possumus perventum
+alliterative_pairs      367    369  possumus perventum
+alliterative_pairs      386    388  in inlustri
+alliterative_pairs      393    395  tibi tuae
+alliterative_pairs      478    480  pereundi perdendi
+alliterative_pairs      513    515  deorum dearum</code></pre>
 </div>
 </div>
 <section id="references" class="level3 unnumbered">
@@ -637,8 +656,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -749,7 +766,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -977,13 +993,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./morph-tagging.html" class="pagination-link" aria-label="Morphological Tagging">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Morphological Tagging</span></span>
+      <a href="./trf-vectors.html" class="pagination-link" aria-label="TRF Vectors">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">TRF Vectors</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./projects.html" class="pagination-link" aria-label="Open LatinCy Projects">
-        <span class="nav-page-text">Open LatinCy Projects</span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Open LatinCy Projects</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

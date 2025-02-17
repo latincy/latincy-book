@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Lemmatization – Getting Started with LatinCy</title>
+<title>9&nbsp; Vectors – Getting Started with LatinCy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -54,27 +54,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -84,8 +64,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./pos-tagging.html" rel="next">
-<link href="./word-tokenization.html" rel="prev">
+<link href="./trf-vectors.html" rel="next">
+<link href="./morph-tagging.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -135,7 +115,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./lemmatization.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lemmatization</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./vectors.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Vectors</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -228,7 +208,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lemmatization.html" class="sidebar-item-text sidebar-link active">
+  <a href="./lemmatization.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lemmatization</span></span></a>
   </div>
 </li>
@@ -246,7 +226,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./vectors.html" class="sidebar-item-text sidebar-link">
+  <a href="./vectors.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Vectors</span></span></a>
   </div>
 </li>
@@ -314,7 +294,7 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#lemmatization-with-latincy" id="toc-lemmatization-with-latincy" class="nav-link active" data-scroll-target="#lemmatization-with-latincy"><span class="header-section-number">6.1</span> Lemmatization with LatinCy</a>
+  <li><a href="#accessing-vectors-with-latincy" id="toc-accessing-vectors-with-latincy" class="nav-link active" data-scroll-target="#accessing-vectors-with-latincy"><span class="header-section-number">9.1</span> Accessing Vectors with LatinCy</a>
   <ul class="collapse">
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
@@ -324,9 +304,9 @@ div.csl-indent {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./lemmatization.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lemmatization</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./vectors.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Vectors</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lemmatization</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Vectors</span></h1>
 </div>
 
 
@@ -343,188 +323,105 @@ div.csl-indent {
 </header>
 
 
-<section id="lemmatization-with-latincy" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="lemmatization-with-latincy"><span class="header-section-number">6.1</span> Lemmatization with LatinCy</h2>
-<p>Lemmatization is the task of mapping a token in a text to its dictionary headword. With the default LatinCy pipelines, two components are used to perform this task: 1. spaCy’s <a href="https://spacy.io/api/edittreelemmatizer"><code>Edit Tree Lemmatizer</code></a> and 2. a second custom <code>Lookup Lemmatizer</code>, named in the pipeline “trainable_lemmatizer” and “lookup_lemmatizer” respectively. In the first lemmatization pass, a probabilistic tree model is used to predict the transformation from the token form to its lemma. A second pass is made at the end of the pipeline which checks the token form against a large (~1M item) lemma dictionary (i.e.&nbsp;lookups) for ostensibly unambiguous forms; if a match is found, the lemma is overwritten with the corresponding value from lookup. The two-pass logic largely follows the approach recommended in <span class="citation" data-cites="burns_backoff_2018">Burns (<a href="references.html#ref-burns_backoff_2018" role="doc-biblioref">2018</a>)</span> and <span class="citation" data-cites="burns_ensemble_2020">Burns (<a href="references.html#ref-burns_ensemble_2020" role="doc-biblioref">2020</a>)</span>, as facilitated by the spaCy pipeline architecture.</p>
-<div id="cell-3" class="cell" data-execution_count="1">
+<section id="accessing-vectors-with-latincy" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="accessing-vectors-with-latincy"><span class="header-section-number">9.1</span> Accessing Vectors with LatinCy</h2>
+<div id="cell-2" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports &amp; setup</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>nlp <span class="op">=</span> spacy.load(<span class="st">'la_core_web_sm'</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum. Avus eius Acrisius appellabatur."</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>nlp <span class="op">=</span> spacy.load(<span class="st">'la_core_web_lg'</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum; avus eius Acrisius appellabatur."</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum. Avus eius Acrisius appellabatur.</code></pre>
+<pre><code>Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum; avus eius Acrisius appellabatur.</code></pre>
 </div>
 </div>
-<p>Note here the two lemmatizer components that are included in the pipeline, i.e.&nbsp;“trainable_lemmatizer” and “lookup_lemmatizer”…</p>
+<!-- Word tokenization is the task of splitting a text into words (and wordlike units like punctuation, numbers, etc.). For the LatinCy models, tokenization is the fundamental pipeline component on which all other components depend. SpaCy uses non-destructive, "canonical" tokenization, i.e. non-destructive, in that the original text can be untokenized, so to speak, based on `Token` annotations and canonical in that indices are assigned to each token during this process and these indices are used to refer to the tokens in other annotations. (Tokens *can* be separated or merged, but this requires the user to actively undo and redefine the tokenization output.) LatinCy uses a modified version of the default spaCy tokenizer that recognizes and splits enlitic *-que* using a rules-based process. (NB: It is in the LatinCy [development plan](projects.qmd#enclitics-project) to move enclitic splitting to a separate post-tokenization component.)
+
+The spaCy `Doc` object is an iterable and tokens are the iteration unit. -->
+<p>Once the spaCy pipeline has been run on a text, every token is assigned a vector representation: in the sm/md/lg models, this is a 300-dimensional vector assigned by the tok2vec component and in the trf model, this is a 768-dimensional vector assigned by a trf_vectors custom component and informed by transformer component. These vectors can be accessed through the <code>vector</code> attribute of the token. The trf behavior is slightly different that the other models and so is covered in the next notebook. Also, note that to save space within the notebook, only the first 10 dimensions of the vector are displayed in the examples below.</p>
+<p>Here is the vector for the first token ‘Haec’ in the text given above…</p>
 <div id="cell-5" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nlp.pipe_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> [token <span class="cf">for</span> token <span class="kw">in</span> doc]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> tokens:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(token.text)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(token.vector[:<span class="dv">10</span>], <span class="st">"etc."</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>['senter', 'normer', 'tok2vec', 'tagger', 'morphologizer', 'trainable_lemmatizer', 'parser', 'lookup_lemmatizer', 'ner', 'remorpher']</code></pre>
+<pre><code>Haec
+[-1.9039791  -1.2126855   1.3490605   3.1879     -0.9067255  -0.7610278
+ -0.739699   -4.3730483   1.1556364   0.19760956] etc.</code></pre>
 </div>
 </div>
-<p>Once a text is annotated using the LatinCy pipeline, i.e.&nbsp;as part of the <code>Doc</code> creation process, lemmas can be found as annotations of the <code>Token</code> objects…</p>
+<p>And here is a list of the first 10 tokens in the text, each with the first 10 dimensions of their corresponding vector…</p>
 <div id="cell-7" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sample_token <span class="op">=</span> doc[<span class="dv">0</span>]</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample token: </span><span class="sc">{</span>sample_token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample lemma: </span><span class="sc">{</span>sample_token<span class="sc">.</span>lemma_<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>vector_example_data <span class="op">=</span> []</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> tokens[:<span class="dv">10</span>]:</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    vector_example_data.append((token.text, <span class="op">*</span>token.vector[:<span class="dv">10</span>]))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate(vector_example_data))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Sample token: Haec
-Sample lemma: hic</code></pre>
+<pre><code>---------  ---------  ---------  ----------  ----------  ---------  ---------  ---------  ---------  ----------  ---------
+Haec       -1.90398   -1.21269    1.34906     3.1879     -0.906726  -0.761028  -0.739699  -4.37305    1.15564     0.19761
+narrantur   1.91623   -1.24723    0.518828   -1.91084     0.620206  -1.79221    1.13974   -1.06108    0.0448955   1.3394
+a          -1.84657   -3.2745    -3.66575     7.81755     5.3394     0.80885   -5.5981    -0.45535    6.6346      2.9247
+poetis     -1.66618    2.9941     1.54732    -2.56839    -0.58933    0.926527   0.50731   -0.453224  -0.675591    0.850029
+de         -5.76823    1.33514   -5.87731     1.75111    -1.87804    3.54353   -0.989212   0.516913  -0.477756    6.99891
+Perseo     -0.459438  -1.59377   -1.16804    -0.679769    2.27411   -2.5005    -0.349883   2.4222     0.295428   -0.46593
+.          -4.92245   -4.69355    9.3479      1.52849     0.63615   -2.92175    5.91935   -0.57385   -2.69497    -3.08617
+Perseus    -0.246562   1.56273   -1.13213    -1.47479     0.800228  -1.58815   -0.617385   2.86749   -0.0864839  -1.48492
+filius     -0.965762  -0.348192   0.0142697  -1.35208    -0.509385  -1.4312     0.408665   2.9386    -1.19688     0.219843
+erat        3.3229     1.25453   -5.21225    -0.0306687  -1.7512     1.99759   -1.59149    1.36364   -0.949415   -0.050509
+---------  ---------  ---------  ----------  ----------  ---------  ---------  ---------  ---------  ----------  ---------</code></pre>
 </div>
 </div>
-<div id="cell-8" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tabulate</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> [item <span class="cf">for</span> item <span class="kw">in</span> doc]</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> tokens:</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    data.append([token.text, token.lemma_])    </span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate.tabulate(data, headers<span class="op">=</span>[<span class="st">'Text'</span>, <span class="st">'Lemma'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We can get the vector length from the <code>shape</code> attribute…</p>
+<div id="cell-9" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc[<span class="dv">0</span>].vector.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Text          Lemma
-------------  --------
-Haec          hic
-narrantur     narro
-a             ab
-poetis        poeta
-de            de
-Perseo        Perseus
-.             .
-Perseus       perseus
-filius        filius
-erat          sum
-Iovis         Iuppiter
-,             ,
-maximi        magnus
-deorum        deus
-.             .
-Avus          auus
-eius          is
-Acrisius      Acrisius
-appellabatur  appello
-.             .</code></pre>
+<pre><code>(300,)</code></pre>
 </div>
 </div>
-<p>The <code>lemma_</code> attribute has the type <code>str</code> and so is compatible with all string operations…</p>
-<div id="cell-10" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Token: </span><span class="sc">{</span>tokens[<span class="dv">0</span>]<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Lemma: </span><span class="sc">{</span>tokens[<span class="dv">0</span>]<span class="sc">.</span>lemma_<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Lowercase lemma: </span><span class="sc">{</span>tokens[<span class="dv">0</span>]<span class="sc">.</span>lemma_<span class="sc">.</span>lower()<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>LatinCy will give you mean vector representations for spans of text, like in the sample sentence below.</p>
+<div id="cell-11" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sents <span class="op">=</span> [sent <span class="cf">for</span> sent <span class="kw">in</span> doc.sents]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sent <span class="kw">in</span> sents:</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(sent)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(sent.vector[:<span class="dv">10</span>])</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Token: Haec
-Lemma: hic
-Lowercase lemma: hic</code></pre>
+<pre><code>Haec narrantur a poetis de Perseo.
+[-2.0929456  -1.0989287   0.29314348  1.3037221   0.78510916 -0.38522485
+ -0.01578556 -0.56820565  0.611749    1.2512217 ]</code></pre>
 </div>
 </div>
-<p>The <code>lemma_</code> attribute, though, is only the human-readable version of the lemma. Internally, spaCy uses a hash value to represent the lemma, which is stored in the <code>lemma</code> attribute. (Note the lack of trailing underscore.)</p>
-<div id="cell-12" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Token: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Human-readable lemma: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>lemma_<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'spaCy lemma key: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>lemma<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For the sm/md/lg pipelines, we can compute the similarity between vectors using the <code>similarity</code> method of the spaCy objects. Here is the similarity between two sentences…</p>
+<div id="cell-13" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>text_1 <span class="op">=</span> <span class="st">"Omnia vincit amor."</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>text_2 <span class="op">=</span> <span class="st">"Omnia vincit amicitia."</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>doc_1 <span class="op">=</span> nlp(text_1)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>doc_2 <span class="op">=</span> nlp(text_2)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Similarity between the two sentences..."</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>similarity <span class="op">=</span> doc_1.similarity(doc_2)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(similarity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Token: narrantur
-Human-readable lemma: narro
-spaCy lemma key: 11361982710182407617</code></pre>
+<pre><code>
+Similarity between the two sentences...
+0.8994302985271659</code></pre>
 </div>
-</div>
-<p>In order to compare the two different lemmatization passes, we can create two copies of the LatinCy pipeline, each with one of the two lemmatizers removed…</p>
-<div id="cell-14" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copy</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>P1 <span class="op">=</span> copy.deepcopy(nlp)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>P1.disable_pipes(([<span class="st">'tagger'</span>, <span class="st">'morphologizer'</span>, <span class="st">'lookup_lemmatizer'</span>]))</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'First pipeline components: </span><span class="sc">{</span>P1<span class="sc">.</span>pipe_names<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>P2 <span class="op">=</span> copy.deepcopy(nlp)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>P2.disable_pipes(([<span class="st">'tagger'</span>, <span class="st">'morphologizer'</span>, <span class="st">'trainable_lemmatizer'</span>]))</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Second pipeline components: </span><span class="sc">{</span>P2<span class="sc">.</span>pipe_names<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>First pipeline components: ['senter', 'normer', 'tok2vec', 'trainable_lemmatizer', 'parser', 'ner', 'remorpher']
-Second pipeline components: ['senter', 'normer', 'tok2vec', 'parser', 'lookup_lemmatizer', 'ner', 'remorpher']</code></pre>
-</div>
-</div>
-<p>We can then run the same text through both pipelines and compare the results side-by-side…</p>
-<div id="cell-16" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>P1_annotations <span class="op">=</span> P1(text)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>P2_annotations <span class="op">=</span> P2(text)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p1_token, p2_token <span class="kw">in</span> <span class="bu">zip</span>(P1_annotations, P2_annotations):</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    data.append([p1_token.text, p1_token.lemma_, p2_token.lemma_])</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate.tabulate(data, headers<span class="op">=</span>[<span class="st">'Text'</span>, <span class="st">'Trainable lemmatizer'</span>, <span class="st">'Lookup lemmatizer'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Text          Trainable lemmatizer    Lookup lemmatizer
-------------  ----------------------  -------------------
-Haec          hic
-narrantur     narro                   narro
-a             ab
-poetis        poeta                   poeta
-de            de
-Perseo        Perseus
-.             .                       .
-Perseus       perseus
-filius        filius                  filius
-erat          sum                     sum
-Iovis         Iovis                   Iuppiter
-,             ,                       ,
-maximi        magnus
-deorum        deus                    deus
-.             .                       .
-Avus          avus                    auus
-eius          is                      is
-Acrisius      Acrisius
-appellabatur  appello                 appello
-.             .                       .</code></pre>
-</div>
-</div>
-<p>Note specifically the lemmatization of <em>Iovis</em>—since it is a highly irregular form, it is not surprising that the Edit Tree Lemmatizer has manufactured a potential, but incorrect, lemma based on the root <em>Iov-</em>. Since <em>Iovis</em> is an unambiguous Latin form and has been added to the LatinCy lookups, the Lookup Lemmatizer steps in to correct the erroneous first pass. The lookup data can be found a custom form of the spaCy <code>spacy-lookups-data</code> package [https://github.com/diyclassics/spacy-lookups-data/tree/master/spacy_lookups_data/data]. These lookups are installed as a dependency of each of the LatinCy pipelines.</p>
-<p>The code below shows how to access the lookup data directly…</p>
-<div id="cell-18" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the lookups data</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> spacy.lookups <span class="im">import</span> Lookups, load_lookups</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>blank_nlp <span class="op">=</span> spacy.blank(<span class="st">"la"</span>)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>lookups <span class="op">=</span> Lookups()</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>lookups_data <span class="op">=</span> load_lookups(lang<span class="op">=</span>blank_nlp.vocab.lang, tables<span class="op">=</span>[<span class="st">"lemma_lookup"</span>])</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>LOOKUPS <span class="op">=</span> lookups_data.get_table(<span class="st">"lemma_lookup"</span>)</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(LOOKUPS[<span class="st">'Iovis'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Iuppiter</code></pre>
-</div>
-</div>
-<p>What is described above is the default role of lemmatizers in the LatinCy pipeline. Of course, it may be the case that you want to add additional lookups to your annotation pipeline overriding the default lookups. Here is an example of such a set up…</p>
-<div id="cell-20" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>custom_lookups <span class="op">=</span> {</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Aaron"</span>: <span class="st">"Aaron"</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="references" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
-<p><strong>NLTK</strong> Chapter 3, Section 3.6 “Normalizing text” <a href="https://www.nltk.org/book/ch03.html#sec-normalizing-text">link</a><br>
-<strong>SLP</strong> Chapter 2, Section 2.6 “Word normalization, lemmatization and stemming”, pp.&nbsp;23-24 <a href="https://web.stanford.edu/~jurafsky/slp3/">link</a><br>
-<strong>spaCy</strong> EditTreeLemmatizer <a href="https://spacy.io/api/edittreelemmatizer">link</a></p>
+<p><strong>SLP</strong> Chapter 6, “Vector Semantics and Embeddings” <a href="https://web.stanford.edu/~jurafsky/slp3/6.pdf">link</a></p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-burns_backoff_2018" class="csl-entry" role="listitem">
-Burns, Patrick J. 2018. <span>“Backoff <span>Lemmatization</span> as a <span>Philological</span> <span>Method</span>.”</span> In <em>Digital <span>Humanities</span> 2018, <span>DH</span> 2018, <span>Book</span> of <span>Abstracts</span>, <span>El</span> <span>Colegio</span> de <span>México</span>, <span>UNAM</span>, and <span>RedHD</span>, <span>Mexico</span> <span>City</span>, <span>Mexico</span>, <span>June</span> 26-29, 2018</em>.
-</div>
-<div id="ref-burns_ensemble_2020" class="csl-entry" role="listitem">
-———. 2020. <span>“Ensemble Lemmatization with the <span>Classical</span> <span>Language</span> <span>Toolkit</span>.”</span> <em>Studi e Saggi Linguistici</em> 58 (1): 157–76. <a href="https://doi.org/10.4454/ssl.v58i1.273">https://doi.org/10.4454/ssl.v58i1.273</a>.
-</div>
-</div>
 </section>
 </section>
 
@@ -948,13 +845,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./word-tokenization.html" class="pagination-link" aria-label="Word Tokenization">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Word Tokenization</span></span>
+      <a href="./morph-tagging.html" class="pagination-link" aria-label="Morphological Tagging">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Morphological Tagging</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./pos-tagging.html" class="pagination-link" aria-label="POS Tagging">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">POS Tagging</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./trf-vectors.html" class="pagination-link" aria-label="TRF Vectors">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">TRF Vectors</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

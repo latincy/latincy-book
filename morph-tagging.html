@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -64,17 +64,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./matcher.html" rel="next">
+<link href="./vectors.html" rel="next">
 <link href="./pos-tagging.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -224,6 +224,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Morphological Tagging</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Vectors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./trf-vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">TRF Vectors</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -238,7 +250,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./matcher.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sequence Matching</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Sequence Matching</span></span></a>
   </div>
 </li>
       </ul>
@@ -255,7 +267,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Open LatinCy Projects</span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Open LatinCy Projects</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sample-texts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Sample Texts</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -380,7 +398,7 @@ Sample morph: Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass</
 &lt;class 'spacy.tokens.morphanalysis.MorphAnalysis'&gt;</code></pre>
 </div>
 </div>
-<p>As noted above, the mophological tags are POS-specific. LatinCy uses a limited set of morphological keys based on the UD treebanks. Moreover, with respect to the tag values, one specific adjustment that has been made from the UD treebanks is that for verbs LatinCy uses the six “traditional” tense values, i.e.&nbsp;present, imperfect, future, perfect, pluperfect, and future perfect.</p>
+<p>As noted above, the mophological tags are POS-specific. LatinCy uses a limited set of morphological keys based on the UD treebanks. Moreover, with respect to the tag values, one specific adjustment that has been made from the UD treebanks is that for verbs LatinCy can return the six “traditional” tense values, i.e.&nbsp;present, imperfect, future, perfect, pluperfect, and future perfect. These are mapped to the custom Token attributes by the ‘remorpher’ component and stored in the <code>._.remorph</code> attribute.</p>
 <div id="cell-16" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tabulate</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -389,23 +407,22 @@ Sample morph: Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass</
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(<span class="st">"Tum arcam ipsam in mare coniecit."</span>)</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> [item <span class="cf">for</span> item <span class="kw">in</span> doc]</span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> tokens:</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    data.append([token.text, token.morph.to_json()])    </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The morph for "coniecit" is...'</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tokens[<span class="dv">5</span>].morph.to_json(), end<span class="op">=</span><span class="st">'</span><span class="ch">\n\n</span><span class="st">'</span>)</span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate.tabulate(data, headers<span class="op">=</span>[<span class="st">'Text'</span>, <span class="st">"Morph"</span>])) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The remorph for "coniecit" is...'</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tokens[<span class="dv">5</span>]._.remorph.to_json())</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>      </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Text      Morph
---------  ---------------------------------------------------------------
-Tum
-arcam     Case=Acc|Gender=Fem|Number=Sing
-ipsam     Case=Acc|Gender=Fem|Number=Sing
-in
-mare      Case=Acc|Gender=Neut|Number=Sing
-coniecit  Mood=Ind|Number=Sing|Person=3|Tense=Perf|VerbForm=Fin|Voice=Act
-.</code></pre>
+<pre><code>The morph for "coniecit" is...
+Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act
+
+The remorph for "coniecit" is...
+Mood=Ind|Number=Sing|Person=3|Tense=Perf|VerbForm=Fin|Voice=Act</code></pre>
 </div>
 </div>
-<p>Note how in the sentence above the verb <em>coniecit</em> is tagged with the ‘Tense=Perf’ (for perfect), whereas in the UD treebanks this would have been annotated with ‘Tense=Past’ in coordination with ‘Aspect=Perf’.</p>
+<p>Note how in the sentence above the verb <em>coniecit</em> is tagged by the ‘remorpher’ with the ‘Tense=Perf’ (for perfect), whereas in the UD treebanks-derived morph attribute this is annotated with ‘Tense=Past’ in coordination with ‘Aspect=Perf’.</p>
 <section id="references" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
 <p><strong>NLTK</strong> Chapter 5 “Categorizing and tagging words” <a href="https://www.nltk.org/book/ch05.html">link</a><br>
@@ -498,8 +515,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -610,7 +625,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
@@ -843,8 +857,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./matcher.html" class="pagination-link" aria-label="Sequence Matching">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sequence Matching</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./vectors.html" class="pagination-link" aria-label="Vectors">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Vectors</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
