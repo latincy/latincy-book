@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Lemmatization – Getting Started with LatinCy</title>
+<title>10&nbsp; TRF Vectors – Getting Started with LatinCy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -54,27 +54,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -84,8 +64,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./pos-tagging.html" rel="next">
-<link href="./word-tokenization.html" rel="prev">
+<link href="./matcher.html" rel="next">
+<link href="./vectors.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -135,7 +115,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./lemmatization.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lemmatization</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./trf-vectors.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">TRF Vectors</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -228,7 +208,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lemmatization.html" class="sidebar-item-text sidebar-link active">
+  <a href="./lemmatization.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lemmatization</span></span></a>
   </div>
 </li>
@@ -252,7 +232,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./trf-vectors.html" class="sidebar-item-text sidebar-link">
+  <a href="./trf-vectors.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">TRF Vectors</span></span></a>
   </div>
 </li>
@@ -314,7 +294,7 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#lemmatization-with-latincy" id="toc-lemmatization-with-latincy" class="nav-link active" data-scroll-target="#lemmatization-with-latincy"><span class="header-section-number">6.1</span> Lemmatization with LatinCy</a>
+  <li><a href="#accessing-trf-vectors-with-latincy" id="toc-accessing-trf-vectors-with-latincy" class="nav-link active" data-scroll-target="#accessing-trf-vectors-with-latincy"><span class="header-section-number">10.1</span> Accessing TRF Vectors with LatinCy</a>
   <ul class="collapse">
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
@@ -324,9 +304,9 @@ div.csl-indent {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./lemmatization.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lemmatization</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./trf-vectors.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">TRF Vectors</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lemmatization</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">TRF Vectors</span></h1>
 </div>
 
 
@@ -343,188 +323,123 @@ div.csl-indent {
 </header>
 
 
-<section id="lemmatization-with-latincy" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="lemmatization-with-latincy"><span class="header-section-number">6.1</span> Lemmatization with LatinCy</h2>
-<p>Lemmatization is the task of mapping a token in a text to its dictionary headword. With the default LatinCy pipelines, two components are used to perform this task: 1. spaCy’s <a href="https://spacy.io/api/edittreelemmatizer"><code>Edit Tree Lemmatizer</code></a> and 2. a second custom <code>Lookup Lemmatizer</code>, named in the pipeline “trainable_lemmatizer” and “lookup_lemmatizer” respectively. In the first lemmatization pass, a probabilistic tree model is used to predict the transformation from the token form to its lemma. A second pass is made at the end of the pipeline which checks the token form against a large (~1M item) lemma dictionary (i.e.&nbsp;lookups) for ostensibly unambiguous forms; if a match is found, the lemma is overwritten with the corresponding value from lookup. The two-pass logic largely follows the approach recommended in <span class="citation" data-cites="burns_backoff_2018">Burns (<a href="references.html#ref-burns_backoff_2018" role="doc-biblioref">2018</a>)</span> and <span class="citation" data-cites="burns_ensemble_2020">Burns (<a href="references.html#ref-burns_ensemble_2020" role="doc-biblioref">2020</a>)</span>, as facilitated by the spaCy pipeline architecture.</p>
-<div id="cell-3" class="cell" data-execution_count="1">
+<section id="accessing-trf-vectors-with-latincy" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="accessing-trf-vectors-with-latincy"><span class="header-section-number">10.1</span> Accessing TRF Vectors with LatinCy</h2>
+<div id="cell-2" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports &amp; setup</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>nlp <span class="op">=</span> spacy.load(<span class="st">'la_core_web_sm'</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum. Avus eius Acrisius appellabatur."</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>nlp <span class="op">=</span> spacy.load(<span class="st">'la_core_web_trf'</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum; avus eius Acrisius appellabatur. Acrisius volebat Perseum nepotem suum necare; nam propter oraculum puerum timebat."</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum. Avus eius Acrisius appellabatur.</code></pre>
+<pre><code>Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum; avus eius Acrisius appellabatur. Acrisius volebat Perseum nepotem suum necare; nam propter oraculum puerum timebat.</code></pre>
 </div>
 </div>
-<p>Note here the two lemmatizer components that are included in the pipeline, i.e.&nbsp;“trainable_lemmatizer” and “lookup_lemmatizer”…</p>
+<!-- Word tokenization is the task of splitting a text into words (and wordlike units like punctuation, numbers, etc.). For the LatinCy models, tokenization is the fundamental pipeline component on which all other components depend. SpaCy uses non-destructive, "canonical" tokenization, i.e. non-destructive, in that the original text can be untokenized, so to speak, based on `Token` annotations and canonical in that indices are assigned to each token during this process and these indices are used to refer to the tokens in other annotations. (Tokens *can* be separated or merged, but this requires the user to actively undo and redefine the tokenization output.) LatinCy uses a modified version of the default spaCy tokenizer that recognizes and splits enlitic *-que* using a rules-based process. (NB: It is in the LatinCy [development plan](projects.qmd#enclitics-project) to move enclitic splitting to a separate post-tokenization component.)
+
+The spaCy `Doc` object is an iterable and tokens are the iteration unit. -->
+<p>As noted in the previous notebook, the trf vectors work slightly differently than vectors in the other pipelines. This notebook covers the specifics of working with the trf contextual vectors.</p>
+<p>Here is the vector for the first token ‘Haec’ in the text given above…</p>
 <div id="cell-5" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nlp.pipe_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> [token <span class="cf">for</span> token <span class="kw">in</span> doc]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> tokens:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(token.text)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(token.vector[:<span class="dv">10</span>], <span class="st">"etc."</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>['senter', 'normer', 'tok2vec', 'tagger', 'morphologizer', 'trainable_lemmatizer', 'parser', 'lookup_lemmatizer', 'ner', 'remorpher']</code></pre>
+<pre><code>Haec
+[-0.2595865 -1.5687511  0.5772662  0.8258832 -0.9833767 -2.6926274
+ -1.8952293  2.7565694  3.1001453  1.6909373] etc.</code></pre>
 </div>
 </div>
-<p>Once a text is annotated using the LatinCy pipeline, i.e.&nbsp;as part of the <code>Doc</code> creation process, lemmas can be found as annotations of the <code>Token</code> objects…</p>
+<p>The LatinCy trf model uses <a href="https://huggingface.co/google-bert/bert-base-multilingual-cased">MultilingualBERT</a> as the basis of its ‘transformer’ component. The trf model has a custom Doc attribute that can give access to the per-token contextual vectors which is in turn mapped back to the <code>vector</code> attribute of the <code>Token</code> object via a <a href="https://spacy.io/usage/processing-pipelines#custom-components-user-hooks">user hook</a>. Accordingly, you can just access the <code>vector</code> as you do with the other pipelines, but the output will be contextually informed.</p>
 <div id="cell-7" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sample_token <span class="op">=</span> doc[<span class="dv">0</span>]</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here is an example using Acrisius, a word which appears twice in the given text...</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample token: </span><span class="sc">{</span>sample_token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample lemma: </span><span class="sc">{</span>sample_token<span class="sc">.</span>lemma_<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Token.text values for two tokens..."</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc[<span class="dv">17</span>])</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc[<span class="dv">20</span>])</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that we have a Doc custom attribute `trf_token_vecs` which is a list of the vectors for each token in the document. We can access the vector for a specific token by using the index of the token in the document.</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Slices correspondiong to Acrisius from the trf_token_vecs Doc custom attribute..."</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc._.trf_token_vecs[<span class="dv">17</span>][:<span class="dv">5</span>])</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc._.trf_token_vecs[<span class="dv">20</span>][:<span class="dv">5</span>])</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># But we can access these contextual vectors directly via the `vector` Token attribute.</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Token attribute for the Acrisius slices..."</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc[<span class="dv">17</span>].vector[:<span class="dv">5</span>])</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc[<span class="dv">20</span>].vector[:<span class="dv">5</span>])</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Vectors are the same?"</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.mean(doc[<span class="dv">17</span>].vector) <span class="op">==</span> np.mean(doc._.trf_token_vecs[<span class="dv">17</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Sample token: Haec
-Sample lemma: hic</code></pre>
+<pre><code>Token.text values for two tokens...
+Acrisius
+Acrisius
+
+Slices correspondiong to Acrisius from the trf_token_vecs Doc custom attribute...
+[-2.048665   -4.7464104   0.6075096   0.18537973 -4.5588617 ]
+[-3.147872   -5.0107517   2.0665998  -0.12608378 -2.9859593 ]
+
+Token attribute for the Acrisius slices...
+[-2.048665   -4.7464104   0.6075096   0.18537973 -4.5588617 ]
+[-3.147872   -5.0107517   2.0665998  -0.12608378 -2.9859593 ]
+
+Vectors are the same?
+True</code></pre>
 </div>
 </div>
-<div id="cell-8" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tabulate</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> [item <span class="cf">for</span> item <span class="kw">in</span> doc]</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> tokens:</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    data.append([token.text, token.lemma_])    </span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate.tabulate(data, headers<span class="op">=</span>[<span class="st">'Text'</span>, <span class="st">'Lemma'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Reminder that the shape of the (MultilingualBERT-derived) vectors is 768…</p>
+<div id="cell-9" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc[<span class="dv">0</span>].vector.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Text          Lemma
-------------  --------
-Haec          hic
-narrantur     narro
-a             ab
-poetis        poeta
-de            de
-Perseo        Perseus
-.             .
-Perseus       perseus
-filius        filius
-erat          sum
-Iovis         Iuppiter
-,             ,
-maximi        magnus
-deorum        deus
-.             .
-Avus          auus
-eius          is
-Acrisius      Acrisius
-appellabatur  appello
-.             .</code></pre>
+<pre><code>(768,)</code></pre>
 </div>
 </div>
-<p>The <code>lemma_</code> attribute has the type <code>str</code> and so is compatible with all string operations…</p>
-<div id="cell-10" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Token: </span><span class="sc">{</span>tokens[<span class="dv">0</span>]<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Lemma: </span><span class="sc">{</span>tokens[<span class="dv">0</span>]<span class="sc">.</span>lemma_<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Lowercase lemma: </span><span class="sc">{</span>tokens[<span class="dv">0</span>]<span class="sc">.</span>lemma_<span class="sc">.</span>lower()<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For the trf pipelines, I have (not yet!) implemented a <code>similarity</code> method. Vectors can of course still be compared using other methods, such as cosine similarity. Here is the cosine similarity between the vectors for two sentences using a custom script…</p>
+<div id="cell-11" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>text_1 <span class="op">=</span> <span class="st">"Omnia vincit amor."</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>text_2 <span class="op">=</span> <span class="st">"Omnia vincit amicitia."</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>doc_1 <span class="op">=</span> nlp(text_1)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>doc_2 <span class="op">=</span> nlp(text_2)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cosine_similarity(vec1, vec2):</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Ensure vectors are flattened numpy arrays</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    vec1_flat <span class="op">=</span> vec1.reshape(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    vec2_flat <span class="op">=</span> vec2.reshape(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute cosine similarity</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    dot_product <span class="op">=</span> np.dot(vec1_flat, vec2_flat)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    norm1 <span class="op">=</span> np.linalg.norm(vec1_flat)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    norm2 <span class="op">=</span> np.linalg.norm(vec2_flat)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dot_product <span class="op">/</span> (norm1 <span class="op">*</span> norm2)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the vectors and compute similarity</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>vec1 <span class="op">=</span> doc_1._.trf_token_vecs</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>vec2 <span class="op">=</span> doc_2._.trf_token_vecs</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Similarity between the two sentences..."</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>similarity <span class="op">=</span> cosine_similarity(vec1, vec2)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(similarity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Token: Haec
-Lemma: hic
-Lowercase lemma: hic</code></pre>
+<pre><code>
+Similarity between the two sentences...
+0.9051101</code></pre>
 </div>
-</div>
-<p>The <code>lemma_</code> attribute, though, is only the human-readable version of the lemma. Internally, spaCy uses a hash value to represent the lemma, which is stored in the <code>lemma</code> attribute. (Note the lack of trailing underscore.)</p>
-<div id="cell-12" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Token: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Human-readable lemma: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>lemma_<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'spaCy lemma key: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>lemma<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Token: narrantur
-Human-readable lemma: narro
-spaCy lemma key: 11361982710182407617</code></pre>
-</div>
-</div>
-<p>In order to compare the two different lemmatization passes, we can create two copies of the LatinCy pipeline, each with one of the two lemmatizers removed…</p>
-<div id="cell-14" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copy</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>P1 <span class="op">=</span> copy.deepcopy(nlp)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>P1.disable_pipes(([<span class="st">'tagger'</span>, <span class="st">'morphologizer'</span>, <span class="st">'lookup_lemmatizer'</span>]))</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'First pipeline components: </span><span class="sc">{</span>P1<span class="sc">.</span>pipe_names<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>P2 <span class="op">=</span> copy.deepcopy(nlp)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>P2.disable_pipes(([<span class="st">'tagger'</span>, <span class="st">'morphologizer'</span>, <span class="st">'trainable_lemmatizer'</span>]))</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Second pipeline components: </span><span class="sc">{</span>P2<span class="sc">.</span>pipe_names<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>First pipeline components: ['senter', 'normer', 'tok2vec', 'trainable_lemmatizer', 'parser', 'ner', 'remorpher']
-Second pipeline components: ['senter', 'normer', 'tok2vec', 'parser', 'lookup_lemmatizer', 'ner', 'remorpher']</code></pre>
-</div>
-</div>
-<p>We can then run the same text through both pipelines and compare the results side-by-side…</p>
-<div id="cell-16" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>P1_annotations <span class="op">=</span> P1(text)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>P2_annotations <span class="op">=</span> P2(text)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> p1_token, p2_token <span class="kw">in</span> <span class="bu">zip</span>(P1_annotations, P2_annotations):</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    data.append([p1_token.text, p1_token.lemma_, p2_token.lemma_])</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate.tabulate(data, headers<span class="op">=</span>[<span class="st">'Text'</span>, <span class="st">'Trainable lemmatizer'</span>, <span class="st">'Lookup lemmatizer'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Text          Trainable lemmatizer    Lookup lemmatizer
-------------  ----------------------  -------------------
-Haec          hic
-narrantur     narro                   narro
-a             ab
-poetis        poeta                   poeta
-de            de
-Perseo        Perseus
-.             .                       .
-Perseus       perseus
-filius        filius                  filius
-erat          sum                     sum
-Iovis         Iovis                   Iuppiter
-,             ,                       ,
-maximi        magnus
-deorum        deus                    deus
-.             .                       .
-Avus          avus                    auus
-eius          is                      is
-Acrisius      Acrisius
-appellabatur  appello                 appello
-.             .                       .</code></pre>
-</div>
-</div>
-<p>Note specifically the lemmatization of <em>Iovis</em>—since it is a highly irregular form, it is not surprising that the Edit Tree Lemmatizer has manufactured a potential, but incorrect, lemma based on the root <em>Iov-</em>. Since <em>Iovis</em> is an unambiguous Latin form and has been added to the LatinCy lookups, the Lookup Lemmatizer steps in to correct the erroneous first pass. The lookup data can be found a custom form of the spaCy <code>spacy-lookups-data</code> package [https://github.com/diyclassics/spacy-lookups-data/tree/master/spacy_lookups_data/data]. These lookups are installed as a dependency of each of the LatinCy pipelines.</p>
-<p>The code below shows how to access the lookup data directly…</p>
-<div id="cell-18" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the lookups data</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> spacy.lookups <span class="im">import</span> Lookups, load_lookups</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>blank_nlp <span class="op">=</span> spacy.blank(<span class="st">"la"</span>)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>lookups <span class="op">=</span> Lookups()</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>lookups_data <span class="op">=</span> load_lookups(lang<span class="op">=</span>blank_nlp.vocab.lang, tables<span class="op">=</span>[<span class="st">"lemma_lookup"</span>])</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>LOOKUPS <span class="op">=</span> lookups_data.get_table(<span class="st">"lemma_lookup"</span>)</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(LOOKUPS[<span class="st">'Iovis'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Iuppiter</code></pre>
-</div>
-</div>
-<p>What is described above is the default role of lemmatizers in the LatinCy pipeline. Of course, it may be the case that you want to add additional lookups to your annotation pipeline overriding the default lookups. Here is an example of such a set up…</p>
-<div id="cell-20" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>custom_lookups <span class="op">=</span> {</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Aaron"</span>: <span class="st">"Aaron"</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="references" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
-<p><strong>NLTK</strong> Chapter 3, Section 3.6 “Normalizing text” <a href="https://www.nltk.org/book/ch03.html#sec-normalizing-text">link</a><br>
-<strong>SLP</strong> Chapter 2, Section 2.6 “Word normalization, lemmatization and stemming”, pp.&nbsp;23-24 <a href="https://web.stanford.edu/~jurafsky/slp3/">link</a><br>
-<strong>spaCy</strong> EditTreeLemmatizer <a href="https://spacy.io/api/edittreelemmatizer">link</a></p>
+<p><strong>SLP</strong> Chapter 6, “Vector Semantics and Embeddings” <a href="https://web.stanford.edu/~jurafsky/slp3/6.pdf">link</a></p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-burns_backoff_2018" class="csl-entry" role="listitem">
-Burns, Patrick J. 2018. <span>“Backoff <span>Lemmatization</span> as a <span>Philological</span> <span>Method</span>.”</span> In <em>Digital <span>Humanities</span> 2018, <span>DH</span> 2018, <span>Book</span> of <span>Abstracts</span>, <span>El</span> <span>Colegio</span> de <span>México</span>, <span>UNAM</span>, and <span>RedHD</span>, <span>Mexico</span> <span>City</span>, <span>Mexico</span>, <span>June</span> 26-29, 2018</em>.
-</div>
-<div id="ref-burns_ensemble_2020" class="csl-entry" role="listitem">
-———. 2020. <span>“Ensemble Lemmatization with the <span>Classical</span> <span>Language</span> <span>Toolkit</span>.”</span> <em>Studi e Saggi Linguistici</em> 58 (1): 157–76. <a href="https://doi.org/10.4454/ssl.v58i1.273">https://doi.org/10.4454/ssl.v58i1.273</a>.
-</div>
-</div>
 </section>
 </section>
 
@@ -948,13 +863,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./word-tokenization.html" class="pagination-link" aria-label="Word Tokenization">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Word Tokenization</span></span>
+      <a href="./vectors.html" class="pagination-link" aria-label="Vectors">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Vectors</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./pos-tagging.html" class="pagination-link" aria-label="POS Tagging">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">POS Tagging</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./matcher.html" class="pagination-link" aria-label="Sequence Matching">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Sequence Matching</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
