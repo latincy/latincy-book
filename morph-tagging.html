@@ -253,6 +253,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Sequence Matching</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./displacy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Visualizing Annotations</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -294,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#pos-tagging-with-latincy" id="toc-pos-tagging-with-latincy" class="nav-link active" data-scroll-target="#pos-tagging-with-latincy"><span class="header-section-number">8.1</span> POS Tagging with LatinCy</a>
+  <li><a href="#morphological-tagging-with-latincy" id="toc-morphological-tagging-with-latincy" class="nav-link active" data-scroll-target="#morphological-tagging-with-latincy"><span class="header-section-number">8.1</span> Morphological Tagging with LatinCy</a>
   <ul class="collapse">
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
@@ -323,8 +329,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="pos-tagging-with-latincy" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="pos-tagging-with-latincy"><span class="header-section-number">8.1</span> POS Tagging with LatinCy</h2>
+<section id="morphological-tagging-with-latincy" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="morphological-tagging-with-latincy"><span class="header-section-number">8.1</span> Morphological Tagging with LatinCy</h2>
 <p>Morphological tagging is the task of mapping a token in a text to various morphological tags as appropriate for the token’s part of speech. A noun will have morphological tags for its gender, number, and case, while a verb—a finite verb, at least—will have tags for its person, number, tense, mood, and voice. The default LatinCy pipelines have a <code>morphologizer</code> component that assigns these tags.</p>
 <div id="cell-3" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports &amp; setup</span></span>

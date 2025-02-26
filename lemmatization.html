@@ -273,6 +273,12 @@ div.csl-indent {
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Sequence Matching</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./displacy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Visualizing Annotations</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -487,29 +493,127 @@ appellabatur  appello                 appello
 .             .                       .</code></pre>
 </div>
 </div>
+<p>Even if the lookup lemmatizer overwrites the lemma predicted by the trainable lemmatizer, the original lemma predicted by the trainable lemmatizer is still stored in a custom Token attribute, i.e.&nbsp;</p>
+<div id="cell-18" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Token: </span><span class="sc">{</span>tokens[<span class="dv">10</span>]<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Lemma: </span><span class="sc">{</span>tokens[<span class="dv">10</span>]<span class="sc">.</span>lemma_<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Predicted lemma: </span><span class="sc">{</span>tokens[<span class="dv">10</span>]<span class="sc">.</span>_<span class="sc">.</span>predicted_lemma<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Token: Iovis
+Lemma: Iuppiter
+Predicted lemma: Iovis</code></pre>
+</div>
+</div>
 <p>Note specifically the lemmatization of <em>Iovis</em>—since it is a highly irregular form, it is not surprising that the Edit Tree Lemmatizer has manufactured a potential, but incorrect, lemma based on the root <em>Iov-</em>. Since <em>Iovis</em> is an unambiguous Latin form and has been added to the LatinCy lookups, the Lookup Lemmatizer steps in to correct the erroneous first pass. The lookup data can be found a custom form of the spaCy <code>spacy-lookups-data</code> package [https://github.com/diyclassics/spacy-lookups-data/tree/master/spacy_lookups_data/data]. These lookups are installed as a dependency of each of the LatinCy pipelines.</p>
 <p>The code below shows how to access the lookup data directly…</p>
-<div id="cell-18" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the lookups data</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> spacy.lookups <span class="im">import</span> Lookups, load_lookups</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>blank_nlp <span class="op">=</span> spacy.blank(<span class="st">"la"</span>)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>lookups <span class="op">=</span> Lookups()</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>lookups_data <span class="op">=</span> load_lookups(lang<span class="op">=</span>blank_nlp.vocab.lang, tables<span class="op">=</span>[<span class="st">"lemma_lookup"</span>])</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>LOOKUPS <span class="op">=</span> lookups_data.get_table(<span class="st">"lemma_lookup"</span>)</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(LOOKUPS[<span class="st">'Iovis'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-20" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the lookups data</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> spacy.lookups <span class="im">import</span> Lookups, load_lookups</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>blank_nlp <span class="op">=</span> spacy.blank(<span class="st">"la"</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>lookups <span class="op">=</span> Lookups()</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>lookups_data <span class="op">=</span> load_lookups(lang<span class="op">=</span>blank_nlp.vocab.lang, tables<span class="op">=</span>[<span class="st">"lemma_lookup"</span>])</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>LOOKUPS <span class="op">=</span> lookups_data.get_table(<span class="st">"lemma_lookup"</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(LOOKUPS[<span class="st">'Iovis'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Iuppiter</code></pre>
 </div>
 </div>
-<p>What is described above is the default role of lemmatizers in the LatinCy pipeline. Of course, it may be the case that you want to add additional lookups to your annotation pipeline overriding the default lookups. Here is an example of such a set up…</p>
-<div id="cell-20" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>custom_lookups <span class="op">=</span> {</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Aaron"</span>: <span class="st">"Aaron"</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>What is described above is the default role of lemmatizers in the LatinCy pipeline. Of course, it may be the case that you want to add additional lookups to your annotation pipeline overriding the default lookups. Here is an example of such a set up using a custom <code>Language.factory</code>. We will cover custom factories in more detail in a later notebook.</p>
+<p>First, let’s lemmatizer a sentence with some unexpected, non-Classical Latin words usind the default settings…</p>
+<div id="cell-22" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cf. https://la.wikipedia.org/wiki/Star_Wars#Episodium_VI:_Iedi_reduces</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(<span class="st">"In planeta Tatooine, sunt Principissa Leia et Lucas Skywalker noviter Jedi factus"</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> doc:</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    data.append([token.text, token.lemma_])</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Before..."</span>, end<span class="op">=</span><span class="st">"</span><span class="ch">\n\n</span><span class="st">"</span>)</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate.tabulate(data, headers<span class="op">=</span>[<span class="st">'Text'</span>, <span class="st">'Lemma'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Before...
+
+Text         Lemma
+-----------  -----------
+In           in
+planeta      planeta
+Tatooine     Tatooina
+,            ,
+sunt         sum
+Principissa  principissa
+Leia         Leia
+et           et
+Lucas        Lucas
+Skywalker    Skywalker
+noviter      noviter
+Jedi         Jedus
+factus       facio</code></pre>
 </div>
+</div>
+<p>Now we will lemmatize again but with a custom lookup table (i.e.&nbsp;<code>dict</code>) added to the pipeline…</p>
+<div id="cell-24" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> spacy <span class="im">import</span> Language</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>custom_lemma_lookups <span class="op">=</span> {</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Jedi"</span>: [<span class="st">"Jedi"</span>],</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Tatooine"</span>: [<span class="st">"Tatooine"</span>],</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Leia"</span>: [<span class="st">"Leia"</span>, <span class="st">"Leiae"</span>, <span class="st">"Leiam"</span>],</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>custom_lookups <span class="op">=</span> {}</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key, values <span class="kw">in</span> custom_lemma_lookups.items():</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> value <span class="kw">in</span> values:</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> value <span class="kw">not</span> <span class="kw">in</span> lookups:</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>            custom_lookups[value] <span class="op">=</span> key</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="at">@Language.component</span>(name<span class="op">=</span><span class="st">"custom_lookup_lemmatizer"</span>)</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_lookup_lemmatizer_function(doc):</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> token <span class="kw">in</span> doc:</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>        token.lemma_ <span class="op">=</span> custom_lookups.get(token.text, token.lemma_)</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> doc</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    nlp.add_pipe(<span class="st">"custom_lookup_lemmatizer"</span>, name<span class="op">=</span><span class="st">"custom_lookup_lemmatizer"</span>)</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If the pipeline component is already added, we can't add it again</span></span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a><span class="co"># cf. https://la.wikipedia.org/wiki/Star_Wars#Episodium_VI:_Iedi_reduces</span></span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(<span class="st">"In planeta Tatooine, sunt Principissa Leia et Lucas Skywalker noviter Jedi factus"</span>)</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> doc:</span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>    data.append([token.text, token.lemma_])</span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"After..."</span>, end<span class="op">=</span><span class="st">"</span><span class="ch">\n\n</span><span class="st">"</span>)</span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate.tabulate(data, headers<span class="op">=</span>[<span class="st">'Text'</span>, <span class="st">'Lemma'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>After...
+
+Text         Lemma
+-----------  -----------
+In           in
+planeta      planeta
+Tatooine     Tatooine
+,            ,
+sunt         sum
+Principissa  principissa
+Leia         Leia
+et           et
+Lucas        Lucas
+Skywalker    Skywalker
+noviter      noviter
+Jedi         Jedi
+factus       facio</code></pre>
+</div>
+</div>
+<p>Note in particular how the default lemmatizers handled “Leia” without issue (being closer to an expected noun form ending in <em>-a</em>), but now better handles “Tatooine” and “Jedi” because of our custom lookup table.</p>
 <section id="references" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
 <p><strong>NLTK</strong> Chapter 3, Section 3.6 “Normalizing text” <a href="https://www.nltk.org/book/ch03.html#sec-normalizing-text">link</a><br>
