@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>12&nbsp; Visualizing Annotations – Getting Started with LatinCy</title>
+<title>13&nbsp; Visualizing Annotations – Getting Started with LatinCy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./matcher.html">spaCy Tasks</a></li><li class="breadcrumb-item"><a href="./displacy.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Visualizing Annotations</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./matcher.html">spaCy Tasks</a></li><li class="breadcrumb-item"><a href="./displacy.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Visualizing Annotations</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -229,14 +229,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./ner.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Named Entity Recognition</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./vectors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Vectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Vectors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./trf-vectors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">TRF Vectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">TRF Vectors</span></span></a>
   </div>
 </li>
       </ul>
@@ -253,13 +259,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./matcher.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Sequence Matching</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Sequence Matching</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./displacy.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Visualizing Annotations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Visualizing Annotations</span></span></a>
   </div>
 </li>
       </ul>
@@ -303,10 +309,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#visualizing-annotations-with-displacy" id="toc-visualizing-annotations-with-displacy" class="nav-link active" data-scroll-target="#visualizing-annotations-with-displacy"><span class="header-section-number">12.1</span> Visualizing Annotations with DisplaCy</a>
+  <li><a href="#visualizing-annotations-with-displacy" id="toc-visualizing-annotations-with-displacy" class="nav-link active" data-scroll-target="#visualizing-annotations-with-displacy"><span class="header-section-number">13.1</span> Visualizing Annotations with DisplaCy</a>
   <ul class="collapse">
-  <li><a href="#visualizing-dependency-parses" id="toc-visualizing-dependency-parses" class="nav-link" data-scroll-target="#visualizing-dependency-parses"><span class="header-section-number">12.1.1</span> Visualizing dependency parses</a></li>
-  <li><a href="#visualizing-named-entities" id="toc-visualizing-named-entities" class="nav-link" data-scroll-target="#visualizing-named-entities"><span class="header-section-number">12.1.2</span> Visualizing named entities</a></li>
+  <li><a href="#visualizing-dependency-parses" id="toc-visualizing-dependency-parses" class="nav-link" data-scroll-target="#visualizing-dependency-parses"><span class="header-section-number">13.1.1</span> Visualizing dependency parses</a></li>
+  <li><a href="#visualizing-named-entities" id="toc-visualizing-named-entities" class="nav-link" data-scroll-target="#visualizing-named-entities"><span class="header-section-number">13.1.2</span> Visualizing named entities</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
@@ -315,9 +321,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./matcher.html">spaCy Tasks</a></li><li class="breadcrumb-item"><a href="./displacy.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Visualizing Annotations</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./matcher.html">spaCy Tasks</a></li><li class="breadcrumb-item"><a href="./displacy.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Visualizing Annotations</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Visualizing Annotations</span></h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Visualizing Annotations</span></h1>
 </div>
 
 
@@ -334,8 +340,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="visualizing-annotations-with-displacy" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="visualizing-annotations-with-displacy"><span class="header-section-number">12.1</span> Visualizing Annotations with DisplaCy</h2>
+<section id="visualizing-annotations-with-displacy" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="visualizing-annotations-with-displacy"><span class="header-section-number">13.1</span> Visualizing Annotations with DisplaCy</h2>
 <p>Throughout this book, we have annotated many texts and often reported these annotations in simple lists and tables. But it can be useful for for some tasks to <em>see</em> the annotations and how they relate to our texts. SpaCy includes some basic visualization tools through a package called <code>displacy</code> that can help us accomplish this goal.</p>
 <p>There are two primary types of annotations that <code>displaCy</code> can help us visualize: dependency parses and named entities. This notebook demonstrates both types of annotations.</p>
 <div id="cell-3" class="cell" data-execution_count="1">
@@ -353,8 +359,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum. Avus eius Acrisius appellabatur.</code></pre>
 </div>
 </div>
-<section id="visualizing-dependency-parses" class="level3" data-number="12.1.1">
-<h3 data-number="12.1.1" class="anchored" data-anchor-id="visualizing-dependency-parses"><span class="header-section-number">12.1.1</span> Visualizing dependency parses</h3>
+<section id="visualizing-dependency-parses" class="level3" data-number="13.1.1">
+<h3 data-number="13.1.1" class="anchored" data-anchor-id="visualizing-dependency-parses"><span class="header-section-number">13.1.1</span> Visualizing dependency parses</h3>
 <div id="cell-5" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -388,7 +394,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>displacy.render(sents[<span class="dv">0</span>], style<span class="op">=</span><span class="st">'dep'</span>, jupyter<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<span class="tex2jax_ignore"><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" lang="la" id="56dd735ec2ed438c900bdf72b4df0c81-0" class="displacy" width="1100" height="399.5" direction="ltr" style="max-width: none; height: 399.5px; color: #000000; background: #ffffff; font-family: Arial; direction: ltr">
+<span class="tex2jax_ignore"><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" lang="la" id="8b3f00d5218a485dbb8fce8361ed910b-0" class="displacy" width="1100" height="399.5" direction="ltr" style="max-width: none; height: 399.5px; color: #000000; background: #ffffff; font-family: Arial; direction: ltr">
 <text class="displacy-token" fill="currentColor" text-anchor="middle" y="309.5">
     <tspan class="displacy-word" fill="currentColor" x="50">Haec</tspan>
     <tspan class="displacy-tag" dy="2em" fill="currentColor" x="50">DET</tspan>
@@ -420,41 +426,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </text>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-56dd735ec2ed438c900bdf72b4df0c81-0-0" stroke-width="2px" d="M70,264.5 C70,177.0 215.0,177.0 215.0,264.5" fill="none" stroke="currentColor"></path>
+    <path class="displacy-arc" id="arrow-8b3f00d5218a485dbb8fce8361ed910b-0-0" stroke-width="2px" d="M70,264.5 C70,177.0 215.0,177.0 215.0,264.5" fill="none" stroke="currentColor"></path>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textpath href="#arrow-56dd735ec2ed438c900bdf72b4df0c81-0-0" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">nsubj:pass</textpath>
+        <textpath href="#arrow-8b3f00d5218a485dbb8fce8361ed910b-0-0" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">nsubj:pass</textpath>
     </text>
     <path class="displacy-arrowhead" d="M70,266.5 L62,254.5 78,254.5" fill="currentColor"></path>
 </g>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-56dd735ec2ed438c900bdf72b4df0c81-0-1" stroke-width="2px" d="M420,264.5 C420,177.0 565.0,177.0 565.0,264.5" fill="none" stroke="currentColor"></path>
+    <path class="displacy-arc" id="arrow-8b3f00d5218a485dbb8fce8361ed910b-0-1" stroke-width="2px" d="M420,264.5 C420,177.0 565.0,177.0 565.0,264.5" fill="none" stroke="currentColor"></path>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textpath href="#arrow-56dd735ec2ed438c900bdf72b4df0c81-0-1" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">case</textpath>
+        <textpath href="#arrow-8b3f00d5218a485dbb8fce8361ed910b-0-1" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">case</textpath>
     </text>
     <path class="displacy-arrowhead" d="M420,266.5 L412,254.5 428,254.5" fill="currentColor"></path>
 </g>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-56dd735ec2ed438c900bdf72b4df0c81-0-2" stroke-width="2px" d="M245,264.5 C245,89.5 570.0,89.5 570.0,264.5" fill="none" stroke="currentColor"></path>
+    <path class="displacy-arc" id="arrow-8b3f00d5218a485dbb8fce8361ed910b-0-2" stroke-width="2px" d="M245,264.5 C245,89.5 570.0,89.5 570.0,264.5" fill="none" stroke="currentColor"></path>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textpath href="#arrow-56dd735ec2ed438c900bdf72b4df0c81-0-2" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">obl:agent</textpath>
+        <textpath href="#arrow-8b3f00d5218a485dbb8fce8361ed910b-0-2" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">obl:agent</textpath>
     </text>
     <path class="displacy-arrowhead" d="M570.0,266.5 L578.0,254.5 562.0,254.5" fill="currentColor"></path>
 </g>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-56dd735ec2ed438c900bdf72b4df0c81-0-3" stroke-width="2px" d="M770,264.5 C770,177.0 915.0,177.0 915.0,264.5" fill="none" stroke="currentColor"></path>
+    <path class="displacy-arc" id="arrow-8b3f00d5218a485dbb8fce8361ed910b-0-3" stroke-width="2px" d="M770,264.5 C770,177.0 915.0,177.0 915.0,264.5" fill="none" stroke="currentColor"></path>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textpath href="#arrow-56dd735ec2ed438c900bdf72b4df0c81-0-3" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">case</textpath>
+        <textpath href="#arrow-8b3f00d5218a485dbb8fce8361ed910b-0-3" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">case</textpath>
     </text>
     <path class="displacy-arrowhead" d="M770,266.5 L762,254.5 778,254.5" fill="currentColor"></path>
 </g>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-56dd735ec2ed438c900bdf72b4df0c81-0-4" stroke-width="2px" d="M245,264.5 C245,2.0 925.0,2.0 925.0,264.5" fill="none" stroke="currentColor"></path>
+    <path class="displacy-arc" id="arrow-8b3f00d5218a485dbb8fce8361ed910b-0-4" stroke-width="2px" d="M245,264.5 C245,2.0 925.0,2.0 925.0,264.5" fill="none" stroke="currentColor"></path>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textpath href="#arrow-56dd735ec2ed438c900bdf72b4df0c81-0-4" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">obl</textpath>
+        <textpath href="#arrow-8b3f00d5218a485dbb8fce8361ed910b-0-4" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">obl</textpath>
     </text>
     <path class="displacy-arrowhead" d="M925.0,266.5 L933.0,254.5 917.0,254.5" fill="currentColor"></path>
 </g>
@@ -462,8 +468,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="visualizing-named-entities" class="level3" data-number="12.1.2">
-<h3 data-number="12.1.2" class="anchored" data-anchor-id="visualizing-named-entities"><span class="header-section-number">12.1.2</span> Visualizing named entities</h3>
+<section id="visualizing-named-entities" class="level3" data-number="13.1.2">
+<h3 data-number="13.1.2" class="anchored" data-anchor-id="visualizing-named-entities"><span class="header-section-number">13.1.2</span> Visualizing named entities</h3>
 <p>We can also use displaCy to visualize named entity annotations. As we read in the previous chapter on the NER component, the LatinCy models currently support named entity annotations for the following entity types: <code>PERSON</code>, <code>LOC</code>, and <code>NORP</code> (i.e.&nbsp;groups of people). As with the dependency parses, let’s first present entity annotations in a table format…</p>
 <div id="cell-12" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract entities</span></span>
@@ -969,7 +975,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./matcher.html" class="pagination-link" aria-label="Sequence Matching">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Sequence Matching</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Sequence Matching</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
