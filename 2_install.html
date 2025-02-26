@@ -253,6 +253,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Sequence Matching</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./displacy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Visualizing Annotations</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -324,7 +330,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="installing-spacy" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="installing-spacy"><span class="header-section-number">1.1</span> Installing spaCy</h2>
-<p>The LatinCy models are designed to work with the spaCy natural language platform, so you will need to have this package installed before anything else. The following cell has the pip install command for spaCy. At the time of writing, the latest version available for spaCy compatible with LatinCy is v3.8.0.</p>
+<p>The LatinCy models are designed to work with the spaCy natural language platform, so you will need to have this package installed before anything else. The following cell has the pip install command for spaCy. At the time of writing, the latest version available for spaCy compatible with LatinCy is v3.8.4.</p>
 <p>NB: To run the cells below, uncomment the commands by removing the # at the beginning of the line. The exclamation point at the beginning of the line is shorthand for the <a href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-system"><code>%system</code> magic command</a> in Jupyter which can be used to run shell commands from within a notebook.</p>
 <div id="cell-3" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install -U spacy</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -334,10 +340,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="1.2" class="anchored" data-anchor-id="installing-the-latincy-models"><span class="header-section-number">1.2</span> Installing the LatinCy models</h2>
 <p>LatinCy models are currently available in three sizes: ‘sm’, ‘md’, and ‘lg’. We will use the different models throughout the tutorials, so let’s install all three now so that they are available for future chapters.</p>
 <div id="cell-6" class="cell" data-vscode="{&quot;languageId&quot;:&quot;shellscript&quot;}" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ! pip install "la-core-web-sm @ https://huggingface.co/latincy/la_core_web_sm/resolve/main/la_core_web_sm-any-py3-none-any.whl"</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ! pip install "la-core-web-md @ https://huggingface.co/latincy/la_core_web_md/resolve/main/la_core_web_md-any-py3-none-any.whl"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ! pip install "la-core-web-lg @ https://huggingface.co/latincy/la_core_web_lg/resolve/main/la_core_web_lg-any-py3-none-any.whl"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ! pip install "la-core-web-trf @ https://huggingface.co/latincy/la_core_web_trf/resolve/main/la_core_web_trf-any-py3-none-any.whl"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install "la-core-web-sm @ https://huggingface.co/latincy/la_core_web_sm/resolve/main/la_core_web_sm-any-py3-none-any.whl"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install "la-core-web-md @ https://huggingface.co/latincy/la_core_web_md/resolve/main/la_core_web_md-any-py3-none-any.whl"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install "la-core-web-lg @ https://huggingface.co/latincy/la_core_web_lg/resolve/main/la_core_web_lg-any-py3-none-any.whl"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install "la-core-web-trf @ https://huggingface.co/latincy/la_core_web_trf/resolve/main/la_core_web_trf-any-py3-none-any.whl"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="installing-additional-packages" class="level2" data-number="1.3">
