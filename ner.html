@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Installing LatinCy models – Getting Started with LatinCy</title>
+<title>9&nbsp; Named Entity Recognition – Getting Started with LatinCy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./3_load.html" rel="next">
-<link href="./abbreviations.html" rel="prev">
+<link href="./vectors.html" rel="next">
+<link href="./morph-tagging.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2_install.html">Model/Pipeline Basics</a></li><li class="breadcrumb-item"><a href="./2_install.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installing LatinCy models</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./ner.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Named Entity Recognition</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -167,7 +167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2_install.html" class="sidebar-item-text sidebar-link active">
+  <a href="./2_install.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installing LatinCy models</span></span></a>
   </div>
 </li>
@@ -226,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ner.html" class="sidebar-item-text sidebar-link">
+  <a href="./ner.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Named Entity Recognition</span></span></a>
   </div>
 </li>
@@ -306,18 +306,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#installing-spacy" id="toc-installing-spacy" class="nav-link active" data-scroll-target="#installing-spacy"><span class="header-section-number">1.1</span> Installing spaCy</a></li>
-  <li><a href="#installing-the-latincy-models" id="toc-installing-the-latincy-models" class="nav-link" data-scroll-target="#installing-the-latincy-models"><span class="header-section-number">1.2</span> Installing the LatinCy models</a></li>
-  <li><a href="#installing-additional-packages" id="toc-installing-additional-packages" class="nav-link" data-scroll-target="#installing-additional-packages"><span class="header-section-number">1.3</span> Installing additional packages</a></li>
+  <li><a href="#named-entity-recognition-with-latincy" id="toc-named-entity-recognition-with-latincy" class="nav-link active" data-scroll-target="#named-entity-recognition-with-latincy"><span class="header-section-number">9.1</span> Named Entity Recognition with LatinCy</a>
+  <ul class="collapse">
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./2_install.html">Model/Pipeline Basics</a></li><li class="breadcrumb-item"><a href="./2_install.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installing LatinCy models</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./ner.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Named Entity Recognition</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installing LatinCy models</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Named Entity Recognition</span></h1>
 </div>
 
 
@@ -334,36 +335,119 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="installing-spacy" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="installing-spacy"><span class="header-section-number">1.1</span> Installing spaCy</h2>
-<p>The LatinCy models are designed to work with the spaCy natural language platform, so you will need to have this package installed before anything else. The following cell has the pip install command for spaCy. At the time of writing, the latest version available for spaCy compatible with LatinCy is v3.8.4.</p>
-<p>NB: To run the cells below, uncomment the commands by removing the # at the beginning of the line. The exclamation point at the beginning of the line is shorthand for the <a href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-system"><code>%system</code> magic command</a> in Jupyter which can be used to run shell commands from within a notebook.</p>
+<section id="named-entity-recognition-with-latincy" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="named-entity-recognition-with-latincy"><span class="header-section-number">9.1</span> Named Entity Recognition with LatinCy</h2>
+<p>Named entity recognition is the task of mapping a token (or span of tokens) in a text to a kind of categorical tag, e.g.&nbsp;mapping the token <em>Roma</em> to a tag indicating location. The default LatinCy pipelines have a <code>ner</code> component that assigns the following tags:</p>
+<ul>
+<li><code>PERSON</code> for the names of people</li>
+<li><code>LOC</code> for the names of locations</li>
+<li><code>NORP</code> for the names of groups of people</li>
+</ul>
 <div id="cell-3" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install -U spacy</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports &amp; setup</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>nlp <span class="op">=</span> spacy.load(<span class="st">'la_core_web_lg'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># cf. Caesar, BC 3.1</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"Dictatore habente comitia Caesare consules creantur Iulius Caesar et P. Servilius."</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Dictatore habente comitia Caesare consules creantur Iulius Caesar et P. Servilius.</code></pre>
 </div>
-</section>
-<section id="installing-the-latincy-models" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="installing-the-latincy-models"><span class="header-section-number">1.2</span> Installing the LatinCy models</h2>
-<p>LatinCy models are currently available in three sizes: ‘sm’, ‘md’, and ‘lg’. We will use the different models throughout the tutorials, so let’s install all three now so that they are available for future chapters.</p>
-<div id="cell-6" class="cell" data-vscode="{&quot;languageId&quot;:&quot;shellscript&quot;}" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install "la-core-web-sm @ https://huggingface.co/latincy/la_core_web_sm/resolve/main/la_core_web_sm-any-py3-none-any.whl"</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install "la-core-web-md @ https://huggingface.co/latincy/la_core_web_md/resolve/main/la_core_web_md-any-py3-none-any.whl"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install "la-core-web-lg @ https://huggingface.co/latincy/la_core_web_lg/resolve/main/la_core_web_lg-any-py3-none-any.whl"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install "la-core-web-trf @ https://huggingface.co/latincy/la_core_web_trf/resolve/main/la_core_web_trf-any-py3-none-any.whl"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="installing-additional-packages" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="installing-additional-packages"><span class="header-section-number">1.3</span> Installing additional packages</h2>
-<p>We will also use other packages throughout these tutorials. They are included here for your convenience, as well as in the <code>requirements.txt</code> file in the code repository for this Quarto book.</p>
-<div id="cell-9" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install pandas</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install matplotlib</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install seaborn</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install scikit-learn</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># !pip install tqdm</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-4" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tabulate</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> [item <span class="cf">for</span> item <span class="kw">in</span> doc]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> tokens:</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    data.append([token.text, token.ent_type_])    </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate.tabulate(data, headers<span class="op">=</span>[<span class="st">'Text'</span>, <span class="st">"Entity Type"</span>])) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Text       Entity Type
+---------  -------------
+Dictatore
+habente
+comitia
+Caesare    PERSON
+consules
+creantur
+Iulius     PERSON
+Caesar     PERSON
+et
+P.         PERSON
+Servilius  PERSON
+.</code></pre>
 </div>
+</div>
+<p>Entity are annotated in the <code>Token</code> objects and are stored in the <code>ent_type_</code> attribute.</p>
+<div id="cell-6" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sample_token <span class="op">=</span> doc[<span class="dv">7</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample token: </span><span class="sc">{</span>sample_token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity type: </span><span class="sc">{</span>sample_token<span class="sc">.</span>ent_type_<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sample token: Caesar
+Sample entity type: PERSON</code></pre>
+</div>
+</div>
+<p>Moreover, the ner component should be able to recover the entity spans from the text using IOB (i.e.&nbsp;inside/outside/beginning) annotations. The IOB annotations are stored in the <code>ent_iob_</code> attribute of a spaCy <code>Token</code> object.</p>
+<p>In the example below, the PERSON named entity is “Julius Caesar”. The word “et” is <em>not</em> part of the entity. Accordingly, “Julius” is tagged with <code>B-PERSON</code> (beginning of the entity), “Caesar” is tagged with <code>I-PERSON</code> (inside the entity, and in this case the last word in the entity), and “et” is tagged with <code>O</code> (outside the entity, and so closing off the preceding entity).</p>
+<div id="cell-8" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample token: </span><span class="sc">{</span>doc[<span class="dv">6</span>]<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity type: </span><span class="sc">{</span>doc[<span class="dv">6</span>]<span class="sc">.</span>ent_type_<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity IOB: </span><span class="sc">{</span>doc[<span class="dv">6</span>]<span class="sc">.</span>ent_iob_<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sample entity IOB-type: </span><span class="sc">{</span>doc[<span class="dv">6</span>]<span class="sc">.</span>ent_iob_<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>doc[<span class="dv">6</span>]<span class="sc">.</span>ent_type_<span class="sc">}</span><span class="ss">"</span>, end<span class="op">=</span><span class="st">'</span><span class="ch">\n\n</span><span class="st">'</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample token: </span><span class="sc">{</span>sample_token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity type: </span><span class="sc">{</span>sample_token<span class="sc">.</span>ent_type_<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity IOB: </span><span class="sc">{</span>sample_token<span class="sc">.</span>ent_iob_<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sample entity IOB-type: </span><span class="sc">{</span>sample_token<span class="sc">.</span>ent_iob_<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>sample_token<span class="sc">.</span>ent_type_<span class="sc">}</span><span class="ss">"</span>, end<span class="op">=</span><span class="st">'</span><span class="ch">\n\n</span><span class="st">'</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample token: </span><span class="sc">{</span>doc[<span class="dv">8</span>]<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity type: </span><span class="sc">{</span>doc[<span class="dv">8</span>]<span class="sc">.</span>ent_type_<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity IOB: </span><span class="sc">{</span>doc[<span class="dv">8</span>]<span class="sc">.</span>ent_iob_<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sample token: Iulius
+Sample entity type: PERSON
+Sample entity IOB: B
+Sample entity IOB-type: B-PERSON
+
+Sample token: Caesar
+Sample entity type: PERSON
+Sample entity IOB: I
+Sample entity IOB-type: I-PERSON
+
+Sample token: et
+Sample entity type: 
+Sample entity IOB: O</code></pre>
+</div>
+</div>
+<p>LatinCy does not (yet) offer a spaCy <a href="https://spacy.io/api/entitylinker">EntityLinker</a>, that is a model-based tagger for resolving named entities to specific referent in a knowledge base. The wikidata identifier for Julius Caesar is [https://www.wikidata.org/wiki/Q1048] and an EntityLinker (if it existed!) could annotate the entity span with this identifier. For now, it will suffice to note that spaCy <code>Token</code> objects have an attribute set aside for this purpose: <code>ent_kb_id_</code>.</p>
+<div id="cell-10" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sample_token <span class="op">=</span> doc[<span class="dv">7</span>]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample token: </span><span class="sc">{</span>sample_token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity type: </span><span class="sc">{</span>sample_token<span class="sc">.</span>ent_type_<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>sample_token.ent_kb_id_ <span class="op">=</span> <span class="st">"https://www.wikidata.org/wiki/Q1048"</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity KB ID: </span><span class="sc">{</span>sample_token<span class="sc">.</span>ent_kb_id_<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Sample token: Caesar
+Sample entity type: PERSON
+Sample entity KB ID: https://www.wikidata.org/wiki/Q1048</code></pre>
+</div>
+</div>
+<p>SpaCy has a visualizer available for named entities; this is covered in the <a href="./displacy.html">displaCy</a> notebook.</p>
+<section id="references" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
+<p><strong>spaCy</strong> <a href="https://spacy.io/api/entityrecognizer">EntityRecognizer</a></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -786,13 +870,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./abbreviations.html" class="pagination-link" aria-label="Abbreviations">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Abbreviations</span>
+      <a href="./morph-tagging.html" class="pagination-link" aria-label="Morphological Tagging">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Morphological Tagging</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./3_load.html" class="pagination-link" aria-label="Loading LatinCy models">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Loading LatinCy models</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./vectors.html" class="pagination-link" aria-label="Vectors">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Vectors</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
