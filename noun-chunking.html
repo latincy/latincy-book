@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>15&nbsp; Visualizing Annotations – Getting Started with LatinCy</title>
+<title>12&nbsp; Noun Chunking – Getting Started with LatinCy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,15 +57,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./projects.html" rel="next">
-<link href="./matcher.html" rel="prev">
+<link href="./syntax-iterators.html" rel="next">
+<link href="./trf-vectors.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -102,9 +102,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -118,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./matcher.html">spaCy Tasks</a></li><li class="breadcrumb-item"><a href="./displacy.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Visualizing Annotations</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./noun-chunking.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Noun Chunking</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -247,7 +244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./noun-chunking.html" class="sidebar-item-text sidebar-link">
+  <a href="./noun-chunking.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Noun Chunking</span></span></a>
   </div>
 </li>
@@ -276,7 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./displacy.html" class="sidebar-item-text sidebar-link active">
+  <a href="./displacy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Visualizing Annotations</span></span></a>
   </div>
 </li>
@@ -321,10 +318,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#visualizing-annotations-with-displacy" id="toc-visualizing-annotations-with-displacy" class="nav-link active" data-scroll-target="#visualizing-annotations-with-displacy"><span class="header-section-number">15.1</span> Visualizing Annotations with DisplaCy</a>
+  <li><a href="#noun-chunking-with-latincy" id="toc-noun-chunking-with-latincy" class="nav-link active" data-scroll-target="#noun-chunking-with-latincy"><span class="header-section-number">12.1</span> Noun Chunking with LatinCy</a>
   <ul class="collapse">
-  <li><a href="#visualizing-dependency-parses" id="toc-visualizing-dependency-parses" class="nav-link" data-scroll-target="#visualizing-dependency-parses"><span class="header-section-number">15.1.1</span> Visualizing dependency parses</a></li>
-  <li><a href="#visualizing-named-entities" id="toc-visualizing-named-entities" class="nav-link" data-scroll-target="#visualizing-named-entities"><span class="header-section-number">15.1.2</span> Visualizing named entities</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
@@ -333,9 +328,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./matcher.html">spaCy Tasks</a></li><li class="breadcrumb-item"><a href="./displacy.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Visualizing Annotations</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sentence-segmentation.html">NLP Tasks</a></li><li class="breadcrumb-item"><a href="./noun-chunking.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Noun Chunking</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Visualizing Annotations</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Noun Chunking</span></h1>
 </div>
 
 
@@ -352,215 +347,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="visualizing-annotations-with-displacy" class="level2" data-number="15.1">
-<h2 data-number="15.1" class="anchored" data-anchor-id="visualizing-annotations-with-displacy"><span class="header-section-number">15.1</span> Visualizing Annotations with DisplaCy</h2>
-<p>Throughout this book, we have annotated many texts and often reported these annotations in simple lists and tables. But it can be useful for for some tasks to <em>see</em> the annotations and how they relate to our texts. SpaCy includes some basic visualization tools through a package called <code>displacy</code> that can help us accomplish this goal.</p>
-<p>There are two primary types of annotations that <code>displaCy</code> can help us visualize: dependency parses and named entities. This notebook demonstrates both types of annotations.</p>
+<section id="noun-chunking-with-latincy" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="noun-chunking-with-latincy"><span class="header-section-number">12.1</span> Noun Chunking with LatinCy</h2>
+<p>Noun chunking is the task of identifying a noun and the words directly related to it. More specifically, with respect to the LatinCy pipeline, it is using annotations of the POS-tagger (<code>tagger</code>) and the dependency parser (<code>parser</code>) to identify all children of a token tagged as NOUN. Unlike the NLP tasks in the preceding sections, this task cannot be associated directly with a pipeline component; rather it is a special <code>Span</code> case defined in the spaCy language model itself under <a href="https://github.com/explosion/spaCy/blob/master/spacy/lang/la/syntax_iterators.py"><code>syntax iterators</code></a>.</p>
 <div id="cell-3" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports &amp; setup</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tabulate <span class="im">import</span> tabulate</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>nlp <span class="op">=</span> spacy.load(<span class="st">'la_core_web_lg'</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum. Avus eius Acrisius appellabatur."</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>nlp <span class="op">=</span> spacy.load(<span class="st">'la_core_web_lg'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum. Avus eius Acrisius appellabatur."</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum. Avus eius Acrisius appellabatur.</code></pre>
 </div>
 </div>
-<section id="visualizing-dependency-parses" class="level3" data-number="15.1.1">
-<h3 data-number="15.1.1" class="anchored" data-anchor-id="visualizing-dependency-parses"><span class="header-section-number">15.1.1</span> Visualizing dependency parses</h3>
+<p>As defined in the <code>syntax_iterators</code>, noun chunks become attributes of the spaCy <code>Doc</code> object. Noun chunks will return any token span for which the dependency head has the <code>NOUN</code> tag. A one-word noun chunk is just the noun itself, so not of particular interest. So, really what we are looking for are longer spans of noun-related text.</p>
 <div id="cell-5" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> spacy <span class="im">import</span> displacy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Let’s take the first sentence from our sample text and list the relevant dependency annotations…</p>
-<div id="cell-7" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sents <span class="op">=</span> <span class="bu">list</span>(doc.sents)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> sents[<span class="dv">0</span>]:</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    data.append([token.i, token.text, token.dep_, token.head.text])</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate(data, headers<span class="op">=</span>[<span class="st">''</span>,<span class="st">'Token'</span>, <span class="st">'Dep'</span>, <span class="st">'Head'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the noun chunks in the text</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> noun_chunk <span class="kw">in</span> doc.noun_chunks:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(noun_chunk) <span class="op">&gt;</span> <span class="dv">1</span>:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(noun_chunk)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    Token      Dep         Head
---  ---------  ----------  ---------
- 0  Haec       nsubj:pass  narrantur
- 1  narrantur  ROOT        narrantur
- 2  a          case        poetis
- 3  poetis     obl:agent   narrantur
- 4  de         case        Perseo
- 5  Perseo     obl         narrantur
- 6  .          punct       narrantur</code></pre>
+<pre><code>maximi deorum
+Avus eius</code></pre>
 </div>
 </div>
-<p>The table above reflects all of the relevant dependencies, but again in a list format, it can be hard to trace these relationships. Here is where a visualization can be useful…</p>
-<div id="cell-9" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize dependency parse</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>displacy.render(sents[<span class="dv">0</span>], style<span class="op">=</span><span class="st">'dep'</span>, jupyter<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<span class="tex2jax_ignore"><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" lang="la" id="660d5e47c6db4e07a662da14e6672382-0" class="displacy" width="1100" height="399.5" direction="ltr" style="max-width: none; height: 399.5px; color: #000000; background: #ffffff; font-family: Arial; direction: ltr">
-<text class="displacy-token" fill="currentColor" text-anchor="middle" y="309.5">
-    <tspan class="displacy-word" fill="currentColor" x="50">Haec</tspan>
-    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="50">DET</tspan>
-</text>
-
-<text class="displacy-token" fill="currentColor" text-anchor="middle" y="309.5">
-    <tspan class="displacy-word" fill="currentColor" x="225">narrantur</tspan>
-    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="225">VERB</tspan>
-</text>
-
-<text class="displacy-token" fill="currentColor" text-anchor="middle" y="309.5">
-    <tspan class="displacy-word" fill="currentColor" x="400">a</tspan>
-    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="400">ADP</tspan>
-</text>
-
-<text class="displacy-token" fill="currentColor" text-anchor="middle" y="309.5">
-    <tspan class="displacy-word" fill="currentColor" x="575">poetis</tspan>
-    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="575">NOUN</tspan>
-</text>
-
-<text class="displacy-token" fill="currentColor" text-anchor="middle" y="309.5">
-    <tspan class="displacy-word" fill="currentColor" x="750">de</tspan>
-    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="750">ADP</tspan>
-</text>
-
-<text class="displacy-token" fill="currentColor" text-anchor="middle" y="309.5">
-    <tspan class="displacy-word" fill="currentColor" x="925">Perseo.</tspan>
-    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="925">PROPN</tspan>
-</text>
-
-<g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-660d5e47c6db4e07a662da14e6672382-0-0" stroke-width="2px" d="M70,264.5 C70,177.0 215.0,177.0 215.0,264.5" fill="none" stroke="currentColor"></path>
-    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textpath href="#arrow-660d5e47c6db4e07a662da14e6672382-0-0" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">nsubj:pass</textpath>
-    </text>
-    <path class="displacy-arrowhead" d="M70,266.5 L62,254.5 78,254.5" fill="currentColor"></path>
-</g>
-
-<g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-660d5e47c6db4e07a662da14e6672382-0-1" stroke-width="2px" d="M420,264.5 C420,177.0 565.0,177.0 565.0,264.5" fill="none" stroke="currentColor"></path>
-    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textpath href="#arrow-660d5e47c6db4e07a662da14e6672382-0-1" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">case</textpath>
-    </text>
-    <path class="displacy-arrowhead" d="M420,266.5 L412,254.5 428,254.5" fill="currentColor"></path>
-</g>
-
-<g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-660d5e47c6db4e07a662da14e6672382-0-2" stroke-width="2px" d="M245,264.5 C245,89.5 570.0,89.5 570.0,264.5" fill="none" stroke="currentColor"></path>
-    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textpath href="#arrow-660d5e47c6db4e07a662da14e6672382-0-2" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">obl:agent</textpath>
-    </text>
-    <path class="displacy-arrowhead" d="M570.0,266.5 L578.0,254.5 562.0,254.5" fill="currentColor"></path>
-</g>
-
-<g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-660d5e47c6db4e07a662da14e6672382-0-3" stroke-width="2px" d="M770,264.5 C770,177.0 915.0,177.0 915.0,264.5" fill="none" stroke="currentColor"></path>
-    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textpath href="#arrow-660d5e47c6db4e07a662da14e6672382-0-3" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">case</textpath>
-    </text>
-    <path class="displacy-arrowhead" d="M770,266.5 L762,254.5 778,254.5" fill="currentColor"></path>
-</g>
-
-<g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-660d5e47c6db4e07a662da14e6672382-0-4" stroke-width="2px" d="M245,264.5 C245,2.0 925.0,2.0 925.0,264.5" fill="none" stroke="currentColor"></path>
-    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textpath href="#arrow-660d5e47c6db4e07a662da14e6672382-0-4" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">obl</textpath>
-    </text>
-    <path class="displacy-arrowhead" d="M925.0,266.5 L933.0,254.5 917.0,254.5" fill="currentColor"></path>
-</g>
-</svg></span>
-</div>
-</div>
-</section>
-<section id="visualizing-named-entities" class="level3" data-number="15.1.2">
-<h3 data-number="15.1.2" class="anchored" data-anchor-id="visualizing-named-entities"><span class="header-section-number">15.1.2</span> Visualizing named entities</h3>
-<p>We can also use displaCy to visualize named entity annotations. As we read in the previous chapter on the NER component, the LatinCy models currently support named entity annotations for the following entity types: <code>PERSON</code>, <code>LOC</code>, and <code>NORP</code> (i.e.&nbsp;groups of people). As with the dependency parses, let’s first present entity annotations in a table format…</p>
-<div id="cell-12" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract entities</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"""Iason et Medea e Thessalia expulsi ad urbem Corinthum venerunt, cuius urbis Creon quidam regnum tum obtinebat."""</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span>  text.replace(<span class="st">"v"</span>,<span class="st">"u"</span>).replace(<span class="st">"V"</span>,<span class="st">"U"</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> [item <span class="cf">for</span> item <span class="kw">in</span> doc]</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> tokens:</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    data.append([token.text, token.ent_type_])    </span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate(data, headers<span class="op">=</span>[<span class="st">'Text'</span>, <span class="st">"Entity Type"</span>])) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Text       Entity Type
----------  -------------
-Iason      PERSON
-et
-Medea      PERSON
-e
-Thessalia  LOC
-expulsi
-ad
-urbem
-Corinthum  LOC
-uenerunt
-,
-cuius
-urbis
-Creon      PERSON
-quidam
-regnum
-tum
-obtinebat
-.</code></pre>
-</div>
-</div>
-<p>The disadvantages of this type of presentation are not hard to notice. It lacks compactness and perhaps more importantly there is a lack of clear visual distinction between the different entity types. By contrast, displaCy can show us the entities in clear running text with each entity type color-coded for maximum visual impact.</p>
-<div id="cell-15" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizing named entities</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>displacy.render(doc, style<span class="op">=</span><span class="st">"ent"</span>, jupyter<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<span class="tex2jax_ignore"><div class="entities" style="line-height: 2.5; direction: ltr">
-<mark class="entity" style="background: #aa9cfc; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
-    Iason
-    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">PERSON</span>
-</mark>
- et 
-<mark class="entity" style="background: #aa9cfc; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
-    Medea
-    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">PERSON</span>
-</mark>
- e 
-<mark class="entity" style="background: #ff9561; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
-    Thessalia
-    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">LOC</span>
-</mark>
- expulsi ad urbem 
-<mark class="entity" style="background: #ff9561; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
-    Corinthum
-    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">LOC</span>
-</mark>
- uenerunt, cuius urbis 
-<mark class="entity" style="background: #aa9cfc; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
-    Creon
-    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">PERSON</span>
-</mark>
- quidam regnum tum obtinebat.</div></span>
-</div>
-</div>
-</section>
 <section id="references" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
-<p><strong>spaCy</strong> <a href="https://spacy.io/usage/visualizers">Visualizers</a><br>
-<strong>MS</strong> Chapter 1 “Getting started with SpaCy”, section “Visualization with displaCy”</p>
+<p><strong>spaCy</strong> <a href="https://spacy.io/usage/linguistic-features#noun-chunks">Noun chunks</a></p>
 
 
 </section>
@@ -986,13 +802,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./matcher.html" class="pagination-link" aria-label="Sequence Matching">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Sequence Matching</span></span>
+      <a href="./trf-vectors.html" class="pagination-link" aria-label="TRF Vectors">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">TRF Vectors</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./projects.html" class="pagination-link" aria-label="Open LatinCy Projects">
-        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Open LatinCy Projects</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./syntax-iterators.html" class="pagination-link" aria-label="Syntax iterators">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Syntax iterators</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

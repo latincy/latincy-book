@@ -9,7 +9,7 @@
 <meta name="author" content="Patrick J. Burns">
 <meta name="dcterms.date" content="2024-08-26">
 
-<title>12&nbsp; Sequence Matching – Getting Started with LatinCy</title>
+<title>14&nbsp; Sequence Matching – Getting Started with LatinCy</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -67,7 +67,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./displacy.html" rel="next">
-<link href="./trf-vectors.html" rel="prev">
+<link href="./syntax-iterators.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./matcher.html">spaCy Tasks</a></li><li class="breadcrumb-item"><a href="./matcher.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Sequence Matching</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./matcher.html">spaCy Tasks</a></li><li class="breadcrumb-item"><a href="./matcher.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Sequence Matching</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -244,6 +244,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">TRF Vectors</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./noun-chunking.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Noun Chunking</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./syntax-iterators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Syntax iterators</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -258,13 +270,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./matcher.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Sequence Matching</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Sequence Matching</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./displacy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Visualizing Annotations</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Visualizing Annotations</span></span></a>
   </div>
 </li>
       </ul>
@@ -308,7 +320,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sequence-matching-with-latincy" id="toc-sequence-matching-with-latincy" class="nav-link active" data-scroll-target="#sequence-matching-with-latincy"><span class="header-section-number">12.1</span> Sequence matching with LatinCy</a>
+  <li><a href="#sequence-matching-with-latincy" id="toc-sequence-matching-with-latincy" class="nav-link active" data-scroll-target="#sequence-matching-with-latincy"><span class="header-section-number">14.1</span> Sequence matching with LatinCy</a>
   <ul class="collapse">
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
@@ -318,9 +330,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./matcher.html">spaCy Tasks</a></li><li class="breadcrumb-item"><a href="./matcher.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Sequence Matching</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./matcher.html">spaCy Tasks</a></li><li class="breadcrumb-item"><a href="./matcher.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Sequence Matching</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Sequence Matching</span></h1>
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Sequence Matching</span></h1>
 </div>
 
 
@@ -349,8 +361,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="sequence-matching-with-latincy" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="sequence-matching-with-latincy"><span class="header-section-number">12.1</span> Sequence matching with LatinCy</h2>
+<section id="sequence-matching-with-latincy" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="sequence-matching-with-latincy"><span class="header-section-number">14.1</span> Sequence matching with LatinCy</h2>
 <p>We can use LatinCy annotations as the basis for matching spans of tokens using spaCy’s <code>Matcher</code>. This includes basic <code>Token</code> attributes like <code>ORTH</code>, <code>TEXT</code>, <code>NORM</code>, and <code>LOWER</code> as well as those annotated by the LatinCy pipeline like <code>LEMMA</code>, <code>POS</code>, <code>TAG</code>, <code>MORPH</code>, <code>DEP</code>, and <code>ENT_TYPE</code>. There are also more general attributes like <code>IS_ALPHA</code>, <code>IS_ASCII</code>, <code>IS_DIGIT</code>, <code>IS_LOWER</code>, <code>IS_UPPER</code>, <code>IS_TITLE</code>, <code>IS_PUNCT</code>, <code>IS_SPACE</code>, and <code>LIKE_NUM</code>, among still others. The full list can be found <a href="https://spacy.io/api/matcher#patterns">here</a>. Moreover, there are many operators, quantifiers, and other operations that can be using to create ever-increasingly complex patterns. The combinatorial patterns for using the <code>Matcher</code> are frankly enormous and so this should be considered only a most basic introduction for what is possible.</p>
 <p>Here we run through a quick example based on finding variations of <em>res</em> and then by pattern-matching extensions of <em>res publica</em> using the <em>Praefatio</em> to Livy’s <em>Ab urbe condita</em>.</p>
 <div id="cell-3" class="cell" data-execution_count="1">
@@ -378,7 +390,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>matcher <span class="op">=</span> Matcher(nlp.vocab)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(matcher)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;spacy.matcher.matcher.Matcher object at 0x3377eadd0&gt;</code></pre>
+<pre><code>&lt;spacy.matcher.matcher.Matcher object at 0x336096dd0&gt;</code></pre>
 </div>
 </div>
 <p>We use the <code>Matcher</code> by adding patterns, quite sensibly using the <code>add</code> method. With the <code>add</code> method, we assign a <code>match_id</code> “name” for the pattern and the patterns themselves. The patters are lists of lists of dictionaries; those dictionaries are arranged sequentially by the tokens sequences we want to match, where the dictionary keys are the attributes and the dictionary values are the our specific terms to be matched for that attribute. So, in the example below, we are looking for any span of tokens in the provided <code>Doc</code> where the <code>text</code> attribute matches—and matches exactly—the string “res”. The <code>Matcher</code> returns the <code>match_id</code> as well as the start and end indices for each matched span.</p>
@@ -1005,13 +1017,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./trf-vectors.html" class="pagination-link" aria-label="TRF Vectors">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">TRF Vectors</span></span>
+      <a href="./syntax-iterators.html" class="pagination-link" aria-label="Syntax iterators">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Syntax iterators</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./displacy.html" class="pagination-link" aria-label="Visualizing Annotations">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Visualizing Annotations</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Visualizing Annotations</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
