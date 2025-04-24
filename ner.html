@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.40">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -365,20 +365,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"Dictatore habente comitia Caesare consules creantur Iulius Caesar et P. Servilius."</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/pjb311/.venvs/latincy/lib/python3.11/site-packages/spacy/util.py:910: UserWarning: [W095] Model 'la_core_web_lg' (3.8.0) was trained with spaCy v3.8.3 and may not be 100% compatible with the current version (3.7.5). If you see errors or degraded performance, download a newer compatible model or retrain your custom model with the current spaCy version. For more details and available updates, run: python -m spacy validate
+  warnings.warn(warn_msg)</code></pre>
+</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Dictatore habente comitia Caesare consules creantur Iulius Caesar et P. Servilius.</code></pre>
 </div>
 </div>
 <div id="cell-4" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tabulate</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> [item <span class="cf">for</span> item <span class="kw">in</span> doc]</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> tokens:</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    data.append([token.text, token.ent_type_])    </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate.tabulate(data, headers<span class="op">=</span>[<span class="st">'Text'</span>, <span class="st">"Entity Type"</span>])) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tabulate</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> [item <span class="cf">for</span> item <span class="kw">in</span> doc]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> tokens:</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    data.append([token.text, token.ent_type_])    </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate.tabulate(data, headers<span class="op">=</span>[<span class="st">'Text'</span>, <span class="st">"Entity Type"</span>])) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Text       Entity Type
 ---------  -------------
@@ -398,10 +402,10 @@ Servilius  PERSON
 </div>
 <p>Named entities are annotated in the <code>Token</code> objects and are stored in the <code>ent_type_</code> attribute.</p>
 <div id="cell-6" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sample_token <span class="op">=</span> doc[<span class="dv">7</span>]</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample token: </span><span class="sc">{</span>sample_token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity type: </span><span class="sc">{</span>sample_token<span class="sc">.</span>ent_type_<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sample_token <span class="op">=</span> doc[<span class="dv">7</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample token: </span><span class="sc">{</span>sample_token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity type: </span><span class="sc">{</span>sample_token<span class="sc">.</span>ent_type_<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Sample token: Caesar
 Sample entity type: PERSON</code></pre>
@@ -410,20 +414,20 @@ Sample entity type: PERSON</code></pre>
 <p>Moreover, the ner component should be able to recover the entity spans from the text using IOB (i.e.&nbsp;inside/outside/beginning) annotations. The IOB annotations are stored in the <code>ent_iob_</code> attribute of a spaCy <code>Token</code> object.</p>
 <p>In the example below, the PERSON named entity is “Julius Caesar”. The word “et” is <em>not</em> part of the entity. Accordingly, “Julius” is tagged with <code>B-PERSON</code> (beginning of the entity), “Caesar” is tagged with <code>I-PERSON</code> (inside the entity, and in this case the last word in the entity), and “et” is tagged with <code>O</code> (outside the entity, and so closing off the preceding entity).</p>
 <div id="cell-8" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample token: </span><span class="sc">{</span>doc[<span class="dv">6</span>]<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity type: </span><span class="sc">{</span>doc[<span class="dv">6</span>]<span class="sc">.</span>ent_type_<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity IOB: </span><span class="sc">{</span>doc[<span class="dv">6</span>]<span class="sc">.</span>ent_iob_<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sample entity IOB-type: </span><span class="sc">{</span>doc[<span class="dv">6</span>]<span class="sc">.</span>ent_iob_<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>doc[<span class="dv">6</span>]<span class="sc">.</span>ent_type_<span class="sc">}</span><span class="ss">"</span>, end<span class="op">=</span><span class="st">'</span><span class="ch">\n\n</span><span class="st">'</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample token: </span><span class="sc">{</span>sample_token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity type: </span><span class="sc">{</span>sample_token<span class="sc">.</span>ent_type_<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity IOB: </span><span class="sc">{</span>sample_token<span class="sc">.</span>ent_iob_<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sample entity IOB-type: </span><span class="sc">{</span>sample_token<span class="sc">.</span>ent_iob_<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>sample_token<span class="sc">.</span>ent_type_<span class="sc">}</span><span class="ss">"</span>, end<span class="op">=</span><span class="st">'</span><span class="ch">\n\n</span><span class="st">'</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample token: </span><span class="sc">{</span>doc[<span class="dv">8</span>]<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity type: </span><span class="sc">{</span>doc[<span class="dv">8</span>]<span class="sc">.</span>ent_type_<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity IOB: </span><span class="sc">{</span>doc[<span class="dv">8</span>]<span class="sc">.</span>ent_iob_<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample token: </span><span class="sc">{</span>doc[<span class="dv">6</span>]<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity type: </span><span class="sc">{</span>doc[<span class="dv">6</span>]<span class="sc">.</span>ent_type_<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity IOB: </span><span class="sc">{</span>doc[<span class="dv">6</span>]<span class="sc">.</span>ent_iob_<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sample entity IOB-type: </span><span class="sc">{</span>doc[<span class="dv">6</span>]<span class="sc">.</span>ent_iob_<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>doc[<span class="dv">6</span>]<span class="sc">.</span>ent_type_<span class="sc">}</span><span class="ss">"</span>, end<span class="op">=</span><span class="st">'</span><span class="ch">\n\n</span><span class="st">'</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample token: </span><span class="sc">{</span>sample_token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity type: </span><span class="sc">{</span>sample_token<span class="sc">.</span>ent_type_<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity IOB: </span><span class="sc">{</span>sample_token<span class="sc">.</span>ent_iob_<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sample entity IOB-type: </span><span class="sc">{</span>sample_token<span class="sc">.</span>ent_iob_<span class="sc">}</span><span class="ss">-</span><span class="sc">{</span>sample_token<span class="sc">.</span>ent_type_<span class="sc">}</span><span class="ss">"</span>, end<span class="op">=</span><span class="st">'</span><span class="ch">\n\n</span><span class="st">'</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample token: </span><span class="sc">{</span>doc[<span class="dv">8</span>]<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity type: </span><span class="sc">{</span>doc[<span class="dv">8</span>]<span class="sc">.</span>ent_type_<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity IOB: </span><span class="sc">{</span>doc[<span class="dv">8</span>]<span class="sc">.</span>ent_iob_<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Sample token: Iulius
 Sample entity type: PERSON
@@ -442,11 +446,11 @@ Sample entity IOB: O</code></pre>
 </div>
 <p>LatinCy does not (yet) offer a spaCy <a href="https://spacy.io/api/entitylinker">EntityLinker</a>, that is a model-based tagger for resolving named entities to specific referent in a knowledge base. The wikidata identifier for Julius Caesar is [https://www.wikidata.org/wiki/Q1048] and an EntityLinker (if it existed!) could annotate the entity span with this identifier. For now, it will suffice to note that spaCy <code>Token</code> objects have an attribute set aside for this purpose: <code>ent_kb_id_</code>.</p>
 <div id="cell-10" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sample_token <span class="op">=</span> doc[<span class="dv">7</span>]</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample token: </span><span class="sc">{</span>sample_token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity type: </span><span class="sc">{</span>sample_token<span class="sc">.</span>ent_type_<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>sample_token.ent_kb_id_ <span class="op">=</span> <span class="st">"https://www.wikidata.org/wiki/Q1048"</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity KB ID: </span><span class="sc">{</span>sample_token<span class="sc">.</span>ent_kb_id_<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sample_token <span class="op">=</span> doc[<span class="dv">7</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample token: </span><span class="sc">{</span>sample_token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity type: </span><span class="sc">{</span>sample_token<span class="sc">.</span>ent_type_<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>sample_token.ent_kb_id_ <span class="op">=</span> <span class="st">"https://www.wikidata.org/wiki/Q1048"</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample entity KB ID: </span><span class="sc">{</span>sample_token<span class="sc">.</span>ent_kb_id_<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Sample token: Caesar
 Sample entity type: PERSON
