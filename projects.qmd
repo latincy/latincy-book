@@ -1,0 +1,7 @@
+# Open LatinCy Projects
+
+Listed below are some open projects that I would like to see implemented in the LatinCy pipelines. If you are interested in contributing to the development of these projects or have recommendations for additional projects that could be added, please contact me through the LatinCy GitHub or HuggingFace repositories.
+
+## Model-based enclitic splitting {#enclitics-project}
+As discussed in the [Word Tokenization](word-tokenization.ipynb) chapter, enclitic splitting is currently limited to *que* (and variants) and is a rules-based process that is part of the LatinCy custom tokenizer. It would be preferable to make enclitic splitting a separate pipeline component and moreover one that is model-based. This component could be placed immediately after the tokenizer and use the [`Retokenizer.split` method](https://spacy.io/api/doc#retokenizer.split) to reconstruct token sequences where valid enclitics are identified. This would have the added advantage of allowing enclitic splitting to be "turned off", so to speak, by removing the component from the pipeline.
+

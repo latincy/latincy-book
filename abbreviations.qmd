@@ -1,0 +1,7 @@
+# Abbreviations {.unnumbered}
+
+Where possible, I will include references to standard NLP works using the following abbreviations:  
+
+**MS** Mesquita, D., and Altinok, D. 2025. Mastering spaCy. 2nd ed. Birmingham, U.K.: Packt Publishing Ltd. [repo](https://github.com/PacktPublishing/Mastering-spaCy-Second-Edition)  [@mesquita_mastering_2025]  
+**NLTK** Bird, S., Klein, E., and Loper, E. 2015. *Natural Language Processing with Python: Analyzing Text with the Natural Language Toolkit*. 2nd Edition. https://www.nltk.org/book/.  [@bird_natural_2015]  
+**SLP** Jurafsky, D., and Martin, J.H. 2020. *Speech and Language Processing*. 3rd Edition, Draft. https://web.stanford.edu/~jurafsky/slp3/. [@jurafsky_speech_2020]

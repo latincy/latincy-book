@@ -1,0 +1,18 @@
+# Preface {.unnumbered}
+
+"Getting Started with LatinCy" is an always-a-work-in-progress combination of documentation and demo notebooks for working with the LatinCy models on a variety of Latin text analysis and NLP tasks.
+
+![](assets/img/latincy-logo.png)
+
+
+## Key links
+
+📦Models: [https://huggingface.co/latincy](https://huggingface.co/latincy)  
+🌌Universe: [https://spacy.io/universe/project/latincy](https://spacy.io/universe/project/latincy)  
+📝Preprint: [https://arxiv.org/abs/2305.04365](https://arxiv.org/abs/2305.04365)  
+
+This book has been written using Jupyter notebooks which have then been collated with Quarto. To learn more about Quarto books visit <https://quarto.org/docs/books>.
+
+## Acknowledgements
+
+Thank you to all of the readers who have submitted corrections via GitHub PRs: [\@sjhuskey](https://github.com/sjhuskey).

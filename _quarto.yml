@@ -1,0 +1,44 @@
+project:
+  type: book
+
+book:
+  title: "Getting Started with LatinCy"
+  author: "Patrick J. Burns"
+  date: "08/26/2024"
+  chapters:
+    - index.qmd
+    - abbreviations.qmd
+    - part: Front Matter
+    - part: Model/Pipeline Basics
+      chapters:
+      - 2_install.ipynb
+      - 3_load.ipynb
+      - 4_key-annotations.ipynb
+    - part: "NLP Tasks"
+      chapters:
+      - sentence-segmentation.ipynb
+      - word-tokenization.ipynb
+      - lemmatization.ipynb
+      - pos-tagging.ipynb
+      - morph-tagging.ipynb
+      - ner.ipynb
+      - vectors.ipynb
+      - trf-vectors.ipynb
+      - noun-chunking.ipynb
+      - syntax-iterators.ipynb
+    - part: "spaCy Tasks"
+      chapters:
+      - matcher.ipynb    
+      - displacy.ipynb
+  appendices:
+    - projects.qmd
+    - sample-texts.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
