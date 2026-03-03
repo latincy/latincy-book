@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "LatinCy Book"
+abstract: "Documentation and reference book for the LatinCy project"
+authors:
+  - family-names: Burns
+    given-names: Patrick J.
+license: MIT
+repository-code: "https://github.com/diyclassics/latincy-book"
