@@ -375,7 +375,7 @@ div.csl-indent {
 <section id="lemmatization-with-latincy" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="lemmatization-with-latincy"><span class="header-section-number">6.1</span> Lemmatization with LatinCy</h2>
 <p>Lemmatization is the task of mapping a token in a text to its dictionary headword. With the default LatinCy pipelines, two components are used to perform this task: 1. spaCy’s <a href="https://spacy.io/api/edittreelemmatizer"><code>Edit Tree Lemmatizer</code></a> and 2. a second custom <code>Lookup Lemmatizer</code>, named in the pipeline “trainable_lemmatizer” and “lookup_lemmatizer” respectively. In the first lemmatization pass, a probabilistic tree model is used to predict the transformation from the token form to its lemma. A second pass is made at the end of the pipeline which checks the token form against a large (~1M item) lemma dictionary (i.e.&nbsp;lookups) for ostensibly unambiguous forms; if a match is found, the lemma is overwritten with the corresponding value from lookup. The two-pass logic largely follows the approach recommended in <span class="citation" data-cites="burns_backoff_2018">Burns (<a href="references.html#ref-burns_backoff_2018" role="doc-biblioref">2018</a>)</span> and <span class="citation" data-cites="burns_ensemble_2020">Burns (<a href="references.html#ref-burns_ensemble_2020" role="doc-biblioref">2020</a>)</span>, as facilitated by the spaCy pipeline architecture.</p>
-<div id="cell-3" class="cell" data-execution_count="1">
+<div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:08:16.165313Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:08:16.165227Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:08:47.368251Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:08:47.367686Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports &amp; setup</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
@@ -385,18 +385,18 @@ div.csl-indent {
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum. Avus eius Acrisius appellabatur.</code></pre>
+<pre><code>Haec narrantur a poetis de Perseo . Perseus filius erat Iouis , maximi deorum . Auus eius Acrisius appellabatur .</code></pre>
 </div>
 </div>
 <p>Note here the two lemmatizer components that are included in the pipeline, i.e.&nbsp;“trainable_lemmatizer” and “lookup_lemmatizer”…</p>
-<div id="cell-5" class="cell" data-execution_count="2">
+<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:08:47.370008Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:08:47.369742Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:08:47.372223Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:08:47.371797Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nlp.pipe_names)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>['senter', 'normer', 'tok2vec', 'tagger', 'morphologizer', 'trainable_lemmatizer', 'parser', 'lookup_lemmatizer', 'ner', 'remorpher']</code></pre>
+<pre><code>['tok2vec', 'senter', 'normer', 'tagger', 'morphologizer', 'trainable_lemmatizer', 'lookup_lemmatizer', 'uv_normalizer', 'parser', 'harmonizer', 'remorpher', 'ner']</code></pre>
 </div>
 </div>
 <p>Once a text is annotated using the LatinCy pipeline, i.e.&nbsp;as part of the <code>Doc</code> creation process, lemmas can be found as annotations of the <code>Token</code> objects…</p>
-<div id="cell-7" class="cell" data-execution_count="3">
+<div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:08:47.373808Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:08:47.373650Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:08:47.377037Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:08:47.375889Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sample_token <span class="op">=</span> doc[<span class="dv">0</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample token: </span><span class="sc">{</span>sample_token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
@@ -406,7 +406,7 @@ div.csl-indent {
 Sample lemma: hic</code></pre>
 </div>
 </div>
-<div id="cell-8" class="cell" data-execution_count="4">
+<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:08:47.379184Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:08:47.379074Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:08:47.390926Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:08:47.390502Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tabulate</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
@@ -427,15 +427,15 @@ poetis        poeta
 de            de
 Perseo        Perseus
 .             .
-Perseus       perseus
+Perseus       Perseus
 filius        filius
 erat          sum
-Iovis         Iuppiter
+Iouis         Iuppiter
 ,             ,
 maximi        magnus
 deorum        deus
 .             .
-Avus          auus
+Auus          Auus
 eius          is
 Acrisius      Acrisius
 appellabatur  appello
@@ -443,7 +443,7 @@ appellabatur  appello
 </div>
 </div>
 <p>The <code>lemma_</code> attribute has the type <code>str</code> and so is compatible with all string operations…</p>
-<div id="cell-10" class="cell" data-execution_count="5">
+<div id="cell-10" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:08:47.392470Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:08:47.392370Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:08:47.395574Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:08:47.394260Z&quot;}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Token: </span><span class="sc">{</span>tokens[<span class="dv">0</span>]<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Lemma: </span><span class="sc">{</span>tokens[<span class="dv">0</span>]<span class="sc">.</span>lemma_<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Lowercase lemma: </span><span class="sc">{</span>tokens[<span class="dv">0</span>]<span class="sc">.</span>lemma_<span class="sc">.</span>lower()<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -454,7 +454,7 @@ Lowercase lemma: hic</code></pre>
 </div>
 </div>
 <p>The <code>lemma_</code> attribute, though, is only the human-readable version of the lemma. Internally, spaCy uses a hash value to represent the lemma, which is stored in the <code>lemma</code> attribute. (Note the lack of trailing underscore.)</p>
-<div id="cell-12" class="cell" data-execution_count="6">
+<div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:08:47.397254Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:08:47.397162Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:08:47.399958Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:08:47.399422Z&quot;}}" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Token: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Human-readable lemma: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>lemma_<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'spaCy lemma key: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>lemma<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -465,7 +465,7 @@ spaCy lemma key: 11361982710182407617</code></pre>
 </div>
 </div>
 <p>In order to compare the two different lemmatization passes, we can create two copies of the LatinCy pipeline, each with one of the two lemmatizers removed…</p>
-<div id="cell-14" class="cell" data-execution_count="7">
+<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:08:47.401792Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:08:47.401630Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:08:48.478463Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:08:48.477880Z&quot;}}" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copy</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>P1 <span class="op">=</span> copy.deepcopy(nlp)</span>
@@ -476,12 +476,12 @@ spaCy lemma key: 11361982710182407617</code></pre>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>P2.disable_pipes(([<span class="st">'tagger'</span>, <span class="st">'morphologizer'</span>, <span class="st">'trainable_lemmatizer'</span>]))</span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Second pipeline components: </span><span class="sc">{</span>P2<span class="sc">.</span>pipe_names<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>First pipeline components: ['senter', 'normer', 'tok2vec', 'trainable_lemmatizer', 'parser', 'ner', 'remorpher']
-Second pipeline components: ['senter', 'normer', 'tok2vec', 'parser', 'lookup_lemmatizer', 'ner', 'remorpher']</code></pre>
+<pre><code>First pipeline components: ['tok2vec', 'senter', 'normer', 'trainable_lemmatizer', 'uv_normalizer', 'parser', 'harmonizer', 'remorpher', 'ner']
+Second pipeline components: ['tok2vec', 'senter', 'normer', 'lookup_lemmatizer', 'uv_normalizer', 'parser', 'harmonizer', 'remorpher', 'ner']</code></pre>
 </div>
 </div>
 <p>We can then run the same text through both pipelines and compare the results side-by-side…</p>
-<div id="cell-16" class="cell" data-execution_count="8">
+<div id="cell-16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:08:48.479553Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:08:48.479451Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:08:48.499725Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:08:48.499295Z&quot;}}" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>P1_annotations <span class="op">=</span> P1(text)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>P2_annotations <span class="op">=</span> P2(text)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -494,22 +494,22 @@ Second pipeline components: ['senter', 'normer', 'tok2vec', 'parser', 'lookup_le
 <div class="cell-output cell-output-stdout">
 <pre><code>Text          Trainable lemmatizer    Lookup lemmatizer
 ------------  ----------------------  -------------------
-Haec          hic
+Haec          hic                     hic
 narrantur     narro                   narro
 a             ab
 poetis        poeta                   poeta
-de            de
+de            de                      de
 Perseo        Perseus
 .             .                       .
-Perseus       perseus
+Perseus       Perseus                 perseus
 filius        filius                  filius
 erat          sum                     sum
-Iovis         Iovis                   Iuppiter
+Iouis         Iuppiter
 ,             ,                       ,
 maximi        magnus
 deorum        deus                    deus
 .             .                       .
-Avus          avus                    auus
+Auus          Auus                    auus
 eius          is                      is
 Acrisius      Acrisius
 appellabatur  appello                 appello
@@ -517,37 +517,37 @@ appellabatur  appello                 appello
 </div>
 </div>
 <p>Even if the lookup lemmatizer overwrites the lemma predicted by the trainable lemmatizer, the original lemma predicted by the trainable lemmatizer is still stored in a custom Token attribute, i.e.&nbsp;</p>
-<div id="cell-18" class="cell" data-execution_count="9">
+<div id="cell-18" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:08:48.500958Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:08:48.500875Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:08:48.503152Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:08:48.502750Z&quot;}}" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Token: </span><span class="sc">{</span>tokens[<span class="dv">10</span>]<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Lemma: </span><span class="sc">{</span>tokens[<span class="dv">10</span>]<span class="sc">.</span>lemma_<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Predicted lemma: </span><span class="sc">{</span>tokens[<span class="dv">10</span>]<span class="sc">.</span>_<span class="sc">.</span>predicted_lemma<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Token: Iovis
+<pre><code>Token: Iouis
 Lemma: Iuppiter
-Predicted lemma: Iovis</code></pre>
+Predicted lemma: Iuppiter</code></pre>
 </div>
 </div>
-<p>Note specifically the lemmatization of <em>Iovis</em>—since it is a highly irregular form, it is not surprising that the Edit Tree Lemmatizer has manufactured a potential, but incorrect, lemma based on the root <em>Iov-</em>. Since <em>Iovis</em> is an unambiguous Latin form and has been added to the LatinCy lookups, the Lookup Lemmatizer steps in to correct the erroneous first pass. The lookup data can be found a custom form of the spaCy <code>spacy-lookups-data</code> package [https://github.com/diyclassics/spacy-lookups-data/tree/master/spacy_lookups_data/data]. These lookups are installed as a dependency of each of the LatinCy pipelines.</p>
+<p>Note specifically the lemmatization of <em>Iovis</em>—since it is a highly irregular form, it is not surprising that the Edit Tree Lemmatizer has manufactured a potential, but incorrect, lemma based on the root <em>Iov-</em>. Since <em>Iovis</em> is an unambiguous Latin form and has been added to the LatinCy lookups, the Lookup Lemmatizer steps in to correct the erroneous first pass. The lookup data can be found in the <code>la-latincy-lookups</code> package [https://github.com/latincy/la-latincy-lookups]. These lookups are installed as a dependency of each of the LatinCy pipelines.</p>
 <p>The code below shows how to access the lookup data directly…</p>
-<div id="cell-20" class="cell" data-execution_count="10">
+<div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:08:48.504084Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:08:48.504001Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:08:48.830829Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:08:48.830206Z&quot;}}" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the lookups data</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> spacy.lookups <span class="im">import</span> Lookups, load_lookups</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>blank_nlp <span class="op">=</span> spacy.blank(<span class="st">"la"</span>)</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>lookups <span class="op">=</span> Lookups()</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>lookups_data <span class="op">=</span> load_lookups(lang<span class="op">=</span>blank_nlp.vocab.lang, tables<span class="op">=</span>[<span class="st">"lemma_lookup"</span>])</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>LOOKUPS <span class="op">=</span> lookups_data.get_table(<span class="st">"lemma_lookup"</span>)</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(LOOKUPS[<span class="st">'Iovis'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> la_latincy_lookups <span class="im">import</span> la <span class="im">as</span> la_lookups</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(la_lookups[<span class="st">"lemma_lookup"</span>], <span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    LOOKUPS <span class="op">=</span> json.load(f)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Total lookup entries: </span><span class="sc">{</span><span class="bu">len</span>(LOOKUPS)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"LOOKUPS['Ioue'] = </span><span class="sc">{</span>LOOKUPS[<span class="st">'Ioue'</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Iuppiter</code></pre>
+<pre><code>Total lookup entries: 909669
+LOOKUPS['Ioue'] = Iuppiter</code></pre>
 </div>
 </div>
 <p>What is described above is the default role of lemmatizers in the LatinCy pipeline. Of course, it may be the case that you want to add additional lookups to your annotation pipeline overriding the default lookups. Here is an example of such a set up using a custom <code>Language.factory</code>. We will cover custom factories in more detail in a later notebook.</p>
 <p>First, let’s lemmatizer a sentence with some unexpected, non-Classical Latin words usind the default settings…</p>
-<div id="cell-22" class="cell" data-execution_count="11">
+<div id="cell-22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:08:48.832474Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:08:48.832347Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:08:48.845960Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:08:48.845359Z&quot;}}" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cf. https://la.wikipedia.org/wiki/Star_Wars#Episodium_VI:_Iedi_reduces</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(<span class="st">"In planeta Tatooine, sunt Principissa Leia et Lucas Skywalker noviter Jedi factus"</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -565,21 +565,21 @@ Text         Lemma
 -----------  -----------
 In           in
 planeta      planeta
-Tatooine     Tatooina
+Tatooine     tatooine
 ,            ,
 sunt         sum
 Principissa  principissa
-Leia         Leia
+Leia         leius
 et           et
 Lucas        Lucas
 Skywalker    Skywalker
-noviter      noviter
-Jedi         Jedus
+nouiter      nouiter
+Iedi         Iedus
 factus       facio</code></pre>
 </div>
 </div>
 <p>Now we will lemmatize again but with a custom lookup table (i.e.&nbsp;<code>dict</code>) added to the pipeline…</p>
-<div id="cell-24" class="cell" data-execution_count="12">
+<div id="cell-24" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:08:48.847519Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:08:48.847374Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:08:48.863484Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:08:48.862894Z&quot;}}" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> spacy <span class="im">import</span> Language</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>custom_lemma_lookups <span class="op">=</span> {</span>
@@ -591,7 +591,7 @@ factus       facio</code></pre>
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>custom_lookups <span class="op">=</span> {}</span>
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key, values <span class="kw">in</span> custom_lemma_lookups.items():</span>
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> value <span class="kw">in</span> values:</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> value <span class="kw">not</span> <span class="kw">in</span> lookups:</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> value <span class="kw">not</span> <span class="kw">in</span> LOOKUPS:</span>
 <span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>            custom_lookups[value] <span class="op">=</span> key</span>
 <span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="at">@Language.component</span>(name<span class="op">=</span><span class="st">"custom_lookup_lemmatizer"</span>)</span>
@@ -631,8 +631,8 @@ Leia         Leia
 et           et
 Lucas        Lucas
 Skywalker    Skywalker
-noviter      noviter
-Jedi         Jedi
+nouiter      nouiter
+Iedi         Iedus
 factus       facio</code></pre>
 </div>
 </div>

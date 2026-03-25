@@ -352,45 +352,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="loading-latincy-models-with-spacy" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="loading-latincy-models-with-spacy"><span class="header-section-number">2.1</span> Loading LatinCy models with spaCy</h2>
-<div id="cell-2" class="cell" data-execution_count="1">
+<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T20:38:01.249367Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T20:38:01.249296Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T20:38:45.332294Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T20:38:45.329540Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-3" class="cell" data-execution_count="2">
+<div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T20:38:45.354726Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T20:38:45.353474Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T20:41:54.354797Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T20:41:54.352381Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nlp <span class="op">=</span> spacy.load(<span class="st">'la_core_web_lg'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="creating-a-spacy-doc-from-a-string" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="creating-a-spacy-doc-from-a-string"><span class="header-section-number">2.2</span> Creating a spaCy doc from a string</h2>
-<div id="cell-5" class="cell" data-execution_count="3">
+<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T20:41:54.368070Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T20:41:54.367718Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T20:41:56.010451Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T20:41:56.007897Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"Haec narrantur a poetis de Perseo."</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Haec narrantur a poetis de Perseo.</code></pre>
+<pre><code>Haec narrantur a poetis de Perseo .</code></pre>
 </div>
 </div>
-<div id="cell-6" class="cell" data-execution_count="4">
+<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T20:41:56.013017Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T20:41:56.012900Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T20:41:56.020085Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T20:41:56.015796Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(doc))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'spacy.tokens.doc.Doc'&gt;</code></pre>
 </div>
 </div>
-<div id="cell-7" class="cell" data-execution_count="5">
+<div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T20:41:56.021391Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T20:41:56.021286Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T20:41:56.024386Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T20:41:56.023560Z&quot;}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc.<span class="fu">__repr__</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Haec narrantur a poetis de Perseo.</code></pre>
+<pre><code>Haec narrantur a poetis de Perseo .</code></pre>
 </div>
 </div>
-<div id="cell-8" class="cell" data-execution_count="6">
+<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T20:41:56.030102Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T20:41:56.029951Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T20:41:56.032614Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T20:41:56.031962Z&quot;}}" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc.text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Haec narrantur a poetis de Perseo.</code></pre>
+<pre><code>Haec narrantur a poetis de Perseo .</code></pre>
 </div>
 </div>
-<div id="cell-9" class="cell" data-execution_count="7">
+<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T20:41:56.034637Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T20:41:56.034499Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T20:41:56.037000Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T20:41:56.036434Z&quot;}}" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(doc.text))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'str'&gt;</code></pre>

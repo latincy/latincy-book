@@ -354,7 +354,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="accessing-trf-vectors-with-latincy" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="accessing-trf-vectors-with-latincy"><span class="header-section-number">11.1</span> Accessing TRF Vectors with LatinCy</h2>
-<div id="cell-2" class="cell" data-execution_count="1">
+<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:22:02.936771Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:22:02.936585Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:36:14.726478Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:36:14.725473Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports &amp; setup</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
@@ -365,8 +365,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum; avus eius Acrisius appellabatur. Acrisius volebat Perseum nepotem suum necare; nam propter oraculum puerum timebat."</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Volumes/fiona/work/code/diy/latincy-v3/latincy-book/.venv/lib/python3.11/site-packages/thinc/shims/pytorch.py:114: UserWarning: CUDA is not available or torch_xla is imported. Disabling autocast.
+  with torch.autocast(device_type="cuda", enabled=self._mixed_precision):</code></pre>
+</div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum; avus eius Acrisius appellabatur. Acrisius volebat Perseum nepotem suum necare; nam propter oraculum puerum timebat.</code></pre>
+<pre><code>Haec narrantur a poetis de Perseo . Perseus filius erat Iouis , maximi deorum ; auus eius Acrisius appellabatur . Acrisius uolebat Perseum nepotem suum necare ; nam propter oraculum puerum timebat .</code></pre>
 </div>
 </div>
 <!-- Word tokenization is the task of splitting a text into words (and wordlike units like punctuation, numbers, etc.). For the LatinCy models, tokenization is the fundamental pipeline component on which all other components depend. SpaCy uses non-destructive, "canonical" tokenization, i.e. non-destructive, in that the original text can be untokenized, so to speak, based on `Token` annotations and canonical in that indices are assigned to each token during this process and these indices are used to refer to the tokens in other annotations. (Tokens *can* be separated or merged, but this requires the user to actively undo and redefine the tokenization output.) LatinCy uses a modified version of the default spaCy tokenizer that recognizes and splits enlitic *-que* using a rules-based process. (NB: It is in the LatinCy [development plan](projects.qmd#enclitics-project) to move enclitic splitting to a separate post-tokenization component.)
@@ -374,99 +378,100 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 The spaCy `Doc` object is an iterable and tokens are the iteration unit. -->
 <p>As noted in the previous notebook, the trf vectors work slightly differently than vectors in the other pipelines. This notebook covers the specifics of working with the trf contextual vectors.</p>
 <p>Here is the vector for the first token ‘Haec’ in the text given above…</p>
-<div id="cell-5" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> [token <span class="cf">for</span> token <span class="kw">in</span> doc]</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> tokens:</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(token.text)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(token.vector[:<span class="dv">10</span>], <span class="st">"etc."</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:36:14.729685Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:36:14.728961Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:36:14.733712Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:36:14.732879Z&quot;}}" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> [token <span class="cf">for</span> token <span class="kw">in</span> doc]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> tokens:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(token.text)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(token.vector[:<span class="dv">10</span>], <span class="st">"etc."</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Haec
-[-0.2595865 -1.5687511  0.5772662  0.8258832 -0.9833767 -2.6926274
- -1.8952293  2.7565694  3.1001453  1.6909373] etc.</code></pre>
+[ 0.9139471  -0.5735928   0.28639206  0.24682833  1.6527059  -0.84686863
+  1.3196969   0.68133825  1.2240002  -0.27457994] etc.</code></pre>
 </div>
 </div>
 <p>The LatinCy trf model uses <a href="https://huggingface.co/google-bert/bert-base-multilingual-cased">MultilingualBERT</a> as the basis of its ‘transformer’ component. The trf model has a custom Doc attribute that can give access to the per-token contextual vectors which is in turn mapped back to the <code>vector</code> attribute of the <code>Token</code> object via a <a href="https://spacy.io/usage/processing-pipelines#custom-components-user-hooks">user hook</a>. Accordingly, you can just access the <code>vector</code> as you do with the other pipelines, but the output will be contextually informed.</p>
-<div id="cell-7" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here is an example using Acrisius, a word which appears twice in the given text...</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Token.text values for two tokens..."</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc[<span class="dv">17</span>])</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc[<span class="dv">20</span>])</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that we have a Doc custom attribute `trf_token_vecs` which is a list of the vectors for each token in the document. We can access the vector for a specific token by using the index of the token in the document.</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Slices correspondiong to Acrisius from the trf_token_vecs Doc custom attribute..."</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc._.trf_token_vecs[<span class="dv">17</span>][:<span class="dv">5</span>])</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc._.trf_token_vecs[<span class="dv">20</span>][:<span class="dv">5</span>])</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># But we can access these contextual vectors directly via the `vector` Token attribute.</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Token attribute for the Acrisius slices..."</span>)</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc[<span class="dv">17</span>].vector[:<span class="dv">5</span>])</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc[<span class="dv">20</span>].vector[:<span class="dv">5</span>])</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Vectors are the same?"</span>)</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.mean(doc[<span class="dv">17</span>].vector) <span class="op">==</span> np.mean(doc._.trf_token_vecs[<span class="dv">17</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:36:14.735211Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:36:14.735110Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:36:14.738875Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:36:14.738239Z&quot;}}" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here is an example using Acrisius, a word which appears twice in the given text...</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Token.text values for two tokens..."</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc[<span class="dv">17</span>])</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc[<span class="dv">20</span>])</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that we have a Doc custom attribute `trf_token_vecs` which is a list of the vectors for each token in the document. We can access the vector for a specific token by using the index of the token in the document.</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Slices correspondiong to Acrisius from the trf_token_vecs Doc custom attribute..."</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc._.trf_token_vecs[<span class="dv">17</span>][:<span class="dv">5</span>])</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc._.trf_token_vecs[<span class="dv">20</span>][:<span class="dv">5</span>])</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># But we can access these contextual vectors directly via the `vector` Token attribute.</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Token attribute for the Acrisius slices..."</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc[<span class="dv">17</span>].vector[:<span class="dv">5</span>])</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc[<span class="dv">20</span>].vector[:<span class="dv">5</span>])</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Vectors are the same?"</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.mean(doc[<span class="dv">17</span>].vector) <span class="op">==</span> np.mean(doc._.trf_token_vecs[<span class="dv">17</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Token.text values for two tokens...
 Acrisius
 Acrisius
 
 Slices correspondiong to Acrisius from the trf_token_vecs Doc custom attribute...
-[-2.048665   -4.7464104   0.6075096   0.18537973 -4.5588617 ]
-[-3.147872   -5.0107517   2.0665998  -0.12608378 -2.9859593 ]
+[ 0.01897538 -1.0430044   3.0466883  -1.4863216   2.0580213 ]
+[-0.06602303 -0.9354496   2.5874202  -0.9346686   2.0108151 ]
 
 Token attribute for the Acrisius slices...
-[-2.048665   -4.7464104   0.6075096   0.18537973 -4.5588617 ]
-[-3.147872   -5.0107517   2.0665998  -0.12608378 -2.9859593 ]
+[ 0.01897538 -1.0430044   3.0466883  -1.4863216   2.0580213 ]
+[-0.06602303 -0.9354496   2.5874202  -0.9346686   2.0108151 ]
 
 Vectors are the same?
 True</code></pre>
 </div>
 </div>
 <p>Reminder that the shape of the (MultilingualBERT-derived) vectors is 768…</p>
-<div id="cell-9" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc[<span class="dv">0</span>].vector.shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:36:14.740285Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:36:14.740162Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:36:14.742758Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:36:14.742145Z&quot;}}" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc[<span class="dv">0</span>].vector.shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(768,)</code></pre>
 </div>
 </div>
 <p>For the trf pipelines, I have (not yet!) implemented a <code>similarity</code> method. Vectors can of course still be compared using other methods, such as cosine similarity. Here is the cosine similarity between the vectors for two sentences using a custom script…</p>
-<div id="cell-11" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>text_1 <span class="op">=</span> <span class="st">"Omnia vincit amor."</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>text_2 <span class="op">=</span> <span class="st">"Omnia vincit amicitia."</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>doc_1 <span class="op">=</span> nlp(text_1)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>doc_2 <span class="op">=</span> nlp(text_2)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cosine_similarity(vec1, vec2):</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Ensure vectors are flattened numpy arrays</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    vec1_flat <span class="op">=</span> vec1.reshape(<span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    vec2_flat <span class="op">=</span> vec2.reshape(<span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute cosine similarity</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    dot_product <span class="op">=</span> np.dot(vec1_flat, vec2_flat)</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    norm1 <span class="op">=</span> np.linalg.norm(vec1_flat)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    norm2 <span class="op">=</span> np.linalg.norm(vec2_flat)</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dot_product <span class="op">/</span> (norm1 <span class="op">*</span> norm2)</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the vectors and compute similarity</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>vec1 <span class="op">=</span> doc_1._.trf_token_vecs</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>vec2 <span class="op">=</span> doc_2._.trf_token_vecs</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Similarity between the two sentences..."</span>)</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>similarity <span class="op">=</span> cosine_similarity(vec1, vec2)</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(similarity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:36:14.744297Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:36:14.744183Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:36:15.023221Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:36:15.022753Z&quot;}}" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>text_1 <span class="op">=</span> <span class="st">"Omnia vincit amor."</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>text_2 <span class="op">=</span> <span class="st">"Omnia vincit amicitia."</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>doc_1 <span class="op">=</span> nlp(text_1)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>doc_2 <span class="op">=</span> nlp(text_2)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cosine_similarity(vec1, vec2):</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Ensure vectors are flattened numpy arrays</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    vec1_flat <span class="op">=</span> vec1.reshape(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    vec2_flat <span class="op">=</span> vec2.reshape(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute cosine similarity</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    dot_product <span class="op">=</span> np.dot(vec1_flat, vec2_flat)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    norm1 <span class="op">=</span> np.linalg.norm(vec1_flat)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    norm2 <span class="op">=</span> np.linalg.norm(vec2_flat)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dot_product <span class="op">/</span> (norm1 <span class="op">*</span> norm2)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the vectors and compute similarity</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>vec1 <span class="op">=</span> doc_1._.trf_token_vecs</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>vec2 <span class="op">=</span> doc_2._.trf_token_vecs</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Similarity between the two sentences..."</span>)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>similarity <span class="op">=</span> cosine_similarity(vec1, vec2)</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(similarity)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Similarity between the two sentences...
-0.9051101</code></pre>
+0.9443054</code></pre>
 </div>
 </div>
 <section id="references" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
-<p><strong>SLP</strong> Chapter 5, “Embeddings” <a href="https://web.stanford.edu/~jurafsky/slp3/5.pdf">link</a></p>
+<p><strong>SLP</strong> Chapter 5, “Embeddings” <a href="https://web.stanford.edu/~jurafsky/slp3/5.pdf">link</a><br>
+<strong>SLP</strong> Ch. 10 “Masked Language Models” <a href="https://web.stanford.edu/~jurafsky/slp3/10.pdf">link</a></p>
 
 
 </section>

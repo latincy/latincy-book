@@ -357,7 +357,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="word-tokenization-with-latincy" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="word-tokenization-with-latincy"><span class="header-section-number">5.1</span> Word tokenization with LatinCy</h2>
-<div id="cell-2" class="cell" data-execution_count="1">
+<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:18:01.941714Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:18:01.941639Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:18:18.349637Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:18:18.349165Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports &amp; setup</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
@@ -367,19 +367,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum. Avus eius Acrisius appellabatur.</code></pre>
+<pre><code>Haec narrantur a poetis de Perseo . Perseus filius erat Iouis , maximi deorum . Auus eius Acrisius appellabatur .</code></pre>
 </div>
 </div>
 <p>Word tokenization is the task of splitting a text into words (and wordlike units like punctuation, numbers, etc.). For the LatinCy models, tokenization is the fundamental pipeline component on which all other components depend. SpaCy uses non-destructive, “canonical” tokenization, i.e.&nbsp;non-destructive, in that the original text can be untokenized, so to speak, based on <code>Token</code> annotations and canonical in that indices are assigned to each token during this process and these indices are used to refer to the tokens in other annotations. (Tokens <em>can</em> be separated or merged, but this requires the user to actively undo and redefine the tokenization output.) LatinCy uses a modified version of the default spaCy tokenizer that recognizes and splits enlitic <em>-que</em> using a rules-based process. (NB: It is in the LatinCy <a href="./projects.html#enclitics-project">development plan</a> to move enclitic splitting to a separate post-tokenization component.)</p>
 <p>The spaCy <code>Doc</code> object is an iterable and tokens are the iteration unit.</p>
-<div id="cell-4" class="cell" data-execution_count="2">
+<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:18:18.351046Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:18:18.350897Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:18:18.352943Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:18:18.352514Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> [item <span class="cf">for</span> item <span class="kw">in</span> doc]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tokens)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[Haec, narrantur, a, poetis, de, Perseo, ., Perseus, filius, erat, Iovis, ,, maximi, deorum, ., Avus, eius, Acrisius, appellabatur, .]</code></pre>
+<pre><code>[Haec, narrantur, a, poetis, de, Perseo, ., Perseus, filius, erat, Iouis, ,, maximi, deorum, ., Auus, eius, Acrisius, appellabatur, .]</code></pre>
 </div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="3">
+<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:18:18.354191Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:18:18.354108Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:18:18.355936Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:18:18.355391Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>token <span class="op">=</span> tokens[<span class="dv">0</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(token))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -387,7 +387,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The text content of a <code>Token</code> object can be retrieved with the <code>text</code> attribute.</p>
-<div id="cell-7" class="cell" data-execution_count="4">
+<div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:18:18.357069Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:18:18.356983Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:18:18.358789Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:18:18.358475Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, token <span class="kw">in</span> <span class="bu">enumerate</span>(tokens, <span class="dv">1</span>):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -401,12 +401,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 8: Perseus
 9: filius
 10: erat
-11: Iovis
+11: Iouis
 12: ,
 13: maximi
 14: deorum
 15: .
-16: Avus
+16: Auus
 17: eius
 18: Acrisius
 19: appellabatur
@@ -414,7 +414,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Note again that the token itself is a spaCy <code>Token</code> object and that the <code>text</code> attribute returns a Python string even though their representations in the Jupyter Notebook look the same.</p>
-<div id="cell-9" class="cell" data-execution_count="5">
+<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:18:18.359876Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:18:18.359809Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:18:18.361607Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:18:18.361214Z&quot;}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>token <span class="op">=</span> tokens[<span class="dv">0</span>]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span><span class="bu">type</span>(token)<span class="sc">}</span><span class="ss"> -&gt; </span><span class="sc">{</span>token<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span><span class="bu">type</span>(token.text)<span class="sc">}</span><span class="ss"> -&gt; </span><span class="sc">{</span>token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -427,13 +427,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="5.1.1" class="anchored" data-anchor-id="token-attributes-and-methods-related-to-tokenization"><span class="header-section-number">5.1.1</span> Token attributes and methods related to tokenization</h3>
 <p>Here are some atrributes/methods available for spaCy <code>Token</code> objects that are relevant to word tokenization.</p>
 <p>SpaCy keeps track of both the token indices and the character offsets within a doc using either the <code>i</code> or <code>idx</code> attributes, respectively…</p>
-<div id="cell-13" class="cell" data-execution_count="6">
+<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:18:18.362585Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:18:18.362521Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:18:18.364202Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:18:18.363825Z&quot;}}" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(token.doc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum. Avus eius Acrisius appellabatur.</code></pre>
+<pre><code>Haec narrantur a poetis de Perseo . Perseus filius erat Iouis , maximi deorum . Auus eius Acrisius appellabatur .</code></pre>
 </div>
 </div>
-<div id="cell-14" class="cell" data-execution_count="7">
+<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:18:18.365364Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:18:18.365286Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:18:18.366954Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:18:18.366684Z&quot;}}" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># token indices</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> doc:</span>
@@ -449,12 +449,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 7: Perseus
 8: filius
 9: erat
-10: Iovis
+10: Iouis
 11: ,
 12: maximi
 13: deorum
 14: .
-15: Avus
+15: Auus
 16: eius
 17: Acrisius
 18: appellabatur
@@ -462,7 +462,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>This is functionally equivalent to using <code>enumerate</code>…</p>
-<div id="cell-16" class="cell" data-execution_count="8">
+<div id="cell-16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:18:18.367976Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:18:18.367910Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:18:18.369682Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:18:18.369289Z&quot;}}" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># token indices, with enumerate</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, token <span class="kw">in</span> <span class="bu">enumerate</span>(doc):</span>
@@ -478,12 +478,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 7: Perseus
 8: filius
 9: erat
-10: Iovis
+10: Iouis
 11: ,
 12: maximi
 13: deorum
 14: .
-15: Avus
+15: Auus
 16: eius
 17: Acrisius
 18: appellabatur
@@ -491,7 +491,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Another indexing option is the <code>idx</code> attribute which is the character offset of the token in the original <code>Doc</code> object.</p>
-<div id="cell-18" class="cell" data-execution_count="9">
+<div id="cell-18" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:18:18.370648Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:18:18.370569Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:18:18.372402Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:18:18.372037Z&quot;}}" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># character offsets, </span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> doc:</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>token<span class="sc">.</span>idx<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -502,30 +502,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 17: poetis
 24: de
 27: Perseo
-33: .
-35: Perseus
-43: filius
-50: erat
-55: Iovis
-60: ,
-62: maximi
-69: deorum
-75: .
-77: Avus
-82: eius
-87: Acrisius
-96: appellabatur
-108: .</code></pre>
+34: .
+36: Perseus
+44: filius
+51: erat
+56: Iouis
+62: ,
+64: maximi
+71: deorum
+78: .
+80: Auus
+85: eius
+90: Acrisius
+99: appellabatur
+112: .</code></pre>
 </div>
 </div>
 <p>Observe these <code>idx</code> attributes relate to the character offsets from the original <code>Doc</code>. To illustrate the point, we will replace spaces with an underscore in the output. We can see from the output above that <em>narrantur</em> begins at <code>idx</code> 5 and that the next word <em>a</em> begins at <code>idx</code> 15. Yet <em>narrantur</em> is only 9 characters long and the difference between these two numbers is 10! This is because we need to account for whitespace in the original <code>Doc</code>. This is handled by the attribute <code>text_with_ws</code>.</p>
-<div id="cell-20" class="cell" data-execution_count="10">
+<div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:18:18.373623Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:18:18.373538Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:18:18.375419Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:18:18.375025Z&quot;}}" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc.text[<span class="dv">5</span>:<span class="dv">15</span>].replace(<span class="st">' '</span>, <span class="st">'_'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>narrantur_</code></pre>
 </div>
 </div>
-<div id="cell-21" class="cell" data-execution_count="11">
+<div id="cell-21" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:18:18.376670Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:18:18.376593Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:18:18.378492Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:18:18.378158Z&quot;}}" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'text -&gt; </span><span class="sc">{</span>doc[<span class="dv">1</span>]<span class="sc">.</span>text<span class="sc">}</span><span class="ss"> (length </span><span class="sc">{</span><span class="bu">len</span>(doc[<span class="dv">1</span>].text)<span class="sc">}</span><span class="ss">)'</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>()</span>
@@ -537,7 +537,7 @@ text_with_ws -&gt; narrantur  (length 10)</code></pre>
 </div>
 </div>
 <p>Accordingly, using the <code>text_with_ws</code> attribute (as opposed to simply the <code>text</code> attribute) we can reconstruct the original text. This is what was meant above by “non-destructive” tokenization. Look at the difference between a text joined using the <code>text</code> attribute and one joined using the <code>text_with_ws</code> attribute.</p>
-<div id="cell-23" class="cell" data-execution_count="12">
+<div id="cell-23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:18:18.379554Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:18:18.379480Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:18:18.381519Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:18:18.381253Z&quot;}}" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>joined_tokens <span class="op">=</span> <span class="st">' '</span>.join([token.text <span class="cf">for</span> token <span class="kw">in</span> doc])</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(joined_tokens)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(joined_tokens <span class="op">==</span> doc.text)</span>
@@ -548,15 +548,15 @@ text_with_ws -&gt; narrantur  (length 10)</code></pre>
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(reconstructed_text)</span>
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(reconstructed_text <span class="op">==</span> doc.text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Haec narrantur a poetis de Perseo . Perseus filius erat Iovis , maximi deorum . Avus eius Acrisius appellabatur .
-False
+<pre><code>Haec narrantur a poetis de Perseo . Perseus filius erat Iouis , maximi deorum . Auus eius Acrisius appellabatur .
+True
 
-Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum. Avus eius Acrisius appellabatur.
+Haec narrantur a poetis de Perseo . Perseus filius erat Iouis , maximi deorum . Auus eius Acrisius appellabatur .
 True</code></pre>
 </div>
 </div>
 <p>Because spaCy tokenization is set from the outset, you can traverse the tokens in a <code>Doc</code> objects from the tokens themselves using the <code>nbor</code> method. This method takes an integer argument that specifies the number of tokens to traverse. A positive integer traverses the tokens to the right, a negative integer traverses the tokens to the left.</p>
-<div id="cell-25" class="cell" data-execution_count="13">
+<div id="cell-25" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:18:18.382703Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:18:18.382636Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:18:18.384769Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:18:18.384444Z&quot;}}" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc[:<span class="dv">6</span>])</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'-----'</span>)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>doc[<span class="dv">3</span>]<span class="sc">}</span><span class="ss">, i.e. i = 3'</span>)</span>
@@ -578,7 +578,7 @@ Perseo, i.e. i + 2 = 5</code></pre>
 <section id="customization-of-the-spacy-tokenizer-in-latincy" class="level3" data-number="5.1.2">
 <h3 data-number="5.1.2" class="anchored" data-anchor-id="customization-of-the-spacy-tokenizer-in-latincy"><span class="header-section-number">5.1.2</span> Customization of the spaCy tokenizer in LatinCy</h3>
 <p>LatinCy aims to tokenize the <em>que</em> enclitic in Latin texts. As noted above this is currently done through a rule-based approach. Here is the custom tokenizer code (beginning at this line in the <a href="https://github.com/diyclassics/la_core_web_lg/blob/89a5fda0b691afb613f77247771cdb407f1be1ec/scripts/functions.py#L191">code</a>) followed by a description of the process. Note that this process is based on the following recommendations in the spaCy documentation: https://spacy.io/usage/training#custom-tokenizer.</p>
-<div id="cell-28" class="cell" data-execution_count="14">
+<div id="cell-28" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:18:18.385783Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:18:18.385720Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:18:18.388188Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:18:18.387851Z&quot;}}" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> spacy.util <span class="im">import</span> registry, compile_suffix_regex</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="at">@registry.callbacks</span>(<span class="st">"customize_tokenizer"</span>)</span>
@@ -600,11 +600,11 @@ Perseo, i.e. i + 2 = 5</code></pre>
 <span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> customize_tokenizer</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Basically, we treat <em>que</em> (and its case and u/v norm variants) as punctuation. These are added to the <code>Defaults.suffixes</code>. If no other intervention were made, then any word ending in <em>que</em> or a variant would be split into a before-<em>que</em> part and <em>que</em>. Since there are large number of relatively predictable words that end in <em>que</em>, these are maintained in a list called <code>que_exceptions</code>. All of the words in the <code>que_exceptions</code> list are added as a “special case” using the tokenizer’s <code>add_special_case</code> method and so will not be split. The <code>que_exceptions</code> lists is as follows:</p>
-<div id="cell-30" class="cell" data-execution_count="15">
+<div id="cell-30" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:18:18.389210Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:18:18.389145Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:18:18.391916Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:18:18.391574Z&quot;}}" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>que_exceptions <span class="op">=</span> [<span class="st">'quisque'</span>, <span class="st">'quidque'</span>, <span class="st">'quicque'</span>, <span class="st">'quodque'</span>, <span class="st">'cuiusque'</span>, <span class="st">'cuique'</span>, <span class="st">'quemque'</span>, <span class="st">'quamque'</span>, <span class="st">'quoque'</span>, <span class="st">'quaque'</span>, <span class="st">'quique'</span>, <span class="st">'quaeque'</span>, <span class="st">'quorumque'</span>, <span class="st">'quarumque'</span>, <span class="st">'quibusque'</span>, <span class="st">'quosque'</span>, <span class="st">'quasque'</span>, <span class="st">'uterque'</span>, <span class="st">'utraque'</span>, <span class="st">'utrumque'</span>, <span class="st">'utriusque'</span>, <span class="st">'utrique'</span>, <span class="st">'utrumque'</span>, <span class="st">'utramque'</span>, <span class="st">'utroque'</span>, <span class="st">'utraque'</span>, <span class="st">'utrique'</span>, <span class="st">'utraeque'</span>, <span class="st">'utrorumque'</span>, <span class="st">'utrarumque'</span>, <span class="st">'utrisque'</span>, <span class="st">'utrosque'</span>, <span class="st">'utrasque'</span>, <span class="st">'quicumque'</span>, <span class="st">'quidcumque'</span>, <span class="st">'quodcumque'</span>, <span class="st">'cuiuscumque'</span>, <span class="st">'cuicumque'</span>, <span class="st">'quemcumque'</span>, <span class="st">'quamcumque'</span>, <span class="st">'quocumque'</span>, <span class="st">'quacumque'</span>, <span class="st">'quicumque'</span>, <span class="st">'quaecumque'</span>, <span class="st">'quorumcumque'</span>, <span class="st">'quarumcumque'</span>, <span class="st">'quibuscumque'</span>, <span class="st">'quoscumque'</span>, <span class="st">'quascumque'</span>, <span class="st">'unusquisque'</span>, <span class="st">'unaquaeque'</span>, <span class="st">'unumquodque'</span>, <span class="st">'unumquidque'</span>, <span class="st">'uniuscuiusque'</span>, <span class="st">'unicuique'</span>, <span class="st">'unumquemque'</span>, <span class="st">'unamquamque'</span>, <span class="st">'unoquoque'</span>, <span class="st">'unaquaque'</span>, <span class="st">'plerusque'</span>, <span class="st">'pleraque'</span>, <span class="st">'plerumque'</span>, <span class="st">'plerique'</span>, <span class="st">'pleraeque'</span>, <span class="st">'pleroque'</span>, <span class="st">'pleramque'</span>, <span class="st">'plerorumque'</span>, <span class="st">'plerarumque'</span>, <span class="st">'plerisque'</span>, <span class="st">'plerosque'</span>, <span class="st">'plerasque'</span>, <span class="st">'absque'</span>, <span class="st">'abusque'</span>, <span class="st">'adaeque'</span>, <span class="st">'adusque'</span>, <span class="st">'aeque'</span>, <span class="st">'antique'</span>, <span class="st">'atque'</span>, <span class="st">'circumundique'</span>, <span class="st">'conseque'</span>, <span class="st">'cumque'</span>, <span class="st">'cunque'</span>, <span class="st">'denique'</span>, <span class="st">'deque'</span>, <span class="st">'donique'</span>, <span class="st">'hucusque'</span>, <span class="st">'inique'</span>, <span class="st">'inseque'</span>, <span class="st">'itaque'</span>, <span class="st">'longinque'</span>, <span class="st">'namque'</span>, <span class="st">'neque'</span>, <span class="st">'oblique'</span>, <span class="st">'peraeque'</span>, <span class="st">'praecoque'</span>, <span class="st">'propinque'</span>, <span class="st">'qualiscumque'</span>, <span class="st">'quandocumque'</span>, <span class="st">'quandoque'</span>, <span class="st">'quantuluscumque'</span>, <span class="st">'quantumcumque'</span>, <span class="st">'quantuscumque'</span>, <span class="st">'quinque'</span>, <span class="st">'quocumque'</span>, <span class="st">'quomodocumque'</span>, <span class="st">'quomque'</span>, <span class="st">'quotacumque'</span>, <span class="st">'quotcumque'</span>, <span class="st">'quotienscumque'</span>, <span class="st">'quotiensque'</span>, <span class="st">'quotusquisque'</span>, <span class="st">'quousque'</span>, <span class="st">'relinque'</span>, <span class="st">'simulatque'</span>, <span class="st">'torque'</span>, <span class="st">'ubicumque'</span>, <span class="st">'ubique'</span>, <span class="st">'undecumque'</span>, <span class="st">'undique'</span>, <span class="st">'usque'</span>, <span class="st">'usquequaque'</span>, <span class="st">'utcumque'</span>, <span class="st">'utercumque'</span>, <span class="st">'utique'</span>, <span class="st">'utrimque'</span>, <span class="st">'utrique'</span>, <span class="st">'utriusque'</span>, <span class="st">'utrobique'</span>, <span class="st">'utrubique'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You can see these words in the <code>rules</code> attribute of the tokenizer.</p>
-<div id="cell-32" class="cell" data-execution_count="16">
+<div id="cell-32" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:18:18.392864Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:18:18.392801Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:18:18.394581Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:18:18.394301Z&quot;}}" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample of 10 que rules from the custom tokenizer</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>tokenizer_rules <span class="op">=</span> nlp.tokenizer.rules</span>
@@ -615,19 +615,19 @@ Perseo, i.e. i + 2 = 5</code></pre>
 </div>
 <p>With the exception of basic enclitic splitting, the LatinCy tokenizer is the same as the default spaCy tokenizer. The default spaCy tokenizer is described in detail in the <a href="https://spacy.io/api/tokenizer">spaCy documentation</a>. Here are some useful attributes/methods for working with LatinCy.</p>
 <p>Tokenize a string without any other pipeline annotations with a call.</p>
-<div id="cell-35" class="cell" data-execution_count="17">
+<div id="cell-35" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:18:18.395534Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:18:18.395462Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:18:18.397354Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:18:18.397013Z&quot;}}" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> nlp.tokenizer(text)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tokens)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tokens[<span class="dv">0</span>].text)</span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tokens[<span class="dv">0</span>].lemma_) <span class="co"># Note that there is no annotation here because since the tokenizer has been called directly, the lemmatizer—the entire pipeline, in fact—has not been run</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum. Avus eius Acrisius appellabatur.
+<pre><code>Haec narrantur a poetis de Perseo . Perseus filius erat Iouis , maximi deorum . Auus eius Acrisius appellabatur .
 Haec
 </code></pre>
 </div>
 </div>
 <p>A list of texts can be tokenized in one pass with the <code>pipe</code> method. This yields a generator object where each item is <code>Doc</code> object of tokenized-only texts</p>
-<div id="cell-37" class="cell" data-execution_count="18">
+<div id="cell-37" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:18:18.398348Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:18:18.398282Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:18:18.402693Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:18:18.402293Z&quot;}}" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>texts <span class="op">=</span> [<span class="st">"Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum; avus eius Acrisius appellabatur. Acrisius volebat Perseum nepotem suum necare; nam propter oraculum puerum timebat. Comprehendit igitur Perseum adhuc infantem, et cum matre in arca lignea inclusit. Tum arcam ipsam in mare coniecit. Danae, Persei mater, magnopere territa est; tempestas enim magna mare turbabat. Perseus autem in sinu matris dormiebat."</span>, <span class="st">"Iuppiter tamen haec omnia vidit, et filium suum servare constituit. Tranquillum igitur fecit mare, et arcam ad insulam Seriphum perduxit. Huius insulae Polydectes tum rex erat. Postquam arca ad litus appulsa est, Danae in harena quietem capiebat. Post breve tempus a piscatore quodam reperta est, et ad domum regis Polydectis adducta est. Ille matrem et puerum benigne excepit, et iis sedem tutam in finibus suis dedit. Danae hoc donum libenter accepit, et pro tanto beneficio regi gratias egit."</span>, <span class="st">"Perseus igitur multos annos ibi habitabat, et cum matre sua vitam beatam agebat. At Polydectes Danaen magnopere amabat, atque eam in matrimonium ducere volebat. Hoc tamen consilium Perseo minime gratum erat. Polydectes igitur Perseum dimittere constituit. Tum iuvenem ad se vocavit et haec dixit: </span><span class="ch">\"</span><span class="st">Turpe est hanc ignavam vitam agere; iam dudum tu adulescens es. Quo usque hic manebis? Tempus est arma capere et virtutem praestare. Hinc abi, et caput Medusae mihi refer.</span><span class="ch">\"</span><span class="st">"</span>]</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> <span class="bu">list</span>(nlp.tokenizer.pipe(texts))</span>
@@ -640,14 +640,14 @@ Haec
 </div>
 </div>
 <p>You can get an explanation of the tokenization “decisions” using the <code>explain</code> method. In the example below, we see how the <em>que</em> in <em>virumque</em> is treated as a suffix (as discussed above) and so is split during tokenization.</p>
-<div id="cell-39" class="cell" data-execution_count="19">
+<div id="cell-39" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:18:18.403596Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:18:18.403530Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:18:18.408103Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:18:18.407726Z&quot;}}" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>tok_exp <span class="op">=</span> nlp.tokenizer.explain(<span class="st">'arma virumque cano'</span>)</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tok_exp)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[('TOKEN', 'arma'), ('TOKEN', 'virum'), ('SUFFIX', 'que'), ('TOKEN', 'cano')]</code></pre>
 </div>
 </div>
-<div id="cell-40" class="cell" data-execution_count="20">
+<div id="cell-40" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:18:18.409148Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:18:18.409079Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:18:18.410787Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:18:18.410521Z&quot;}}" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> nlp.tokenizer(<span class="st">'arma uirumque cano'</span>)</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, token <span class="kw">in</span> <span class="bu">enumerate</span>(tokens):</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -662,7 +662,7 @@ Haec
 <section id="normalization-at-the-tokenization-stage" class="level3" data-number="5.1.3">
 <h3 data-number="5.1.3" class="anchored" data-anchor-id="normalization-at-the-tokenization-stage"><span class="header-section-number">5.1.3</span> Normalization at the tokenization stage</h3>
 <p>In order to start the pipeline processing with text data that is as close as possible to the data used for training all of the downstream components, the LatinCy models now include a certain amount of normalization at the tokenization stage. These four normalization functions run at tokenization: 1. macron removal; 2. accent removal; 3. ligature separation; and 4. space adjustment (i.e.&nbsp;converting all whitespace to a single space and stripping whitespace from the left and right side of the input text).</p>
-<div id="cell-42" class="cell" data-execution_count="21">
+<div id="cell-42" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:18:18.411823Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:18:18.411760Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:18:18.421704Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:18:18.421385Z&quot;}}" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">" Hæc     peritè</span><span class="ch">\n\n</span><span class="st">narrāntur</span><span class="ch">\t\t</span><span class="st">a poētīs dē Perseō Acrisiōque."</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -678,7 +678,7 @@ Haec
 narrāntur       a poētīs dē Perseō Acrisiōque. 
 
 After normalization:
-Haec perite narrantur a poetis de Perseo Acrisioque.</code></pre>
+Haec perite narrantur a poetis de Perseo Acrisioque .</code></pre>
 </div>
 </div>
 </section>

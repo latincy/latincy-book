@@ -357,7 +357,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="13.1" class="anchored" data-anchor-id="other-kinds-of-chunking-with-latincy"><span class="header-section-number">13.1</span> Other kinds of “chunking” with LatinCy</h2>
 <p>As we saw in the previous notebooks, we can use the combination of annotations from the <code>tagger</code> and the <code>parser</code> to extract relevant spans of text, like noun chunks. Noun chunks are defined at the language level in spaCy—that is, in the “la” module itself—as a syntax iterator. (In fact, the spaCy documentation explicitly notes that the syntax iteration code is <a href="https://spacy.io/usage/linguistic-features#language-data">“at the moment, only used for noun chunks”</a>).</p>
 <p>But the logic that is used to define a language-level syntax iterator can just as easily be used to write other such “chunk” extractors. In this notebook, we will look at two other kinds of “chunking” that we can do with LatinCy: <em>cum</em> clauses and prepositional phrases.</p>
-<div id="cell-3" class="cell" data-execution_count="1">
+<div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:49:48.530147Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:49:48.530016Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:50:01.192647Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:50:01.191721Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports &amp; setup</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
@@ -369,7 +369,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Eo cum venisset, ad pedes Iasonis se proiecit et multis cum lacrimis eum obsecravit.</code></pre>
+<pre><code>Eo cum uenisset , ad pedes Iasonis se proiecit et multis cum lacrimis eum obsecrauit .</code></pre>
 </div>
 </div>
 <section id="extracting-cum-clauses-with-latincy" class="level3" data-number="13.1.1">
@@ -384,7 +384,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>It assumes that a clause only contains one ‘mark’ annotation from the dependency parser, i.e.&nbsp;one word like a relative pronoun or a subordinating conjunction that marks the beginning of the clause.</li>
 <li>It removes both initial and final punctuation from the clause.</li>
 </ul>
-<div id="cell-5" class="cell" data-execution_count="2">
+<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:50:01.226092Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:50:01.225224Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:50:01.230943Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:50:01.230298Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function for finding clauses</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> spacy.symbols <span class="im">import</span> VERB, PUNCT</span>
@@ -439,7 +439,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>                    </span>
 <span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>                <span class="cf">yield</span> left, right <span class="op">+</span> <span class="dv">1</span>, clause_label</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-6" class="cell" data-execution_count="3">
+<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:50:01.232184Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:50:01.232100Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:50:01.298819Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:50:01.297837Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Process text</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -453,13 +453,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  Introductory word: </span><span class="sc">{</span>[t <span class="cf">for</span> t <span class="kw">in</span> span <span class="cf">if</span> t.dep_ <span class="op">==</span> <span class="st">"mark"</span>][<span class="dv">0</span>]<span class="sc">.</span>lemma_<span class="sc">}</span><span class="ss">'</span>)    </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Here are the subordinate clauses in the text "Eo cum venisset, ad pedes Iasonis se proiecit et multis cum lacrimis eum obsecravit.":
-- Eo cum venisset
-  Clause verb: venisset
+- Eo cum uenisset
+  Clause verb: uenisset
   Introductory word: cum</code></pre>
 </div>
 </div>
 <p>Now, we write a function that extracts all of the subordinate clauses from a <code>Doc</code> object and limits its output to only those that meet our definition of a <em>cum</em> clause.</p>
-<div id="cell-8" class="cell" data-execution_count="4">
+<div id="cell-8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:50:01.300725Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:50:01.300613Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:50:01.303498Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:50:01.302874Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function for finding cum clauses</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_cum_clauses(doclike):</span>
@@ -480,7 +480,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> has_cum:</span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">yield</span> start, end, cum_label</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-9" class="cell" data-execution_count="5">
+<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:50:01.305010Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:50:01.304850Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:50:01.357185Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:50:01.356712Z&quot;}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Process text</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"""Eo cum venisset, ad pedes Iasonis se proiecit et multis cum lacrimis eum obsecravit."""</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -496,13 +496,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'  Introductory word: </span><span class="sc">{</span>[t <span class="cf">for</span> t <span class="kw">in</span> span <span class="cf">if</span> t.dep_ <span class="op">==</span> <span class="st">"mark"</span>][<span class="dv">0</span>]<span class="sc">.</span>lemma_<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Here are the cum clauses in the text "Eo cum venisset, ad pedes Iasonis se proiecit et multis cum lacrimis eum obsecravit.":
-- Eo cum venisset
-  Clause verb: venisset
+- Eo cum uenisset
+  Clause verb: uenisset
   Introductory word: cum</code></pre>
 </div>
 </div>
 <p>The advantage of using the syntax iterator—assuming that the dependency parser works well enough to correctly mark off clauses—is that it extracts more directly the syntactical structures that we are interested in. We may have tried a text analytical approach for this problem that started with a search for <em>cum</em>. Of course, <em>cum</em> can be both a marker of subordination (i.e.&nbsp;when it has the POS tag <code>SCONJ</code>) and a preposition (i.e.&nbsp;<code>ADP</code>). In the sample sentence, the iterator never even considers the prepositional uses of <em>cum</em> (in <em>multis cum lacrimis</em>).</p>
-<div id="cell-11" class="cell" data-execution_count="6">
+<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:50:01.358381Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:50:01.358297Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:50:01.416022Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:50:01.415574Z&quot;}}" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List annotations for each token</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
@@ -522,10 +522,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate(data, headers<span class="op">=</span>[<span class="st">'Token'</span>, <span class="st">'Lemma'</span>, <span class="st">'POS'</span>, <span class="st">"Dep"</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Token       Lemma    POS    Dep
-----------  -------  -----  -----
-Eo          eo       PRON   obl
+----------  -------  -----  -----------
+Eo          eo       ADV    advmod:lmod
 cum         cum      SCONJ  mark
-venisset    uenio    VERB   advcl
+uenisset    uenio    VERB   advcl
 ,           ,        PUNCT  punct
 ad          ad       ADP    case
 pedes       pes      NOUN   obl
@@ -533,11 +533,11 @@ Iasonis     Iason    PROPN  nmod
 se          sui      PRON   obj
 proiecit    proicio  VERB   ROOT
 et          et       CCONJ  cc
-multis      multus   DET    obl
+multis      multus   DET    amod
 cum         cum      ADP    case
 lacrimis    lacrima  NOUN   obl
 eum         is       PRON   obj
-obsecravit  obsecro  VERB   conj
+obsecrauit  obsecro  VERB   conj
 .           .        PUNCT  punct</code></pre>
 </div>
 </div>
@@ -545,7 +545,7 @@ obsecravit  obsecro  VERB   conj
 <section id="extracting-prepositional-phrases-with-latincy" class="level3" data-number="13.1.2">
 <h3 data-number="13.1.2" class="anchored" data-anchor-id="extracting-prepositional-phrases-with-latincy"><span class="header-section-number">13.1.2</span> Extracting prepositional phrases with LatinCy</h3>
 <p>As we have already seen with noun chunking, there are syntactic structures that we may want to extract that are not at the clause level. Take, for example, prepositional phrases. In a sense, these phrases are the preposition equivalent of noun chunks. Our job is to identify the preposition and all of the words that “depend” on it (from a dependency parsing perspective). We can start by finding words tagged as prepositions and then looking for all of the child nodes of these words.</p>
-<div id="cell-13" class="cell" data-execution_count="7">
+<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:50:01.417318Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:50:01.417240Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:50:01.421197Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:50:01.420808Z&quot;}}" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Syntax iterator code for prepositional phrases</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Iterator, Tuple, Union, Set</span>
@@ -602,52 +602,55 @@ obsecravit  obsecro  VERB   conj
 <span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>                <span class="cf">yield</span> left, right <span class="op">+</span> <span class="dv">1</span>, pp_label</span>
 <span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>                prev_right <span class="op">=</span> right</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-14" class="cell" data-execution_count="8">
+<div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T01:50:01.422743Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T01:50:01.422659Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T01:50:01.644254Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T01:50:01.643798Z&quot;}}" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper function for displaying prepositional phrases</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_phrases_markdown(text: <span class="bu">str</span>, doc: Doc) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_phrases_markdown(doc: Doc) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Display text with prepositional phrases marked in bold."""</span></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get prepositional phrases</span></span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    spans <span class="op">=</span> [doc[start:end] <span class="cf">for</span> start, end, _ <span class="kw">in</span> prepositional_phrases(doc)]</span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Sort spans by start position in reverse order</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># (to avoid index confusion when inserting markers)</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    spans.sort(key<span class="op">=</span><span class="kw">lambda</span> x: x.start, reverse<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Build output from doc tokens, inserting bold markers around PP spans</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    pp_starts <span class="op">=</span> {span.start <span class="cf">for</span> span <span class="kw">in</span> spans}</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    pp_ends <span class="op">=</span> {span.end <span class="cf">for</span> span <span class="kw">in</span> spans}</span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Insert markdown markers</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    marked_text <span class="op">=</span> text</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> span <span class="kw">in</span> spans:</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        marked_text <span class="op">=</span> (</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>            marked_text[:span.start_char] <span class="op">+</span> </span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f"**</span><span class="sc">{</span>span<span class="sc">.</span>text<span class="sc">}</span><span class="ss">**"</span> <span class="op">+</span> </span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>            marked_text[span.end_char:]</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> marked_text</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Test with passage from RFF</span></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>test_texts <span class="op">=</span> [</span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Haec narrantur a poetis de Perseo."</span>,</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Acrisius volebat Perseum nepotem suum necare; nam propter oraculum puerum timebat."</span>,</span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Comprehendit igitur Perseum adhuc infantem, et cum matre in arca lignea inclusit."</span>,</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Tum arcam ipsam in mare coniecit."</span>,</span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Perseus autem in sinu matris dormiebat."</span></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Display results</span></span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Prepositional phrases marked with asterisks..."</span>)</span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> text <span class="kw">in</span> test_texts:</span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    doc <span class="op">=</span> nlp(text)</span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>    marked <span class="op">=</span> display_phrases_markdown(text, doc)</span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"- </span><span class="sc">{</span>marked<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    parts <span class="op">=</span> []</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> token <span class="kw">in</span> doc:</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> token.i <span class="kw">in</span> pp_starts:</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>            parts.append(<span class="st">"**"</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>        parts.append(token.text_with_ws)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> token.i <span class="op">+</span> <span class="dv">1</span> <span class="kw">in</span> pp_ends:</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Insert closing marker before the trailing whitespace</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>            text <span class="op">=</span> parts[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>            stripped <span class="op">=</span> text.rstrip()</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>            ws <span class="op">=</span> text[<span class="bu">len</span>(stripped):]</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>            parts[<span class="op">-</span><span class="dv">1</span>] <span class="op">=</span> stripped <span class="op">+</span> <span class="st">"**"</span> <span class="op">+</span> ws</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">""</span>.join(parts)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Test with passage from RFF</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>test_texts <span class="op">=</span> [</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Haec narrantur a poetis de Perseo."</span>,</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Acrisius volebat Perseum nepotem suum necare; nam propter oraculum puerum timebat."</span>,</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Comprehendit igitur Perseum adhuc infantem, et cum matre in arca lignea inclusit."</span>,</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Tum arcam ipsam in mare coniecit."</span>,</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Perseus autem in sinu matris dormiebat."</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Display results</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Prepositional phrases marked with asterisks..."</span>)</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> text <span class="kw">in</span> test_texts:</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>    doc <span class="op">=</span> nlp(text)</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>    marked <span class="op">=</span> display_phrases_markdown(doc)</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"- </span><span class="sc">{</span>marked<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Prepositional phrases marked with asterisks...
-- Haec narrantur **a poetis** **de Perseo**.
-- Acrisius volebat Perseum nepotem suum necare; nam **propter oraculum** puerum timebat.
-- Comprehendit igitur Perseum adhuc infantem, et **cum matre** **in arca lignea** inclusit.
-- Tum arcam ipsam **in mare** coniecit.
-- Perseus autem **in sinu matris** dormiebat.</code></pre>
+- Haec narrantur **a poetis de Perseo** .
+- Acrisius uolebat Perseum nepotem suum necare ; nam **propter oraculum** puerum timebat .
+- Comprehendit igitur Perseum adhuc infantem , et **cum matre** **in arca lignea** inclusit .
+- Tum arcam ipsam **in mare** coniecit .
+- Perseus autem **in sinu matris** dormiebat .</code></pre>
 </div>
 </div>
 <p><em>Cum</em> clauses and prepositional phrases are not the only type of syntactical structure that Latinists are interested. I invite readers to think about what the formal definitions with respect to LatinCy annotations would be for other kinds of structures, e.g.&nbsp;ablative absolutes, indirect statement, purpose clauses, etc., and see if they can be productively extracted using this kind of syntax iteration.</p>

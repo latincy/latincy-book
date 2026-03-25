@@ -375,7 +375,7 @@ div.csl-indent {
 <section id="pos-tagging-with-latincy" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="pos-tagging-with-latincy"><span class="header-section-number">7.1</span> POS Tagging with LatinCy</h2>
 <p>Part-of-speech tagging is the task of mapping a token in a text to its part of speech, whether ‘noun’ or ‘verb’ or ‘preposition’ and so on. There are two components in the default LatinCy pipelines that provide such annotations, that is the <code>tagger</code> and the <code>morphologizer</code>. Ostensibly, the <code>tagger</code> provides language-specific, fine-grain POS tags and the <code>morphologizer</code> provides coarse-grain tags (as defined by the UD <a href="https://universaldependencies.org/u/pos/">Universal POS tags</a>); at present, the LatinCy models have a high degree of overlap between these two tagsets and there are effectively <em>no</em> fine-grain tags.</p>
-<div id="cell-3" class="cell" data-execution_count="1">
+<div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:08:53.041883Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:08:53.041223Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:09:57.892162Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:09:57.891440Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports &amp; setup</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
@@ -385,18 +385,18 @@ div.csl-indent {
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum. Avus eius Acrisius appellabatur.</code></pre>
+<pre><code>Haec narrantur a poetis de Perseo . Perseus filius erat Iouis , maximi deorum . Auus eius Acrisius appellabatur .</code></pre>
 </div>
 </div>
 <p>Note here the two “tagging” components that are included in the pipeline, i.e.&nbsp;“tagger” and “morphologizer”…</p>
-<div id="cell-5" class="cell" data-execution_count="2">
+<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:09:57.893945Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:09:57.893732Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:09:57.896642Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:09:57.896021Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nlp.pipe_names)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>['senter', 'normer', 'tok2vec', 'tagger', 'morphologizer', 'trainable_lemmatizer', 'parser', 'lookup_lemmatizer', 'ner', 'remorpher']</code></pre>
+<pre><code>['tok2vec', 'senter', 'normer', 'tagger', 'morphologizer', 'trainable_lemmatizer', 'lookup_lemmatizer', 'uv_normalizer', 'parser', 'harmonizer', 'remorpher', 'ner']</code></pre>
 </div>
 </div>
 <p>Once a text is annotated using the LatinCy pipeline, i.e.&nbsp;as part of the <code>Doc</code> creation process, tags can be found as annotations of the <code>Token</code> objects. The coarse-grain tags are stored in the <code>pos_</code> attribute; fine-grain tags are stored in the <code>tag_</code> attribute.</p>
-<div id="cell-7" class="cell" data-execution_count="3">
+<div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:09:57.899468Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:09:57.899338Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:09:57.903235Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:09:57.902627Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sample_token <span class="op">=</span> doc[<span class="dv">1</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Sample token: </span><span class="sc">{</span>sample_token<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
@@ -409,7 +409,7 @@ Sample TAG: verb</code></pre>
 </div>
 </div>
 <p>Note the high degree of overlap between the coarse-grain and fine-grain tags in the LatinCy models in the chart below. That said, it is perhaps worth paying more attention to where the tagsets do not overlap. In the LatinCy training, conventions for classes of words to be labeled, say, “DET” (as in the <em>Haec</em> <code>pos_</code>) or “AUX” (as in <em>est</em>) are inferred from usage in the six different treebanks used. A sense of the inconsistency in the tagsets can be gleaned from the following page: (https://universaldependencies.org/la/); note also the important work of <span class="citation" data-cites="gamba_universalising_2023">Gamba and Zeman (<a href="references.html#ref-gamba_universalising_2023" role="doc-biblioref">2023</a>)</span> in this area.</p>
-<div id="cell-9" class="cell" data-execution_count="4">
+<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:09:57.904708Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:09:57.904609Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:09:57.913765Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:09:57.913093Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tabulate</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
@@ -422,31 +422,31 @@ Sample TAG: verb</code></pre>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate.tabulate(data, headers<span class="op">=</span>[<span class="st">'Text'</span>, <span class="st">"POS"</span>, <span class="st">"TAG"</span>]))  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Text          POS    TAG
-------------  -----  -----------
-Haec          DET    adjective
+------------  -----  --------------------
+Haec          DET    determiner
 narrantur     VERB   verb
-a             ADP    preposition
+a             ADP    preposition/ablative
 poetis        NOUN   noun
-de            ADP    preposition
-Perseo        PROPN  proper_noun
+de            ADP    preposition/ablative
+Perseo        PROPN  noun/proper
 .             PUNCT  punc
-Perseus       PROPN  proper_noun
+Perseus       PROPN  noun/proper
 filius        NOUN   noun
 erat          AUX    verb
-Iovis         PROPN  proper_noun
+Iouis         PROPN  noun/proper
 ,             PUNCT  punc
 maximi        ADJ    adjective
 deorum        NOUN   noun
 .             PUNCT  punc
-Avus          NOUN   noun
+Auus          PROPN  adjective
 eius          PRON   pronoun
-Acrisius      PROPN  proper_noun
+Acrisius      PROPN  noun/proper
 appellabatur  VERB   verb
 .             PUNCT  punc</code></pre>
 </div>
 </div>
 <p>As with the lemma annotations, the <code>pos_</code> and <code>tag_</code> attributes are only the human-readable of the lemma. Internally, spaCy uses a hash value to represent this, again noting the lack of trailing underscore…</p>
-<div id="cell-11" class="cell" data-execution_count="5">
+<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:09:57.915477Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:09:57.915356Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:09:57.917983Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:09:57.917283Z&quot;}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Token: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>text<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Human-readable TAG: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>tag_<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'spaCy TAG key: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>tag<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -457,7 +457,7 @@ spaCy TAG key: 6360137228241296794</code></pre>
 </div>
 </div>
 <p>This tag ‘key’ can be looked up in spaCy’s <code>NLP.vocab.strings</code> atrribute…</p>
-<div id="cell-13" class="cell" data-execution_count="6">
+<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:09:57.919197Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:09:57.919073Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:09:57.921959Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:09:57.921142Z&quot;}}" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> nlp.get_pipe(<span class="st">'tagger'</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>tag_lookup <span class="op">=</span> T.vocab.strings[<span class="dv">6360137228241296794</span>] <span class="co"># also would work on `nlp`, i.e. nlp.vocab.strings[6360137228241296794]</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -469,7 +469,7 @@ Human-readable TAG: verb</code></pre>
 </div>
 </div>
 <p>The same process applies to the POS ‘keys’…</p>
-<div id="cell-15" class="cell" data-execution_count="7">
+<div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:09:57.923255Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:09:57.923148Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:09:57.925392Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:09:57.924787Z&quot;}}" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Token: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Human-readable POS: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>pos_<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'spaCy POS key: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>pos<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -479,7 +479,7 @@ Human-readable POS: VERB
 spaCy POS key: 100</code></pre>
 </div>
 </div>
-<div id="cell-16" class="cell" data-execution_count="8">
+<div id="cell-16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:09:57.927252Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:09:57.927119Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:09:57.929426Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:09:57.929031Z&quot;}}" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> nlp.get_pipe(<span class="st">"morphologizer"</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>pos_lookup <span class="op">=</span> M.vocab.strings[<span class="dv">100</span>]</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'POS key: </span><span class="sc">{</span>tokens[<span class="dv">1</span>]<span class="sc">.</span>pos<span class="sc">}</span><span class="ss">'</span>)</span>
@@ -490,7 +490,7 @@ Human-readable POS: VERB</code></pre>
 </div>
 </div>
 <p>We can use the <code>label_data</code> attribute from the <code>morphologizer</code> component to derive the complete (coarse-grain) tagset…</p>
-<div id="cell-18" class="cell" data-execution_count="9">
+<div id="cell-18" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:09:57.930496Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:09:57.930419Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:09:57.933357Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:09:57.932954Z&quot;}}" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> split_pos(morph):</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">'POS='</span> <span class="kw">in</span> morph:</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> morph.split(<span class="st">'POS='</span>)[<span class="dv">1</span>].split(<span class="st">'|'</span>)[<span class="dv">0</span>]</span>
@@ -504,7 +504,7 @@ Human-readable POS: VERB</code></pre>
 </div>
 </div>
 <p>SpaCy has an <code>explain</code> methods that can show human-readable descriptions of these standard tags…</p>
-<div id="cell-20" class="cell" data-execution_count="10">
+<div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:09:57.934564Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:09:57.934476Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:09:57.937167Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:09:57.936764Z&quot;}}" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> tag <span class="kw">in</span> tagset:</span>
@@ -533,7 +533,7 @@ X      other</code></pre>
 </div>
 </div>
 <p>It may also be useful to know the “confidence” of the tagger in making its decision. We can derive this from the output tagger’s <code>model.predict</code> method. This returns (at least, in part) a ranked list of per-scores, the maximum value of which determines the final annotation.</p>
-<div id="cell-22" class="cell" data-execution_count="11">
+<div id="cell-22" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:09:57.938343Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:09:57.938253Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:09:57.940808Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:09:57.940315Z&quot;}}" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Helper function to get tagging scores</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_tagging_scores(doc, n<span class="op">=</span><span class="dv">3</span>):</span>
@@ -548,7 +548,7 @@ X      other</code></pre>
 <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        scores.append([(labels[i], p) <span class="cf">for</span> i, p <span class="kw">in</span> r[:n]])</span>
 <span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> scores</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-23" class="cell" data-execution_count="12">
+<div id="cell-23" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:09:57.942025Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:09:57.941922Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:09:57.945740Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:09:57.945260Z&quot;}}" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the top 3 tags by score for each token in the Doc</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>tagging_probs <span class="op">=</span> get_tagging_scores(doc)</span>
@@ -563,11 +563,11 @@ X      other</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Token: Haec
 
-Label        Score
----------  -------
-adjective  8.90504
-pronoun    5.97949
-noun       1.89939</code></pre>
+Label          Score
+----------  --------
+determiner  12.5675
+pronoun      5.07097
+noun         2.13383</code></pre>
 </div>
 </div>
 <section id="references" class="level3 unnumbered">

@@ -376,7 +376,7 @@ div.csl-indent {
 <h2 data-number="4.1" class="anchored" data-anchor-id="sentence-segmentation-with-latincy"><span class="header-section-number">4.1</span> Sentence segmentation with LatinCy</h2>
 <p>Sentence segmentation is the task of splitting a text into sentences. For the LatinCy models, this is a task been trained using spaCy’s <code>senter</code> factory to terminate sentences at both strong and weak stops, following the example of <span class="citation" data-cites="clayman_sentence_1981">Clayman (<a href="references.html#ref-clayman_sentence_1981" role="doc-biblioref">1981</a>)</span> (see also, <span class="citation" data-cites="wake_sentence-length_1957">Wake (<a href="references.html#ref-wake_sentence-length_1957" role="doc-biblioref">1957</a>)</span>, <span class="citation" data-cites="janson_problems_1964">Janson (<a href="references.html#ref-janson_problems_1964" role="doc-biblioref">1964</a>)</span>), who writes: “If all stops are made equivalent, i.e.&nbsp;if no distinction is made between the strong stop, weak stop and interrogation mark, editorial differences will be kept to a minimum.”</p>
 <p>Given a spaCy <code>Doc</code>, the <code>sents</code> attribute will produce a <code>generator</code> object with the sentence from that document as determined by the dependency parser. Each sentence is a <code>Span</code> object with the start and end token indices from the original <code>Doc</code>.</p>
-<div id="cell-3" class="cell" data-execution_count="1">
+<div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T11:58:15.772652Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T11:58:15.772557Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T11:58:35.888616Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T11:58:35.884939Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports &amp; setup</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
@@ -386,29 +386,29 @@ div.csl-indent {
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum. Avus eius Acrisius appellabatur.</code></pre>
+<pre><code>Haec narrantur a poetis de Perseo . Perseus filius erat Iouis , maximi deorum . Auus eius Acrisius appellabatur .</code></pre>
 </div>
 </div>
-<div id="cell-4" class="cell" data-execution_count="2">
+<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T11:58:35.931702Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T11:58:35.930885Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T11:58:35.936870Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T11:58:35.935689Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sents <span class="op">=</span> doc.sents</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(sents))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(sents).<span class="va">__name__</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;class '_cython_3_2_1.generator'&gt;</code></pre>
+<pre><code>generator</code></pre>
 </div>
 </div>
 <p>Like all <code>Span</code> objects, the text from each sentence can be retrieved with the <code>text</code> attribute. For convenience below, we convert the generator to list so that we can iterate over it multiple times. Here are the three (3) sentences identified in the example text as well as an indication of the sentences’ <code>type</code>, i.e.&nbsp;<code>&lt;class 'spacy.tokens.span.Span'&gt;</code>.</p>
-<div id="cell-6" class="cell" data-execution_count="3">
+<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T11:58:35.938612Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T11:58:35.938494Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T11:58:35.941941Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T11:58:35.940758Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sents <span class="op">=</span> <span class="bu">list</span>(sents)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, sent <span class="kw">in</span> <span class="bu">enumerate</span>(sents, <span class="dv">1</span>):</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>sent<span class="sc">.</span>text<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>1: Haec narrantur a poetis de Perseo.
-2: Perseus filius erat Iovis, maximi deorum.
-3: Avus eius Acrisius appellabatur.</code></pre>
+<pre><code>1: Haec narrantur a poetis de Perseo .
+2: Perseus filius erat Iouis , maximi deorum .
+3: Auus eius Acrisius appellabatur .</code></pre>
 </div>
 </div>
-<div id="cell-7" class="cell" data-execution_count="4">
+<div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T11:58:35.943904Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T11:58:35.943777Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T11:58:35.946543Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T11:58:35.945889Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sent <span class="op">=</span> sents[<span class="dv">0</span>]</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(sent))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -416,7 +416,7 @@ div.csl-indent {
 </div>
 </div>
 <p>Sentences have the same atrributes/methods available to them as any span (listed in the next cell). Following are some attibutes/methods that may be particularly relevant to working with sentences.</p>
-<div id="cell-9" class="cell" data-execution_count="5">
+<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T11:58:35.947694Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T11:58:35.947606Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T11:58:35.950124Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T11:58:35.949553Z&quot;}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sent_methods <span class="op">=</span> [item <span class="cf">for</span> item <span class="kw">in</span> <span class="bu">dir</span>(sent) <span class="cf">if</span> <span class="st">'_'</span> <span class="kw">not</span> <span class="kw">in</span> item]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>pprint(sent_methods)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -442,34 +442,34 @@ div.csl-indent {
 </div>
 </div>
 <p>You can identify the <code>root</code> of the sentence as determined by the dependency parser. Assuming the parsing in correct, this will be the main verb of the sentence.</p>
-<div id="cell-11" class="cell" data-execution_count="6">
+<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T11:58:35.951644Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T11:58:35.951521Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T11:58:35.954048Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T11:58:35.953378Z&quot;}}" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sent.root)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>narrantur</code></pre>
 </div>
 </div>
 <p>Each word in the sentence has an associated vector. Sentence (any <code>Span</code> in fact) has an associated vector as well that is the <a href="https://github.com/explosion/spaCy/blob/7df328fbfe42c1415f5e324686f7c4dcc0c093cb/spacy/tokens/span.pyx#L541">mean of the vectors</a> of the words in the sentence. As this example uses the <code>lg</code> model, the vector has a length of 300.</p>
-<div id="cell-13" class="cell" data-execution_count="7">
+<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T11:58:35.955215Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T11:58:35.955110Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T11:58:35.958248Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T11:58:35.957520Z&quot;}}" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sent.vector.shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(300,)</code></pre>
 </div>
 </div>
 <p>This vector then can be used to compute the similarity between two sentences. Here we see our example sentence compared to two related sentence: 1. a sentence where the character referred to is changed from Perseus to Ulysses; and 2. the active-verb version of the sentence.</p>
-<div id="cell-15" class="cell" data-execution_count="8">
+<div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T11:58:35.959550Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T11:58:35.959422Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T11:58:36.000904Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T11:58:36.000208Z&quot;}}" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sent.similarity(nlp(<span class="st">'Haec narrantur a poetis de Ulixe.'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>0.9848335655197465</code></pre>
+<pre><code>0.9865403175354004</code></pre>
 </div>
 </div>
-<div id="cell-16" class="cell" data-execution_count="9">
+<div id="cell-16" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T11:58:36.002642Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T11:58:36.002527Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T11:58:36.036654Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T11:58:36.036166Z&quot;}}" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sent.similarity(nlp(<span class="st">'Haec narrant poetae de Perseo.'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>0.7887778754085104</code></pre>
+<pre><code>0.8239373564720154</code></pre>
 </div>
 </div>
 <p>We can retrieve the start and end indices from the original document for each sentence.</p>
-<div id="cell-18" class="cell" data-execution_count="10">
+<div id="cell-18" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-25T11:58:36.038320Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-25T11:58:36.038210Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-25T11:58:36.041336Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-25T11:58:36.040553Z&quot;}}" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sent_2 <span class="op">=</span> sents[<span class="dv">1</span>]</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> sent_2.start</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>end <span class="op">=</span> sent_2.end</span>
@@ -480,8 +480,8 @@ div.csl-indent {
 <div class="cell-output cell-output-stdout">
 <pre><code>7
 15
-Perseus filius erat Iovis, maximi deorum.
-Perseus filius erat Iovis, maximi deorum.</code></pre>
+Perseus filius erat Iouis , maximi deorum .
+Perseus filius erat Iouis , maximi deorum .</code></pre>
 </div>
 </div>
 <section id="references" class="level3 unnumbered">

@@ -354,7 +354,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="latincy-components-and-their-annotations" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="latincy-components-and-their-annotations"><span class="header-section-number">3.1</span> LatinCy components and their annotations</h2>
-<div id="cell-2" class="cell" data-execution_count="1">
+<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T20:42:04.337449Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T20:42:04.337352Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T20:59:15.041855Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T20:59:15.039008Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports &amp; setup</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
@@ -365,27 +365,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>avus eius Acrisius appellabatur.</code></pre>
+<pre><code>auus eius Acrisius appellabatur .</code></pre>
 </div>
 </div>
 <p>Here are the components provided by the default LatinCy models…</p>
-<div id="cell-4" class="cell" data-execution_count="2">
+<div id="cell-4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T20:59:15.049660Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T20:59:15.048973Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T20:59:15.056528Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T20:59:15.054651Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pprint(nlp.pipe_names)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>['senter',
+<pre><code>['tok2vec',
+ 'senter',
  'normer',
- 'tok2vec',
  'tagger',
  'morphologizer',
  'trainable_lemmatizer',
- 'parser',
  'lookup_lemmatizer',
- 'ner',
- 'remorpher']</code></pre>
+ 'uv_normalizer',
+ 'parser',
+ 'harmonizer',
+ 'remorpher',
+ 'ner']</code></pre>
 </div>
 </div>
 <p>The dataframe below summarizes the key annotations provided by these components…</p>
-<div id="cell-6" class="cell" data-execution_count="3">
+<div id="cell-6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T20:59:15.060150Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T20:59:15.059706Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T20:59:15.271437Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T20:59:15.266274Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> doc:</span>
@@ -416,7 +418,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <th data-quarto-table-cell-role="th">0</th>
-<td>avus</td>
+<td>auus</td>
 <td>auus</td>
 <td>auus</td>
 <td>NOUN</td>
@@ -433,8 +435,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>is</td>
 <td>PRON</td>
 <td>pronoun</td>
-<td>Case=Gen|Gender=Masc|Number=Sing|Person=3</td>
-<td>nmod</td>
+<td>Case=Gen|Gender=Fem|Number=Sing</td>
+<td>det</td>
 <td></td>
 <td>True</td>
 </tr>
@@ -446,7 +448,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>PROPN</td>
 <td>proper_noun</td>
 <td>Case=Nom|Gender=Masc|Number=Sing</td>
-<td>xcomp</td>
+<td>nsubj:pass</td>
 <td>PERSON</td>
 <td>True</td>
 </tr>
@@ -457,7 +459,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>appello</td>
 <td>VERB</td>
 <td>verb</td>
-<td>Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbF...</td>
+<td>Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense...</td>
 <td>ROOT</td>
 <td></td>
 <td>True</td>

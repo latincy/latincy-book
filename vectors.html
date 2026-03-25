@@ -357,7 +357,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="accessing-vectors-with-latincy" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="accessing-vectors-with-latincy"><span class="header-section-number">10.1</span> Accessing Vectors with LatinCy</h2>
-<div id="cell-2" class="cell" data-execution_count="1">
+<div id="cell-2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:21:24.725371Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:21:24.725301Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:22:00.851128Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:22:00.850655Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports &amp; setup</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
@@ -369,7 +369,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum; avus eius Acrisius appellabatur.</code></pre>
+<pre><code>Haec narrantur a poetis de Perseo . Perseus filius erat Iouis , maximi deorum ; auus eius Acrisius appellabatur .</code></pre>
 </div>
 </div>
 <!-- Word tokenization is the task of splitting a text into words (and wordlike units like punctuation, numbers, etc.). For the LatinCy models, tokenization is the fundamental pipeline component on which all other components depend. SpaCy uses non-destructive, "canonical" tokenization, i.e. non-destructive, in that the original text can be untokenized, so to speak, based on `Token` annotations and canonical in that indices are assigned to each token during this process and these indices are used to refer to the tokens in other annotations. (Tokens *can* be separated or merged, but this requires the user to actively undo and redefine the tokenization output.) LatinCy uses a modified version of the default spaCy tokenizer that recognizes and splits enlitic *-que* using a rules-based process. (NB: It is in the LatinCy [development plan](projects.qmd#enclitics-project) to move enclitic splitting to a separate post-tokenization component.)
@@ -383,7 +383,7 @@ The spaCy `Doc` object is an iterable and tokens are the iteration unit. -->
 </ol>
 <p><strong>New for v3.9</strong>: The <a href="https://spacy.io/usage/embeddings-transformers#pretraining"><code>pretrain</code></a> initializes the model with information from a large amount of raw text so that the model can learn sentence structure, word cooccurrence, and other general language patterns.</p>
 <p>Here is the vector for the first token ‘Haec’ in the text given above, output trunctated to the first 10 dimensions:</p>
-<div id="cell-5" class="cell" data-execution_count="2">
+<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:22:00.852451Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:22:00.852289Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:22:00.854472Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:22:00.854083Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> [token <span class="cf">for</span> token <span class="kw">in</span> doc]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> tokens:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(token.text)</span>
@@ -391,34 +391,34 @@ The spaCy `Doc` object is an iterable and tokens are the iteration unit. -->
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Haec
-[-1.9039791  -1.2126855   1.3490605   3.1879     -0.9067255  -0.7610278
- -0.739699   -4.3730483   1.1556364   0.19760956] etc.</code></pre>
+[-0.7778918  -0.24657087 -2.321399   -4.946182   -0.47471917 -1.3058611
+ -0.06238138 -1.4708582  -2.1147673  -2.00264   ] etc.</code></pre>
 </div>
 </div>
 <p>And here is a list of the first 10 tokens, each with the first 10 dimensions of their static floret vector…</p>
-<div id="cell-7" class="cell" data-execution_count="3">
+<div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:22:00.855782Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:22:00.855697Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:22:00.859230Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:22:00.858727Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>vector_example_data <span class="op">=</span> []</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> token <span class="kw">in</span> tokens[:<span class="dv">10</span>]:</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    vector_example_data.append((token.text, <span class="op">*</span>token.vector[:<span class="dv">10</span>]))</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tabulate(vector_example_data))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>---------  ---------  ---------  ----------  ----------  ---------  ---------  ---------  ---------  ----------  ---------
-Haec       -1.90398   -1.21269    1.34906     3.1879     -0.906726  -0.761028  -0.739699  -4.37305    1.15564     0.19761
-narrantur   1.91623   -1.24723    0.518828   -1.91084     0.620206  -1.79221    1.13974   -1.06108    0.0448955   1.3394
-a          -1.84657   -3.2745    -3.66575     7.81755     5.3394     0.80885   -5.5981    -0.45535    6.6346      2.9247
-poetis     -1.66618    2.9941     1.54732    -2.56839    -0.58933    0.926527   0.50731   -0.453224  -0.675591    0.850029
-de         -5.76823    1.33514   -5.87731     1.75111    -1.87804    3.54353   -0.989212   0.516913  -0.477756    6.99891
-Perseo     -0.459438  -1.59377   -1.16804    -0.679769    2.27411   -2.5005    -0.349883   2.4222     0.295428   -0.46593
-.          -4.92245   -4.69355    9.3479      1.52849     0.63615   -2.92175    5.91935   -0.57385   -2.69497    -3.08617
-Perseus    -0.246562   1.56273   -1.13213    -1.47479     0.800228  -1.58815   -0.617385   2.86749   -0.0864839  -1.48492
-filius     -0.965762  -0.348192   0.0142697  -1.35208    -0.509385  -1.4312     0.408665   2.9386    -1.19688     0.219843
-erat        3.3229     1.25453   -5.21225    -0.0306687  -1.7512     1.99759   -1.59149    1.36364   -0.949415   -0.050509
----------  ---------  ---------  ----------  ----------  ---------  ---------  ---------  ---------  ----------  ---------</code></pre>
+<pre><code>---------  ---------  ---------  ---------  ---------  ----------  ---------  ----------  -----------  ---------  ----------
+Haec       -0.777892  -0.246571  -2.3214    -4.94618   -0.474719   -1.30586   -0.0623814  -1.47086     -2.11477   -2.00264
+narrantur   1.44294    2.76409   -0.174809  -1.1091     1.32203     1.68776    1.97994     1.67613     -0.558864  -1.3482
+a           3.0887     4.14845    4.40425   12.6695     3.4945      0.35588    0.8834      2.27109      4.9266    -0.78953
+poetis      2.54862    2.26177    2.09329   -0.416738   0.0676873   2.26123    1.91584     1.16091      0.548886   0.563511
+de         -2.47883    8.23127    2.65751   -0.477113  -0.854738   -3.52511   -0.143562    4.56366      5.87061   -1.26645
+Perseo      0.134013   0.504851  -2.4602     1.95082   -2.07618     0.364746  -2.08651     0.00902766  -2.2649     0.958519
+.           1.91543   10.3048    -8.6075    -3.56385    9.61896     3.71153   -4.3554     -4.69565      5.341      2.3426
+Perseus    -0.166723  -0.414044  -0.710938   2.38089   -1.03997     2.27024   -0.865694    0.445143    -0.968434   1.27817
+filius      0.104769  -1.6956    -1.11373    5.48569   -2.83982     0.680782  -1.42932     1.20112      2.99276   -0.0684272
+erat        5.0704     1.04352   -0.562308   3.80192   -1.54061    -2.32062   -2.4345      1.86567      4.33458   -0.744219
+---------  ---------  ---------  ---------  ---------  ----------  ---------  ----------  -----------  ---------  ----------</code></pre>
 </div>
 </div>
 <p>We can get the vector length from the <code>shape</code> attribute…</p>
-<div id="cell-9" class="cell" data-execution_count="4">
+<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:22:00.860366Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:22:00.860284Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:22:00.862483Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:22:00.862169Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc[<span class="dv">0</span>].vector.shape)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(300,)</code></pre>
@@ -427,7 +427,7 @@ erat        3.3229     1.25453   -5.21225    -0.0306687  -1.7512     1.99759   -
 <section id="static-vectors-are-context-independent" class="level3" data-number="10.1.1">
 <h3 data-number="10.1.1" class="anchored" data-anchor-id="static-vectors-are-context-independent"><span class="header-section-number">10.1.1</span> Static vectors are context-independent</h3>
 <p>Because <code>token.vector</code> returns static floret vectors, the same word form always produces the same vector — regardless of the sentence it appears in. Here we compare the vector for <em>erat</em> in two different sentences:</p>
-<div id="cell-11" class="cell" data-execution_count="5">
+<div id="cell-11" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:22:00.863681Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:22:00.863605Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:22:00.916630Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:22:00.916286Z&quot;}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Static floret vectors: same word → same vector</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>doc_a <span class="op">=</span> nlp(<span class="st">"Caesar magnus erat."</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>doc_b <span class="op">=</span> nlp(<span class="st">"Tempus longum erat."</span>)</span>
@@ -441,13 +441,13 @@ erat        3.3229     1.25453   -5.21225    -0.0306687  -1.7512     1.99759   -
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(erat_b.vector[:<span class="dv">10</span>])</span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Vectors identical? </span><span class="sc">{</span>np<span class="sc">.</span>array_equal(erat_a.vector, erat_b.vector)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>'erat' in 'Caesar magnus erat.':
-[ 3.3229046   1.2545291  -5.2122483  -0.03066869 -1.7511978   1.9975898
- -1.5914928   1.3636408  -0.94941455 -0.05050904]
+<pre><code>'erat' in 'Caesar magnus erat .':
+[ 5.0704026   1.0435151  -0.56230766  3.801923   -1.5406077  -2.3206182
+ -2.4345021   1.8656712   4.334582   -0.74421906]
 
-'erat' in 'Tempus longum erat.':
-[ 3.3229046   1.2545291  -5.2122483  -0.03066869 -1.7511978   1.9975898
- -1.5914928   1.3636408  -0.94941455 -0.05050904]
+'erat' in 'Tempus longum erat .':
+[ 5.0704026   1.0435151  -0.56230766  3.801923   -1.5406077  -2.3206182
+ -2.4345021   1.8656712   4.334582   -0.74421906]
 
 Vectors identical? True</code></pre>
 </div>
@@ -457,7 +457,7 @@ Vectors identical? True</code></pre>
 <h3 data-number="10.1.2" class="anchored" data-anchor-id="contextual-vectors-from-tok2vec"><span class="header-section-number">10.1.2</span> Contextual vectors from tok2vec</h3>
 <p>The tok2vec component on the other hand takes the static floret vectors as input and produces <em>contextual</em> representations that incorporate information from surrounding tokens. These are stored in <code>doc.tensor</code>, a matrix with one row per token, and have 96 dimensions in the <code>lg</code> model.</p>
 <p>Unlike the static vectors, the contextual tok2vec output for the same word form <em>differs</em> depending on context, though note still the high similarity between the two vectors for <em>erat</em> in the different sentences (cosine similarity of ~0.97).</p>
-<div id="cell-13" class="cell" data-execution_count="6">
+<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:22:00.917906Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:22:00.917826Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:22:00.920638Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:22:00.920262Z&quot;}}" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Contextual tok2vec output: same word → different vector in different context</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>tensor_a <span class="op">=</span> doc_a.tensor[erat_a.i]</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>tensor_b <span class="op">=</span> doc_b.tensor[erat_b.i]</span>
@@ -470,23 +470,23 @@ Vectors identical? True</code></pre>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>cos_sim <span class="op">=</span> np.dot(tensor_a, tensor_b) <span class="op">/</span> (np.linalg.norm(tensor_a) <span class="op">*</span> np.linalg.norm(tensor_b))</span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Cosine similarity: </span><span class="sc">{</span>cos_sim<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>tok2vec output for 'erat' in 'Caesar magnus erat.':
-[-5.5985093   1.6060945   5.2459955   0.73094916 -3.8397129  -4.930661
-  2.839848   -2.5907235  -2.5042472  -3.0111873 ]
+<pre><code>tok2vec output for 'erat' in 'Caesar magnus erat .':
+[-0.7828857   1.2530129   3.217065   -1.987933    1.0486498  -0.9898325
+ -2.239715    0.518736   -0.5815717  -0.19825797]
 
-tok2vec output for 'erat' in 'Tempus longum erat.':
-[-5.395909   1.074707   3.5050492  1.1230471 -4.0830016 -5.5699005
-  2.8832095 -2.082502  -2.075153  -4.2625637]
+tok2vec output for 'erat' in 'Tempus longum erat .':
+[ 0.6583333   1.0896324   3.5292163   0.29009092  1.1463788  -1.0406121
+ -1.8273878   0.71445364  1.443218   -1.7423413 ]
 
 Vectors identical? False
-Cosine similarity: 0.9701</code></pre>
+Cosine similarity: 0.7458</code></pre>
 </div>
 </div>
 </section>
 <section id="span-and-document-vectors" class="level3" data-number="10.1.3">
 <h3 data-number="10.1.3" class="anchored" data-anchor-id="span-and-document-vectors"><span class="header-section-number">10.1.3</span> Span and document vectors</h3>
 <p>The <code>span.vector</code> and <code>doc.vector</code> properties return the mean of the <em>static</em> <code>token.vector</code> values — not the contextual tok2vec output. These averaged static vectors provide a simple, deterministic representation for a span of text:</p>
-<div id="cell-15" class="cell" data-execution_count="7">
+<div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:22:00.921772Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:22:00.921698Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:22:00.924235Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:22:00.923894Z&quot;}}" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sents <span class="op">=</span> [sent <span class="cf">for</span> sent <span class="kw">in</span> doc.sents]</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sent <span class="kw">in</span> sents:</span>
@@ -494,13 +494,13 @@ Cosine similarity: 0.9701</code></pre>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(sent.vector[:<span class="dv">10</span>])</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Haec narrantur a poetis de Perseo.
-[-2.0929456  -1.0989287   0.29314348  1.3037221   0.78510916 -0.38522485
- -0.01578556 -0.56820565  0.611749    1.2512217 ]</code></pre>
+<pre><code>Haec narrantur a poetis de Perseo .
+[ 0.83899707  3.9955199  -0.62983674  0.58676285  1.5853631   0.5071678
+ -0.2669535   0.50204414  1.6783661  -0.22031358]</code></pre>
 </div>
 </div>
 <p>The <code>doc.similarity()</code> method computes cosine similarity between averaged static vectors. Because these are based on static floret embeddings, the similarity score reflects overlap in word forms and their trained associations, not context-dependent meaning:</p>
-<div id="cell-17" class="cell" data-execution_count="8">
+<div id="cell-17" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:22:00.925297Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:22:00.925206Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:22:00.978788Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:22:00.978294Z&quot;}}" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>text_1 <span class="op">=</span> <span class="st">"Omnia vincit amor."</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>text_2 <span class="op">=</span> <span class="st">"Omnia vincit amicitia."</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -513,13 +513,14 @@ Cosine similarity: 0.9701</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Similarity between the two sentences...
-0.8994302985271659</code></pre>
+0.9378001689910889</code></pre>
 </div>
 </div>
 </section>
 <section id="references" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="references">References</h3>
-<p><strong>SLP</strong> Ch. 5, “Embeddings” <a href="https://web.stanford.edu/~jurafsky/slp3/5.pdf">link</a> <strong>SLP</strong> Ch. 10 “Masked Language Models” <a href="https://web.stanford.edu/~jurafsky/slp3/10.pdf">link</a></p>
+<p><strong>SLP</strong> Ch. 5, “Embeddings” <a href="https://web.stanford.edu/~jurafsky/slp3/5.pdf">link</a><br>
+<strong>SLP</strong> Ch. 10 “Masked Language Models” <a href="https://web.stanford.edu/~jurafsky/slp3/10.pdf">link</a></p>
 
 
 </section>

@@ -361,7 +361,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="15.1" class="anchored" data-anchor-id="visualizing-annotations-with-displacy"><span class="header-section-number">15.1</span> Visualizing Annotations with DisplaCy</h2>
 <p>Throughout this book, we have annotated many texts and often reported these annotations in simple lists and tables. But it can be useful for for some tasks to <em>see</em> the annotations and how they relate to our texts. SpaCy includes some basic visualization tools through a package called <code>displacy</code> that can help us accomplish this goal.</p>
 <p>There are two primary types of annotations that <code>displaCy</code> can help us visualize: dependency parses and named entities. This notebook demonstrates both types of annotations.</p>
-<div id="cell-3" class="cell" data-execution_count="1">
+<div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:58:32.630895Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:58:32.630227Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:59:43.621210Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:59:43.620764Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports &amp; setup</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
@@ -373,18 +373,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum. Avus eius Acrisius appellabatur.</code></pre>
+<pre><code>Haec narrantur a poetis de Perseo . Perseus filius erat Iouis , maximi deorum . Auus eius Acrisius appellabatur .</code></pre>
 </div>
 </div>
 <section id="visualizing-dependency-parses" class="level3" data-number="15.1.1">
 <h3 data-number="15.1.1" class="anchored" data-anchor-id="visualizing-dependency-parses"><span class="header-section-number">15.1.1</span> Visualizing dependency parses</h3>
-<div id="cell-5" class="cell" data-execution_count="2">
+<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:59:43.622590Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:59:43.622410Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:59:43.624397Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:59:43.623983Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> spacy <span class="im">import</span> displacy</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Let’s take the first sentence from our sample text and list the relevant dependency annotations…</p>
-<div id="cell-7" class="cell" data-execution_count="3">
+<div id="cell-7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:59:43.625621Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:59:43.625535Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:59:43.628294Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:59:43.627885Z&quot;}}" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sents <span class="op">=</span> <span class="bu">list</span>(doc.sents)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
@@ -399,19 +399,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  0  Haec       nsubj:pass  narrantur
  1  narrantur  ROOT        narrantur
  2  a          case        poetis
- 3  poetis     obl:agent   narrantur
+ 3  poetis     obl         narrantur
  4  de         case        Perseo
  5  Perseo     obl         narrantur
- 6  .          punct       narrantur</code></pre>
+ 6  .          conj        narrantur</code></pre>
 </div>
 </div>
 <p>The table above reflects all of the relevant dependencies, but again in a list format, it can be hard to trace these relationships. Here is where a visualization can be useful…</p>
-<div id="cell-9" class="cell" data-execution_count="4">
+<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:59:43.629373Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:59:43.629287Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:59:43.641234Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:59:43.640922Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize dependency parse</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>displacy.render(sents[<span class="dv">0</span>], style<span class="op">=</span><span class="st">'dep'</span>, jupyter<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<span class="tex2jax_ignore"><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" lang="la" id="a71a1b760cde4fe59d296a3e8d296a04-0" class="displacy" width="1100" height="399.5" direction="ltr" style="max-width: none; height: 399.5px; color: #000000; background: #ffffff; font-family: Arial; direction: ltr">
+<span class="tex2jax_ignore"><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" lang="la" id="6a1f258ee2754f3c91a6ab1b9dff7608-0" class="displacy" width="1100" height="399.5" direction="ltr" style="max-width: none; height: 399.5px; color: #000000; background: #ffffff; font-family: Arial; direction: ltr">
 <text class="displacy-token" fill="currentColor" text-anchor="middle" y="309.5">
     <tspan class="displacy-word" fill="currentColor" x="50">Haec</tspan>
     <tspan class="displacy-tag" dy="2em" fill="currentColor" x="50">DET</tspan>
@@ -438,46 +438,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </text>
 
 <text class="displacy-token" fill="currentColor" text-anchor="middle" y="309.5">
-    <tspan class="displacy-word" fill="currentColor" x="925">Perseo.</tspan>
+    <tspan class="displacy-word" fill="currentColor" x="925">Perseo .</tspan>
     <tspan class="displacy-tag" dy="2em" fill="currentColor" x="925">PROPN</tspan>
 </text>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-a71a1b760cde4fe59d296a3e8d296a04-0-0" stroke-width="2px" d="M70,264.5 C70,177.0 215.0,177.0 215.0,264.5" fill="none" stroke="currentColor"></path>
+    <path class="displacy-arc" id="arrow-6a1f258ee2754f3c91a6ab1b9dff7608-0-0" stroke-width="2px" d="M70,264.5 C70,177.0 215.0,177.0 215.0,264.5" fill="none" stroke="currentColor"></path>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textpath href="#arrow-a71a1b760cde4fe59d296a3e8d296a04-0-0" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">nsubj:pass</textpath>
+        <textpath href="#arrow-6a1f258ee2754f3c91a6ab1b9dff7608-0-0" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">nsubj:pass</textpath>
     </text>
     <path class="displacy-arrowhead" d="M70,266.5 L62,254.5 78,254.5" fill="currentColor"></path>
 </g>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-a71a1b760cde4fe59d296a3e8d296a04-0-1" stroke-width="2px" d="M420,264.5 C420,177.0 565.0,177.0 565.0,264.5" fill="none" stroke="currentColor"></path>
+    <path class="displacy-arc" id="arrow-6a1f258ee2754f3c91a6ab1b9dff7608-0-1" stroke-width="2px" d="M420,264.5 C420,177.0 565.0,177.0 565.0,264.5" fill="none" stroke="currentColor"></path>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textpath href="#arrow-a71a1b760cde4fe59d296a3e8d296a04-0-1" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">case</textpath>
+        <textpath href="#arrow-6a1f258ee2754f3c91a6ab1b9dff7608-0-1" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">case</textpath>
     </text>
     <path class="displacy-arrowhead" d="M420,266.5 L412,254.5 428,254.5" fill="currentColor"></path>
 </g>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-a71a1b760cde4fe59d296a3e8d296a04-0-2" stroke-width="2px" d="M245,264.5 C245,89.5 570.0,89.5 570.0,264.5" fill="none" stroke="currentColor"></path>
+    <path class="displacy-arc" id="arrow-6a1f258ee2754f3c91a6ab1b9dff7608-0-2" stroke-width="2px" d="M245,264.5 C245,89.5 570.0,89.5 570.0,264.5" fill="none" stroke="currentColor"></path>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textpath href="#arrow-a71a1b760cde4fe59d296a3e8d296a04-0-2" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">obl:agent</textpath>
+        <textpath href="#arrow-6a1f258ee2754f3c91a6ab1b9dff7608-0-2" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">obl</textpath>
     </text>
     <path class="displacy-arrowhead" d="M570.0,266.5 L578.0,254.5 562.0,254.5" fill="currentColor"></path>
 </g>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-a71a1b760cde4fe59d296a3e8d296a04-0-3" stroke-width="2px" d="M770,264.5 C770,177.0 915.0,177.0 915.0,264.5" fill="none" stroke="currentColor"></path>
+    <path class="displacy-arc" id="arrow-6a1f258ee2754f3c91a6ab1b9dff7608-0-3" stroke-width="2px" d="M770,264.5 C770,177.0 915.0,177.0 915.0,264.5" fill="none" stroke="currentColor"></path>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textpath href="#arrow-a71a1b760cde4fe59d296a3e8d296a04-0-3" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">case</textpath>
+        <textpath href="#arrow-6a1f258ee2754f3c91a6ab1b9dff7608-0-3" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">case</textpath>
     </text>
     <path class="displacy-arrowhead" d="M770,266.5 L762,254.5 778,254.5" fill="currentColor"></path>
 </g>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-a71a1b760cde4fe59d296a3e8d296a04-0-4" stroke-width="2px" d="M245,264.5 C245,2.0 925.0,2.0 925.0,264.5" fill="none" stroke="currentColor"></path>
+    <path class="displacy-arc" id="arrow-6a1f258ee2754f3c91a6ab1b9dff7608-0-4" stroke-width="2px" d="M245,264.5 C245,2.0 925.0,2.0 925.0,264.5" fill="none" stroke="currentColor"></path>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textpath href="#arrow-a71a1b760cde4fe59d296a3e8d296a04-0-4" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">obl</textpath>
+        <textpath href="#arrow-6a1f258ee2754f3c91a6ab1b9dff7608-0-4" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">obl</textpath>
     </text>
     <path class="displacy-arrowhead" d="M925.0,266.5 L933.0,254.5 917.0,254.5" fill="currentColor"></path>
 </g>
@@ -488,7 +488,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="visualizing-named-entities" class="level3" data-number="15.1.2">
 <h3 data-number="15.1.2" class="anchored" data-anchor-id="visualizing-named-entities"><span class="header-section-number">15.1.2</span> Visualizing named entities</h3>
 <p>We can also use displaCy to visualize named entity annotations. As we read in the previous chapter on the NER component, the LatinCy models currently support named entity annotations for the following entity types: <code>PERSON</code>, <code>LOC</code>, and <code>NORP</code> (i.e.&nbsp;groups of people). As with the dependency parses, let’s first present entity annotations in a table format…</p>
-<div id="cell-12" class="cell" data-execution_count="5">
+<div id="cell-12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:59:43.642301Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:59:43.642232Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:59:43.692177Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:59:43.691753Z&quot;}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract entities</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"""Iason et Medea e Thessalia expulsi ad urbem Corinthum venerunt, cuius urbis Creon quidam regnum tum obtinebat."""</span></span>
@@ -528,7 +528,7 @@ obtinebat
 </div>
 </div>
 <p>The disadvantages of this type of presentation are not hard to notice. It lacks compactness and perhaps more importantly there is a lack of clear visual distinction between the different entity types. By contrast, displaCy can show us the entities in clear running text with each entity type color-coded for maximum visual impact.</p>
-<div id="cell-15" class="cell" data-execution_count="7">
+<div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:59:43.693383Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:59:43.693311Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:59:43.695980Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:59:43.695554Z&quot;}}" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizing named entities</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>displacy.render(doc, style<span class="op">=</span><span class="st">"ent"</span>, jupyter<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -553,12 +553,12 @@ obtinebat
     Corinthum
     <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">LOC</span>
 </mark>
- uenerunt, cuius urbis 
+ uenerunt , cuius urbis 
 <mark class="entity" style="background: #aa9cfc; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em;">
     Creon
     <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; vertical-align: middle; margin-left: 0.5rem">PERSON</span>
 </mark>
- quidam regnum tum obtinebat.</div></span>
+ quidam regnum tum obtinebat .</div></span>
 </div>
 </div>
 </section>

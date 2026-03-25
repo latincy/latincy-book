@@ -355,7 +355,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="noun-chunking-with-latincy" class="level2" data-number="12.1">
 <h2 data-number="12.1" class="anchored" data-anchor-id="noun-chunking-with-latincy"><span class="header-section-number">12.1</span> Noun Chunking with LatinCy</h2>
 <p>Noun chunking is the task of identifying a noun and the words directly related to it. More specifically, with respect to the LatinCy pipeline, it is using annotations of the POS-tagger (<code>tagger</code>) and the dependency parser (<code>parser</code>) to identify all children of a token tagged as NOUN. Unlike the NLP tasks in the preceding sections, this task cannot be associated directly with a pipeline component; rather it is a special <code>Span</code> case defined in the spaCy language model itself under <a href="https://github.com/explosion/spaCy/blob/master/spacy/lang/la/syntax_iterators.py"><code>syntax iterators</code></a>.</p>
-<div id="cell-3" class="cell" data-execution_count="1">
+<div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:36:17.578511Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:36:17.578403Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:53:50.732135Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:53:50.729872Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports &amp; setup</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> spacy</span>
@@ -365,18 +365,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum. Avus eius Acrisius appellabatur.</code></pre>
+<pre><code>Haec narrantur a poetis de Perseo . Perseus filius erat Iouis , maximi deorum . Auus eius Acrisius appellabatur .</code></pre>
 </div>
 </div>
 <p>As defined in the <code>syntax_iterators</code>, noun chunks become attributes of the spaCy <code>Doc</code> object. Noun chunks will return any token span for which the dependency head has the <code>NOUN</code> tag. A one-word noun chunk is just the noun itself, so not of particular interest. So, really what we are looking for are longer spans of noun-related text.</p>
-<div id="cell-5" class="cell" data-execution_count="2">
+<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:53:50.736039Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:53:50.735532Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:53:50.742373Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:53:50.740493Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the noun chunks in the text</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> noun_chunk <span class="kw">in</span> doc.noun_chunks:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(noun_chunk) <span class="op">&gt;</span> <span class="dv">1</span>:</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(noun_chunk)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>maximi deorum
-Avus eius</code></pre>
+<pre><code>Perseus filius
+maximi deorum
+Auus eius</code></pre>
 </div>
 </div>
 <section id="references" class="level3 unnumbered">
