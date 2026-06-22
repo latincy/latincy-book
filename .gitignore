@@ -175,6 +175,3 @@ cython_debug/
 
 # uv / project-local venv
 .uvenv/
-
-# Local scratch
-exclude/
