@@ -168,6 +168,13 @@ cython_debug/
 # Quarto
 /.quarto/
 /_site/
+/_book/
 .claude/
 
 **/*.quarto_ipynb
+
+# uv / project-local venv
+.uvenv/
+
+# Local scratch
+exclude/
