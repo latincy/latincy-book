@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>10&nbsp; Vectors – Getting Started with LatinCy</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -69,15 +72,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="./ner.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -131,9 +133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Getting Started with LatinCy</a> 
     </div>
@@ -295,14 +295,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./quickstart.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Quickstart</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Open LatinCy Projects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Open LatinCy Projects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sample-texts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Sample Texts</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Sample Texts</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -369,7 +375,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Haec narrantur a poetis de Perseo . Perseus filius erat Iouis , maximi deorum ; auus eius Acrisius appellabatur .</code></pre>
+<pre><code>Haec narrantur a poetis de Perseo. Perseus filius erat Iouis, maximi deorum; auus eius Acrisius appellabatur.</code></pre>
 </div>
 </div>
 <!-- Word tokenization is the task of splitting a text into words (and wordlike units like punctuation, numbers, etc.). For the LatinCy models, tokenization is the fundamental pipeline component on which all other components depend. SpaCy uses non-destructive, "canonical" tokenization, i.e. non-destructive, in that the original text can be untokenized, so to speak, based on `Token` annotations and canonical in that indices are assigned to each token during this process and these indices are used to refer to the tokens in other annotations. (Tokens *can* be separated or merged, but this requires the user to actively undo and redefine the tokenization output.) LatinCy uses a modified version of the default spaCy tokenizer that recognizes and splits enlitic *-que* using a rules-based process. (NB: It is in the LatinCy [development plan](projects.qmd#enclitics-project) to move enclitic splitting to a separate post-tokenization component.)
@@ -381,7 +387,7 @@ The spaCy `Doc` object is an iterable and tokens are the iteration unit. -->
 <li><p><strong>Static floret vectors</strong> (300 dimensions) — trained on the LatinCy texts corpus, these assign a fixed vector to each word form. Accessed via <code>token.vector</code>. The same word always receives the same vector, regardless of context.</p></li>
 <li><p><strong>Contextual tok2vec vectors</strong> (96 dimensions) — produced by a CNN that takes the static vectors as input and incorporates surrounding context. Accessed via <code>doc.tensor[token.i]</code>. The same word receives <em>different</em> vectors in different sentences.</p></li>
 </ol>
-<p><strong>New for v3.9</strong>: The <a href="https://spacy.io/usage/embeddings-transformers#pretraining"><code>pretrain</code></a> initializes the model with information from a large amount of raw text so that the model can learn sentence structure, word cooccurrence, and other general language patterns.</p>
+<p>In addition, the <a href="https://spacy.io/usage/embeddings-transformers#pretraining"><code>pretrain</code></a> initializes the model with information from a large amount of raw text so that the model can learn sentence structure, word cooccurrence, and other general language patterns.</p>
 <p>Here is the vector for the first token ‘Haec’ in the text given above, output trunctated to the first 10 dimensions:</p>
 <div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:22:00.852451Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:22:00.852289Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:22:00.854472Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:22:00.854083Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tokens <span class="op">=</span> [token <span class="cf">for</span> token <span class="kw">in</span> doc]</span>
@@ -441,11 +447,11 @@ erat        5.0704     1.04352   -0.562308   3.80192   -1.54061    -2.32062   -2
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(erat_b.vector[:<span class="dv">10</span>])</span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Vectors identical? </span><span class="sc">{</span>np<span class="sc">.</span>array_equal(erat_a.vector, erat_b.vector)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>'erat' in 'Caesar magnus erat .':
+<pre><code>'erat' in 'Caesar magnus erat.':
 [ 5.0704026   1.0435151  -0.56230766  3.801923   -1.5406077  -2.3206182
  -2.4345021   1.8656712   4.334582   -0.74421906]
 
-'erat' in 'Tempus longum erat .':
+'erat' in 'Tempus longum erat.':
 [ 5.0704026   1.0435151  -0.56230766  3.801923   -1.5406077  -2.3206182
  -2.4345021   1.8656712   4.334582   -0.74421906]
 
@@ -456,7 +462,7 @@ Vectors identical? True</code></pre>
 <section id="contextual-vectors-from-tok2vec" class="level3" data-number="10.1.2">
 <h3 data-number="10.1.2" class="anchored" data-anchor-id="contextual-vectors-from-tok2vec"><span class="header-section-number">10.1.2</span> Contextual vectors from tok2vec</h3>
 <p>The tok2vec component on the other hand takes the static floret vectors as input and produces <em>contextual</em> representations that incorporate information from surrounding tokens. These are stored in <code>doc.tensor</code>, a matrix with one row per token, and have 96 dimensions in the <code>lg</code> model.</p>
-<p>Unlike the static vectors, the contextual tok2vec output for the same word form <em>differs</em> depending on context, though note still the high similarity between the two vectors for <em>erat</em> in the different sentences (cosine similarity of ~0.97).</p>
+<p>Unlike the static vectors, the contextual tok2vec output for the same word form <em>differs</em> depending on context, though note still the high similarity between the two vectors for <em>erat</em> in the different sentences (cosine similarity of ~0.74).</p>
 <div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:22:00.917906Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:22:00.917826Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:22:00.920638Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:22:00.920262Z&quot;}}" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Contextual tok2vec output: same word → different vector in different context</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>tensor_a <span class="op">=</span> doc_a.tensor[erat_a.i]</span>
@@ -470,11 +476,11 @@ Vectors identical? True</code></pre>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>cos_sim <span class="op">=</span> np.dot(tensor_a, tensor_b) <span class="op">/</span> (np.linalg.norm(tensor_a) <span class="op">*</span> np.linalg.norm(tensor_b))</span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Cosine similarity: </span><span class="sc">{</span>cos_sim<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>tok2vec output for 'erat' in 'Caesar magnus erat .':
+<pre><code>tok2vec output for 'erat' in 'Caesar magnus erat.':
 [-0.7828857   1.2530129   3.217065   -1.987933    1.0486498  -0.9898325
  -2.239715    0.518736   -0.5815717  -0.19825797]
 
-tok2vec output for 'erat' in 'Tempus longum erat .':
+tok2vec output for 'erat' in 'Tempus longum erat.':
 [ 0.6583333   1.0896324   3.5292163   0.29009092  1.1463788  -1.0406121
  -1.8273878   0.71445364  1.443218   -1.7423413 ]
 
@@ -494,7 +500,7 @@ Cosine similarity: 0.7458</code></pre>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(sent.vector[:<span class="dv">10</span>])</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Haec narrantur a poetis de Perseo .
+<pre><code>Haec narrantur a poetis de Perseo.
 [ 0.83899707  3.9955199  -0.62983674  0.58676285  1.5853631   0.5071678
  -0.2669535   0.50204414  1.6783661  -0.22031358]</code></pre>
 </div>

@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>6&nbsp; Lemmatization – Getting Started with LatinCy</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -59,7 +62,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -89,15 +91,14 @@ div.csl-indent {
 <link href="./word-tokenization.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -151,9 +152,7 @@ div.csl-indent {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Getting Started with LatinCy</a> 
     </div>
@@ -315,14 +314,20 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./quickstart.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Quickstart</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./projects.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Open LatinCy Projects</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Open LatinCy Projects</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sample-texts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Sample Texts</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Sample Texts</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -374,7 +379,7 @@ div.csl-indent {
 
 <section id="lemmatization-with-latincy" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="lemmatization-with-latincy"><span class="header-section-number">6.1</span> Lemmatization with LatinCy</h2>
-<p>Lemmatization is the task of mapping a token in a text to its dictionary headword. With the default LatinCy pipelines, two components are used to perform this task: 1. spaCy’s <a href="https://spacy.io/api/edittreelemmatizer"><code>Edit Tree Lemmatizer</code></a> and 2. a second custom <code>Lookup Lemmatizer</code>, named in the pipeline “trainable_lemmatizer” and “lookup_lemmatizer” respectively. In the first lemmatization pass, a probabilistic tree model is used to predict the transformation from the token form to its lemma. A second pass is made at the end of the pipeline which checks the token form against a large (~1M item) lemma dictionary (i.e.&nbsp;lookups) for ostensibly unambiguous forms; if a match is found, the lemma is overwritten with the corresponding value from lookup. The two-pass logic largely follows the approach recommended in <span class="citation" data-cites="burns_backoff_2018">Burns (<a href="references.html#ref-burns_backoff_2018" role="doc-biblioref">2018</a>)</span> and <span class="citation" data-cites="burns_ensemble_2020">Burns (<a href="references.html#ref-burns_ensemble_2020" role="doc-biblioref">2020</a>)</span>, as facilitated by the spaCy pipeline architecture.</p>
+<p>Lemmatization is the task of mapping a token in a text to its dictionary headword. With the default LatinCy pipelines, two components are used to perform this task: 1. spaCy’s <a href="https://spacy.io/api/edittreelemmatizer"><code>Edit Tree Lemmatizer</code></a> and 2. a second custom <code>Lookup Lemmatizer</code>, named in the pipeline “trainable_lemmatizer” and “lookup_lemmatizer” respectively. In the first lemmatization pass, a probabilistic tree model is used to predict the transformation from the token form to its lemma. A second pass is made at the end of the pipeline which checks the token form against a large (~1M item) lemma dictionary (i.e.&nbsp;lookups) for ostensibly unambiguous forms; if a match is found, the lemma is overwritten with the corresponding value from lookup. The two-pass logic largely follows the approach recommended in <span class="citation" data-cites="burns_backoff_2018">Burns (<a href="#ref-burns_backoff_2018" role="doc-biblioref">2018</a>)</span> and <span class="citation" data-cites="burns_ensemble_2020">Burns (<a href="#ref-burns_ensemble_2020" role="doc-biblioref">2020</a>)</span>, as facilitated by the spaCy pipeline architecture.</p>
 <div id="cell-3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:08:16.165313Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:08:16.165227Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:08:47.368251Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:08:47.367686Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imports &amp; setup</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -385,14 +390,14 @@ div.csl-indent {
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> nlp(text)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(doc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Haec narrantur a poetis de Perseo . Perseus filius erat Iouis , maximi deorum . Auus eius Acrisius appellabatur .</code></pre>
+<pre><code>Haec narrantur a poetis de Perseo. Perseus filius erat Iouis, maximi deorum. Auus eius Acrisius appellabatur.</code></pre>
 </div>
 </div>
 <p>Note here the two lemmatizer components that are included in the pipeline, i.e.&nbsp;“trainable_lemmatizer” and “lookup_lemmatizer”…</p>
 <div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:08:47.370008Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:08:47.369742Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:08:47.372223Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:08:47.371797Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nlp.pipe_names)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>['tok2vec', 'senter', 'normer', 'tagger', 'morphologizer', 'trainable_lemmatizer', 'lookup_lemmatizer', 'uv_normalizer', 'parser', 'harmonizer', 'remorpher', 'ner']</code></pre>
+<pre><code>['enclitic_splitter', 'tok2vec', 'senter', 'token_fix', 'normer', 'tagger', 'morphologizer', 'trainable_lemmatizer', 'lookup_lemmatizer', 'uv_normalizer', 'parser', 'harmonizer', 'remorpher', 'ner']</code></pre>
 </div>
 </div>
 <p>Once a text is annotated using the LatinCy pipeline, i.e.&nbsp;as part of the <code>Doc</code> creation process, lemmas can be found as annotations of the <code>Token</code> objects…</p>
@@ -464,20 +469,18 @@ Human-readable lemma: narro
 spaCy lemma key: 11361982710182407617</code></pre>
 </div>
 </div>
-<p>In order to compare the two different lemmatization passes, we can create two copies of the LatinCy pipeline, each with one of the two lemmatizers removed…</p>
+<p>In order to compare the two different lemmatization passes, we can load two instances of the LatinCy pipeline, each with one of the two lemmatizers disabled…</p>
 <div id="cell-14" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:08:47.401792Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:08:47.401630Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:08:48.478463Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:08:48.477880Z&quot;}}" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copy</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>P1 <span class="op">=</span> copy.deepcopy(nlp)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>P1.disable_pipes(([<span class="st">'tagger'</span>, <span class="st">'morphologizer'</span>, <span class="st">'lookup_lemmatizer'</span>]))</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'First pipeline components: </span><span class="sc">{</span>P1<span class="sc">.</span>pipe_names<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>P2 <span class="op">=</span> copy.deepcopy(nlp)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>P2.disable_pipes(([<span class="st">'tagger'</span>, <span class="st">'morphologizer'</span>, <span class="st">'trainable_lemmatizer'</span>]))</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Second pipeline components: </span><span class="sc">{</span>P2<span class="sc">.</span>pipe_names<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>P1 <span class="op">=</span> spacy.load(<span class="st">'la_core_web_sm'</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>P1.disable_pipes([<span class="st">'tagger'</span>, <span class="st">'morphologizer'</span>, <span class="st">'lookup_lemmatizer'</span>])</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'First pipeline components: </span><span class="sc">{</span>P1<span class="sc">.</span>pipe_names<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>P2 <span class="op">=</span> spacy.load(<span class="st">'la_core_web_sm'</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>P2.disable_pipes([<span class="st">'tagger'</span>, <span class="st">'morphologizer'</span>, <span class="st">'trainable_lemmatizer'</span>])</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Second pipeline components: </span><span class="sc">{</span>P2<span class="sc">.</span>pipe_names<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>First pipeline components: ['tok2vec', 'senter', 'normer', 'trainable_lemmatizer', 'uv_normalizer', 'parser', 'harmonizer', 'remorpher', 'ner']
-Second pipeline components: ['tok2vec', 'senter', 'normer', 'lookup_lemmatizer', 'uv_normalizer', 'parser', 'harmonizer', 'remorpher', 'ner']</code></pre>
+<pre><code>First pipeline components: ['enclitic_splitter', 'tok2vec', 'senter', 'token_fix', 'normer', 'trainable_lemmatizer', 'uv_normalizer', 'parser', 'harmonizer', 'remorpher', 'ner']
+Second pipeline components: ['enclitic_splitter', 'tok2vec', 'senter', 'token_fix', 'normer', 'lookup_lemmatizer', 'uv_normalizer', 'parser', 'harmonizer', 'remorpher', 'ner']</code></pre>
 </div>
 </div>
 <p>We can then run the same text through both pipelines and compare the results side-by-side…</p>
@@ -527,7 +530,7 @@ Lemma: Iuppiter
 Predicted lemma: Iuppiter</code></pre>
 </div>
 </div>
-<p>Note specifically the lemmatization of <em>Iovis</em>—since it is a highly irregular form, it is not surprising that the Edit Tree Lemmatizer has manufactured a potential, but incorrect, lemma based on the root <em>Iov-</em>. Since <em>Iovis</em> is an unambiguous Latin form and has been added to the LatinCy lookups, the Lookup Lemmatizer steps in to correct the erroneous first pass. The lookup data can be found in the <code>la-latincy-lookups</code> package [https://github.com/latincy/la-latincy-lookups]. These lookups are installed as a dependency of each of the LatinCy pipelines.</p>
+<p>Note specifically the lemmatization of <em>Iouis</em> (the v→u normalized form of <em>Iovis</em>)—the Edit Tree Lemmatizer now correctly predicts <em>Iuppiter</em> as the lemma. The Lookup Lemmatizer also has <em>Iouis</em> in its lookup table as a further safeguard. The lookup data can be found in the <code>la-latincy-lookups</code> package [https://github.com/latincy/la-latincy-lookups]. These lookups are installed as a dependency of each of the LatinCy pipelines.</p>
 <p>The code below shows how to access the lookup data directly…</p>
 <div id="cell-20" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-03-24T21:08:48.504084Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-03-24T21:08:48.504001Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-03-24T21:08:48.830829Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-03-24T21:08:48.830206Z&quot;}}" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the lookups data</span></span>
@@ -583,7 +586,7 @@ factus       facio</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> spacy <span class="im">import</span> Language</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>custom_lemma_lookups <span class="op">=</span> {</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Jedi"</span>: [<span class="st">"Jedi"</span>],</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Iedi"</span>: [<span class="st">"Iedi"</span>],  <span class="co"># j→i normalized form</span></span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Tatooine"</span>: [<span class="st">"Tatooine"</span>],</span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Leia"</span>: [<span class="st">"Leia"</span>, <span class="st">"Leiae"</span>, <span class="st">"Leiam"</span>],</span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>}</span>
@@ -632,7 +635,7 @@ et           et
 Lucas        Lucas
 Skywalker    Skywalker
 nouiter      nouiter
-Iedi         Iedus
+Iedi         Iedi
 factus       facio</code></pre>
 </div>
 </div>
@@ -644,12 +647,12 @@ factus       facio</code></pre>
 <strong>spaCy</strong> EditTreeLemmatizer <a href="https://spacy.io/api/edittreelemmatizer">link</a></p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-burns_backoff_2018" class="csl-entry" role="listitem">
-Burns, Patrick J. 2018. <span>“Backoff <span>Lemmatization</span> as a <span>Philological</span> <span>Method</span>.”</span> In <em>Digital <span>Humanities</span> 2018, <span>DH</span> 2018, <span>Book</span> of <span>Abstracts</span>, <span>El</span> <span>Colegio</span> de <span>México</span>, <span>UNAM</span>, and <span>RedHD</span>, <span>Mexico</span> <span>City</span>, <span>Mexico</span>, <span>June</span> 26-29, 2018</em>.
+Burns, Patrick J. 2018. <span>“Backoff <span>Lemmatization</span> as a <span>Philological</span> <span>Method</span>.”</span> <em>Digital <span>Humanities</span> 2018, <span>DH</span> 2018, <span>Book</span> of <span>Abstracts</span>, <span>El</span> <span>Colegio</span> de <span>México</span>, <span>UNAM</span>, and <span>RedHD</span>, <span>Mexico</span> <span>City</span>, <span>Mexico</span>, <span>June</span> 26-29, 2018</em>.
 </div>
 <div id="ref-burns_ensemble_2020" class="csl-entry" role="listitem">
-———. 2020. <span>“Ensemble Lemmatization with the <span>Classical</span> <span>Language</span> <span>Toolkit</span>.”</span> <em>Studi e Saggi Linguistici</em> 58 (1): 157–76. <a href="https://doi.org/10.4454/ssl.v58i1.273">https://doi.org/10.4454/ssl.v58i1.273</a>.
+Burns, Patrick J. 2020. <span>“Ensemble Lemmatization with the <span>Classical</span> <span>Language</span> <span>Toolkit</span>.”</span> <em>Studi e Saggi Linguistici</em> 58 (1): 157–76. <a href="https://doi.org/10.4454/ssl.v58i1.273">https://doi.org/10.4454/ssl.v58i1.273</a>.
 </div>
 </div>
 </section>
