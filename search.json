@@ -42,5 +42,71 @@
       "spaCy Tasks",
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Sequence Matching</span>"
     ]
+  },
+  {
+    "objectID": "latincy-quickstart.html",
+    "href": "latincy-quickstart.html",
+    "title": "Appendix A — Quickstart",
+    "section": "",
+    "text": "A.1 Setup\nPatrick J. Burns | Getting Started with LatinCy\nThis quickstart introduces LatinCy through the opening sentences of Ritchie’s Fabulae Faciles (1884), a beginner’s Latin reader based on mythological stories. In a few minutes you will install the library, load a model, annotate a text, and run a lemma-based search to find all grammatical forms of a Latin word across a passage — useful for close reading, concordance work, and textual analysis.\nThe examples use the small model (la_core_web_sm). No prior NLP experience is assumed.\nThe cell below installs spaCy and the LatinCy small model automatically when run in Google Colab. If you are working in a local environment, see the Installing LatinCy models chapter for installation instructions.\nimport sys\nif 'google.colab' in sys.modules:\n    !pip install -U spacy -q\n    !pip install -q \"la-core-web-sm @ https://huggingface.co/latincy/la_core_web_sm/resolve/main/la_core_web_sm-3.9.4-py3-none-any.whl\"\nimport spacy\n\nnlp = spacy.load('la_core_web_sm')\nprint(f\"Loaded pipeline: {nlp.meta['name']} v{nlp.meta['version']}\")\n\nLoaded pipeline: core_web_sm v3.9.4",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Quickstart</span>"
+    ]
+  },
+  {
+    "objectID": "latincy-quickstart.html#working-with-latin-text",
+    "href": "latincy-quickstart.html#working-with-latin-text",
+    "title": "Appendix A — Quickstart",
+    "section": "A.2 Working with Latin text",
+    "text": "A.2 Working with Latin text\nWe will work with the opening sentences of Ritchie’s Fabulae Faciles. The passage introduces the myth of Perseus:\n\nHaec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum. Avus eius Acrisius appellabatur.\n\nPassing the text to nlp() runs it through the full LatinCy pipeline: tokenization, lemmatization, part-of-speech tagging, morphological analysis, dependency parsing, and named entity recognition.\n\ntext = (\n    \"Haec narrantur a poetis de Perseo. \"\n    \"Perseus filius erat Iovis, maximi deorum. \"\n    \"Avus eius Acrisius appellabatur.\"\n)\n\ndoc = nlp(text)\nprint(doc)\n\nHaec narrantur a poetis de Perseo. Perseus filius erat Iouis, maximi deorum. Auus eius Acrisius appellabatur.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Quickstart</span>"
+    ]
+  },
+  {
+    "objectID": "latincy-quickstart.html#token-annotations",
+    "href": "latincy-quickstart.html#token-annotations",
+    "title": "Appendix A — Quickstart",
+    "section": "A.3 Token annotations",
+    "text": "A.3 Token annotations\nOnce a text is processed, every token in the Doc carries a set of linguistic annotations. The most commonly used are:\n\n\n\nAttribute\nDescription\n\n\n\n\ntoken.text\nThe surface form (after any pipeline normalization)\n\n\ntoken.lemma_\nThe dictionary headword\n\n\ntoken.pos_\nCoarse part-of-speech tag (NOUN, VERB, ADP, …)\n\n\ntoken.morph\nFull morphological feature bundle\n\n\n\nLatinCy’s normalization component converts v → u and j → i directly in token.text, so the input Iovis is stored as Iouis and Avus as Auus — visible in the Token column below:\n\nprint(f\"{'Token':&lt;14} {'Lemma':&lt;14} {'POS':&lt;8} Morphology\")\nprint(\"-\" * 64)\nfor token in doc:\n    if not token.is_punct and not token.is_space:\n        print(f\"{token.text:&lt;14} {token.lemma_:&lt;14} {token.pos_:&lt;8} {token.morph}\")\n\nToken          Lemma          POS      Morphology\n----------------------------------------------------------------\nHaec           hic            DET      Case=Nom|Gender=Neut|Number=Plur\nnarrantur      narro          VERB     Aspect=Imp|Mood=Ind|Number=Plur|Person=3|Tense=Pres|VerbForm=Fin|Voice=Pass\na              ab             ADP      \npoetis         poeta          NOUN     Case=Abl|Gender=Fem|Number=Plur\nde             de             ADP      \nPerseo         Perseus        PROPN    Case=Abl|Gender=Masc|Number=Sing\nPerseus        Perseus        PROPN    Case=Nom|Gender=Masc|Number=Sing\nfilius         filius         NOUN     Case=Nom|Gender=Masc|Number=Sing\nerat           sum            AUX      Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin\nIouis          Iuppiter       PROPN    Case=Gen|Gender=Masc|Number=Sing\nmaximi         magnus         ADJ      Case=Gen|Gender=Masc|Number=Sing\ndeorum         deus           NOUN     Case=Gen|Gender=Masc|Number=Plur\nAuus           Auus           PROPN    Case=Nom|Gender=Masc|Number=Sing\neius           is             PRON     Case=Gen|Gender=Fem|Number=Sing\nAcrisius       Acrisius       PROPN    Case=Nom|Gender=Masc|Number=Sing\nappellabatur   appello        VERB     Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Pass",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Quickstart</span>"
+    ]
+  },
+  {
+    "objectID": "latincy-quickstart.html#visualizing-annotations",
+    "href": "latincy-quickstart.html#visualizing-annotations",
+    "title": "Appendix A — Quickstart",
+    "section": "A.4 Visualizing annotations",
+    "text": "A.4 Visualizing annotations\nDisplaCy renders annotations directly in the notebook. The dependency visualizer shows the parse as an arc diagram; the span visualizer highlights noun chunks in running text; the entity visualizer color-codes named entity spans by type.\n\nfrom spacy import displacy\n\nsents = list(doc.sents)\ndisplacy.render(sents[0], style=\"dep\", jupyter=True)\n\n\n\n    Haec\n    DET\n\n\n\n    narrantur\n    VERB\n\n\n\n    a\n    ADP\n\n\n\n    poetis\n    NOUN\n\n\n\n    de\n    ADP\n\n\n\n    Perseo.\n    PROPN\n\n\n\n    \n    \n        nsubj:pass\n    \n    \n\n\n\n    \n    \n        case\n    \n    \n\n\n\n    \n    \n        obl\n    \n    \n\n\n\n    \n    \n        case\n    \n    \n\n\n\n    \n    \n        obl\n    \n    \n\n\n\n\n\nA.4.1 Noun chunks\n\nselection = doc\nselection.spans['NP'] = [chunk for chunk in doc.noun_chunks if len(chunk) &gt; 1]\n\ncolors = {'NP': '#85C1E9'}\noptions = {'spans_key': 'NP', 'colors': colors}\ndisplacy.render(selection, style=\"span\", jupyter=True, options=options)\n\nHaec narrantur a poetis de Perseo . Perseus filius erat Iouis , \n\n    maximi\n    \n\n\n\n    \n\n    \n        NP\n    \n\n\n\n\n\n\n    deorum\n    \n\n\n\n    \n\n. \n\n    Auus\n    \n\n\n\n    \n\n    \n        NP\n    \n\n\n\n\n\n\n    eius\n    \n\n\n\n    \n\nAcrisius appellabatur . \n\n\n\n\nA.4.2 Named entities\n\nent_doc = nlp(\"Iason et Medea e Thessalia expulsi ad urbem Corinthum venerunt, cuius urbis Creon quidam regnum tum obtinebat.\")\ndisplacy.render(ent_doc, style=\"ent\", jupyter=True)\n\n\n\n    Iason\n    PERSON\n\n et \n\n    Medea\n    PERSON\n\n e \n\n    Thessalia\n    LOC\n\n expulsi ad urbem \n\n    Corinthum\n    LOC\n\n uenerunt, cuius urbis \n\n    Creon\n    PERSON\n\n quidam regnum tum obtinebat.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Quickstart</span>"
+    ]
+  },
+  {
+    "objectID": "latincy-quickstart.html#finding-words-with-the-matcher",
+    "href": "latincy-quickstart.html#finding-words-with-the-matcher",
+    "title": "Appendix A — Quickstart",
+    "section": "A.5 Finding words with the Matcher",
+    "text": "A.5 Finding words with the Matcher\nLatin inflection means the same word can appear in many surface forms — Perseus in the nominative becomes Perseo in the ablative, Perseum in the accusative. A lemma-based search finds all of them at once.\nspaCy’s Matcher lets you search by annotation attributes. Matching on LEMMA finds every surface form the model has traced back to a given headword:\n\nfrom spacy.matcher import Matcher\n\nmatcher = Matcher(nlp.vocab)\nmatcher.add('PERSEUS', [[{'LEMMA': 'Perseus'}]])\n\nmatches = matcher(doc)\nprint(f\"{'Form':&lt;12} {'POS':&lt;8} Morphology\")\nprint(\"-\" * 52)\nfor match_id, start, end in matches:\n    token = doc[start]\n    print(f\"{token.text:&lt;12} {token.pos_:&lt;8} {token.morph}\")\n\nForm         POS      Morphology\n----------------------------------------------------\nPerseo       PROPN    Case=Abl|Gender=Masc|Number=Sing\nPerseus      PROPN    Case=Nom|Gender=Masc|Number=Sing\n\n\nThe same approach works for any set of terms. Searching for three key words from the passage — the hero, his divine father, and the family relationship — maps each match back to its lemma:\n\nmatcher = Matcher(nlp.vocab)\nkey_terms = ['Perseus', 'deus', 'filius']\nfor term in key_terms:\n    matcher.add(term.upper(), [[{'LEMMA': term}]])\n\nmatches = matcher(doc)\nprint(f\"{'Lemma':&lt;10} {'Form':&lt;14} Morphology\")\nprint(\"-\" * 56)\nfor match_id, start, end in matches:\n    token = doc[start]\n    print(f\"{token.lemma_:&lt;10} {token.text:&lt;14} {token.morph}\")\n\nLemma      Form           Morphology\n--------------------------------------------------------\nPerseus    Perseo         Case=Abl|Gender=Masc|Number=Sing\nPerseus    Perseus        Case=Nom|Gender=Masc|Number=Sing\nfilius     filius         Case=Nom|Gender=Masc|Number=Sing\ndeus       deorum         Case=Gen|Gender=Masc|Number=Plur",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Quickstart</span>"
+    ]
+  },
+  {
+    "objectID": "latincy-quickstart.html#next-steps",
+    "href": "latincy-quickstart.html#next-steps",
+    "title": "Appendix A — Quickstart",
+    "section": "A.6 Next steps",
+    "text": "A.6 Next steps\nThis quickstart covers the basics. The full book works through each pipeline component in detail:\n\nInstalling LatinCy models — all four model sizes and optional packages\nKey annotations — complete reference for token, span, and doc attributes\nLemmatization — how the lemmatizer works and its edge cases\nSequence Matching — the full Matcher API with operators, quantifiers, and regex patterns\nNamed Entity Recognition — finding people, places, and other entities in Latin texts",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Quickstart</span>"
+    ]
   }
 ]
