@@ -296,7 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./quickstart.html" class="sidebar-item-text sidebar-link">
+  <a href="./latincy-quickstart.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Quickstart</span></span></a>
   </div>
 </li>
@@ -394,7 +394,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>matcher <span class="op">=</span> Matcher(nlp.vocab)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(matcher)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;spacy.matcher.matcher.Matcher object at 0x12e220e50&gt;</code></pre>
+<pre><code>&lt;spacy.matcher.matcher.Matcher object at 0x125e08e50&gt;</code></pre>
 </div>
 </div>
 <p>We use the <code>Matcher</code> by adding patterns, quite sensibly using the <code>add</code> method. With the <code>add</code> method, we assign a <code>match_id</code> “name” for the pattern and the patterns themselves. The patters are lists of lists of dictionaries; those dictionaries are arranged sequentially by the tokens sequences we want to match, where the dictionary keys are the attributes and the dictionary values are the our specific terms to be matched for that attribute. So, in the example below, we are looking for any span of tokens in the provided <code>Doc</code> where the <code>text</code> attribute matches—and matches exactly—the string “res”. The <code>Matcher</code> returns the <code>match_id</code> as well as the start and end indices for each matched span.</p>
