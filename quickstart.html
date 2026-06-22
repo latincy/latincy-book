@@ -380,7 +380,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption>Open In Colab</figcaption>
 </figure>
 </div>
-<p>This quickstart introduces LatinCy through the opening sentences of Ritchie’s <em>Fabulae Faciles</em> (1884), a Latin mythology reader widely used in beginning Latin courses. In a few minutes you will install the library, load a model, annotate a text, and run a lemma-based search to find all grammatical forms of a Latin word across a passage — useful for close reading, concordance work, and textual analysis.</p>
+<p>This quickstart introduces LatinCy through the opening sentences of Ritchie’s <em>Fabulae Faciles</em> (1884), a beginner’s Latin reader based on mythological stories. In a few minutes you will install the library, load a model, annotate a text, and run a lemma-based search to find all grammatical forms of a Latin word across a passage — useful for close reading, concordance work, and textual analysis.</p>
 <p>The examples use the small model (<code>la_core_web_sm</code>). No prior NLP experience is assumed.</p>
 <section id="setup" class="level2" data-number="A.1">
 <h2 data-number="A.1" class="anchored" data-anchor-id="setup"><span class="header-section-number">A.1</span> Setup</h2>
@@ -403,7 +403,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="working-with-latin-text" class="level2" data-number="A.2">
 <h2 data-number="A.2" class="anchored" data-anchor-id="working-with-latin-text"><span class="header-section-number">A.2</span> Working with Latin text</h2>
-<p>We will work with the opening sentences of Ritchie’s <em>Fabulae Faciles</em> (1884), a classic Latin reader whose texts have long been standard in beginning Latin pedagogy. The passage introduces the myth of Perseus:</p>
+<p>We will work with the opening sentences of Ritchie’s <em>Fabulae Faciles</em>. The passage introduces the myth of Perseus:</p>
 <blockquote class="blockquote">
 <p><em>Haec narrantur a poetis de Perseo. Perseus filius erat Iovis, maximi deorum. Avus eius Acrisius appellabatur.</em></p>
 </blockquote>
@@ -489,7 +489,7 @@ appellabatur   appello        VERB     Aspect=Imp|Mood=Ind|Number=Sing|Person=3|
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>sents <span class="op">=</span> <span class="bu">list</span>(doc.sents)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>displacy.render(sents[<span class="dv">0</span>], style<span class="op">=</span><span class="st">"dep"</span>, jupyter<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<span class="tex2jax_ignore"><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" lang="la" id="2824c4eb9fb545e694213d8027bd86a2-0" class="displacy" width="1100" height="399.5" direction="ltr" style="max-width: none; height: 399.5px; color: #000000; background: #ffffff; font-family: Arial; direction: ltr">
+<span class="tex2jax_ignore"><svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" lang="la" id="fc5374fdc84a4869a034a8be443b2e19-0" class="displacy" width="1100" height="399.5" direction="ltr" style="max-width: none; height: 399.5px; color: #000000; background: #ffffff; font-family: Arial; direction: ltr">
 <text class="displacy-token" fill="currentColor" text-anchor="middle" y="309.5">
     <tspan class="displacy-word" fill="currentColor" x="50">Haec</tspan>
     <tspan class="displacy-tag" dy="2em" fill="currentColor" x="50">DET</tspan>
@@ -521,41 +521,41 @@ appellabatur   appello        VERB     Aspect=Imp|Mood=Ind|Number=Sing|Person=3|
 </text>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-2824c4eb9fb545e694213d8027bd86a2-0-0" stroke-width="2px" d="M70,264.5 C70,177.0 215.0,177.0 215.0,264.5" fill="none" stroke="currentColor"></path>
+    <path class="displacy-arc" id="arrow-fc5374fdc84a4869a034a8be443b2e19-0-0" stroke-width="2px" d="M70,264.5 C70,177.0 215.0,177.0 215.0,264.5" fill="none" stroke="currentColor"></path>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textpath href="#arrow-2824c4eb9fb545e694213d8027bd86a2-0-0" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">nsubj:pass</textpath>
+        <textpath href="#arrow-fc5374fdc84a4869a034a8be443b2e19-0-0" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">nsubj:pass</textpath>
     </text>
     <path class="displacy-arrowhead" d="M70,266.5 L62,254.5 78,254.5" fill="currentColor"></path>
 </g>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-2824c4eb9fb545e694213d8027bd86a2-0-1" stroke-width="2px" d="M420,264.5 C420,177.0 565.0,177.0 565.0,264.5" fill="none" stroke="currentColor"></path>
+    <path class="displacy-arc" id="arrow-fc5374fdc84a4869a034a8be443b2e19-0-1" stroke-width="2px" d="M420,264.5 C420,177.0 565.0,177.0 565.0,264.5" fill="none" stroke="currentColor"></path>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textpath href="#arrow-2824c4eb9fb545e694213d8027bd86a2-0-1" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">case</textpath>
+        <textpath href="#arrow-fc5374fdc84a4869a034a8be443b2e19-0-1" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">case</textpath>
     </text>
     <path class="displacy-arrowhead" d="M420,266.5 L412,254.5 428,254.5" fill="currentColor"></path>
 </g>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-2824c4eb9fb545e694213d8027bd86a2-0-2" stroke-width="2px" d="M245,264.5 C245,89.5 570.0,89.5 570.0,264.5" fill="none" stroke="currentColor"></path>
+    <path class="displacy-arc" id="arrow-fc5374fdc84a4869a034a8be443b2e19-0-2" stroke-width="2px" d="M245,264.5 C245,89.5 570.0,89.5 570.0,264.5" fill="none" stroke="currentColor"></path>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textpath href="#arrow-2824c4eb9fb545e694213d8027bd86a2-0-2" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">obl</textpath>
+        <textpath href="#arrow-fc5374fdc84a4869a034a8be443b2e19-0-2" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">obl</textpath>
     </text>
     <path class="displacy-arrowhead" d="M570.0,266.5 L578.0,254.5 562.0,254.5" fill="currentColor"></path>
 </g>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-2824c4eb9fb545e694213d8027bd86a2-0-3" stroke-width="2px" d="M770,264.5 C770,177.0 915.0,177.0 915.0,264.5" fill="none" stroke="currentColor"></path>
+    <path class="displacy-arc" id="arrow-fc5374fdc84a4869a034a8be443b2e19-0-3" stroke-width="2px" d="M770,264.5 C770,177.0 915.0,177.0 915.0,264.5" fill="none" stroke="currentColor"></path>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textpath href="#arrow-2824c4eb9fb545e694213d8027bd86a2-0-3" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">case</textpath>
+        <textpath href="#arrow-fc5374fdc84a4869a034a8be443b2e19-0-3" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">case</textpath>
     </text>
     <path class="displacy-arrowhead" d="M770,266.5 L762,254.5 778,254.5" fill="currentColor"></path>
 </g>
 
 <g class="displacy-arrow">
-    <path class="displacy-arc" id="arrow-2824c4eb9fb545e694213d8027bd86a2-0-4" stroke-width="2px" d="M245,264.5 C245,2.0 925.0,2.0 925.0,264.5" fill="none" stroke="currentColor"></path>
+    <path class="displacy-arc" id="arrow-fc5374fdc84a4869a034a8be443b2e19-0-4" stroke-width="2px" d="M245,264.5 C245,2.0 925.0,2.0 925.0,264.5" fill="none" stroke="currentColor"></path>
     <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px">
-        <textpath href="#arrow-2824c4eb9fb545e694213d8027bd86a2-0-4" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">obl</textpath>
+        <textpath href="#arrow-fc5374fdc84a4869a034a8be443b2e19-0-4" class="displacy-label" startoffset="50%" side="left" fill="currentColor" text-anchor="middle">obl</textpath>
     </text>
     <path class="displacy-arrowhead" d="M925.0,266.5 L933.0,254.5 917.0,254.5" fill="currentColor"></path>
 </g>
