@@ -175,3 +175,6 @@ cython_debug/
 
 # uv / project-local venv
 .uvenv/
+
+# PDF build artifacts
+*.pdf
