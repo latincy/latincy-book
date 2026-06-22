@@ -31,7 +31,7 @@ book:
       - matcher.ipynb    
       - displacy.ipynb
   appendices:
-    - quickstart.ipynb
+    - latincy-quickstart.ipynb
     - projects.qmd
     - sample-texts.qmd
     - references.qmd
