@@ -41,3 +41,6 @@ bibliography: references.bib
 format:
   html:
     theme: cosmo
+
+resources:
+  - assets/
