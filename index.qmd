@@ -2,7 +2,7 @@
 
 "Getting Started with LatinCy" is an always-a-work-in-progress combination of documentation and demo notebooks for working with the LatinCy models on a variety of Latin text analysis and NLP tasks.
 
-![LatinCy pipelines backed on latincy-logo](assets/img/latincy-logo.png)
+![LatinCy pipelines backed on latincy-logo](assets/img/latincy-logo.jpg)
 
 
 ## Key links
